@@ -14,6 +14,9 @@ class UsersTableSeeder extends Seeder
         $credentials = [
             'email'    => 'admin@admin.admin',
             'password' => 'admin',
+            "first_name"=>"admin",
+            "last_name"=>"admin",
+            "business_id"=>1
         ];
     
         $user = Sentinel::registerAndActivate($credentials);
