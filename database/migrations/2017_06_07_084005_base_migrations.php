@@ -48,6 +48,7 @@ class BaseMigrations extends Migration
             $table->boolean("active")->default(true);
             $table->integer("weight")->nullable();
             $table->integer("volume")->nullable();
+            $table->float("statie_geld")->nullable();
             $table->unsignedInteger("tax_id")->index();
             $table->unsignedInteger("brand_id")->index();
             $table->timestamps();
@@ -111,6 +112,8 @@ class BaseMigrations extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments("id");
             $table->unsignedInteger("user_id")->index();
+            $table->date("delivery");
+            $table->boolean("processed")->default(false);
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users");
         });
