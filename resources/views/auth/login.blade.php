@@ -1,15 +1,33 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-    <div class="container mt-3">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Inloggen</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
+
+</head>
+<body id="Login_Body">
+    <div class="container vertical-center">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card card-block">
-                    {{--<h1 class="text-center mb-3 mt-3">Inloggen</h1>--}}
+                    <div class="row justify-content-center my-5">
+                        <img src="{{asset('img/jansma_logo.png')}}" class="img-fluid">
+                    </div>
 
                     <form class="md-form" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
-                        <div class="col-md-8 offset-md-2">
+                        <div class="col-md-10 offset-md-1">
                             <div class="md-form{{ $errors->has('email') ? ' has-error' : '' }}">
 
                                 <input id="email" type="email" class="form-control" name="email"
@@ -57,4 +75,11 @@
             </div>
         </div>
     </div>
-@endsection
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/tether.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/mdb.min.js') }}"></script>
+</body>
+</html>
