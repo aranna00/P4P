@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card card-block">
-                    <h1 class="text-center mb-3 mt-3">Inloggen</h1>
+                    {{--<h1 class="text-center mb-3 mt-3">Inloggen</h1>--}}
+
                     <form class="md-form" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="col-md-8 offset-md-2">
@@ -47,7 +48,7 @@
                             </div>
                             <div class="md-form text-center">
                                 <a class="" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
+                                    wachtwoord vergeten?
                                 </a>
                             </div>
                         </div>
