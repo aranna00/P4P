@@ -14,5 +14,11 @@
     Route::group(["prefix"=>"admin","namespace"=>"Admin"],function(){
     
         Route::get('/', 'HomeController@index')->name('admin.home');
-        
+        Route::resource("producten","ProductController");
+        Route::resource("merken","BrandController");
+        Route::resource("klanten","BusinessController");
+        Route::resource("categorieen","CategoryController");
+        Route::resource("Bestellingen", "OrderController");
+        Route::resource("gebruikers", "UserController");
+        Route::resource("belastingen", "TaxController");
     });

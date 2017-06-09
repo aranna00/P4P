@@ -11,100 +11,113 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 	
 	<!-- Styles -->
-	{{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
-	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--	<link href="{{ asset('css/mdb.css') }}" rel="stylesheet">--}}
+	<link href="{{ asset('css/compiled.min.css') }}" rel="stylesheet">
 
 </head>
-<body>
-	<div id="app">
-		
-		<!-- SideNav slide-out button -->
-		<a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
-		<!--/. SideNav slide-out button -->
-		
+<body class="fixed-sn cyan-skin">
+<div id="app">
+	<header>
 		<!-- Sidebar navigation -->
-		<ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar">
+		<ul id="slide-out" class="side-nav fixed mobile-nofixed custom-scrollbar">
 			<!-- Logo -->
 			<li>
-				<div class="logo-wrapper waves-light">
-					<a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+				<div>
+					<img src="{{ asset("img/jansma_logo.png") }}" class="img-fluid flex-center p-4">
 				</div>
 			</li>
 			<!--/. Logo -->
-			<!--Social-->
-			<li>
-				<ul class="social">
-					<li><a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
-					<li><a class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
-					<li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
-					<li><a class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
-				</ul>
-			</li>
-			<!--/Social-->
-			<!--Search Form-->
-			<li>
-				<form class="search-form" role="search">
-					<div class="form-group waves-light">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-				</form>
-			</li>
-			<!--/.Search Form-->
 			<!-- Side navigation links -->
 			<li>
 				<ul class="collapsible collapsible-accordion">
-					<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-chevron-right"></i> Submit blog<i class="fa fa-angle-down rotate-icon"></i></a>
+					<li>
+						<a class="collapsible-header waves-effect arrow-r">
+							Categoriën
+							<i class="fa fa-angle-down rotate-icon"></i>
+						</a>
 						<div class="collapsible-body">
 							<ul>
-								<li><a href="#" class="waves-effect">Submit listing</a>
+								<li>
+									<a href="#" class="waves-effect">Categorie aanmaken</a>
 								</li>
-								<li><a href="#" class="waves-effect">Registration form</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-hand-pointer-o"></i> Instruction<i class="fa fa-angle-down rotate-icon"></i></a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a href="#" class="waves-effect">For bloggers</a>
-								</li>
-								<li><a href="#" class="waves-effect">For authors</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-eye"></i> About<i class="fa fa-angle-down rotate-icon"></i></a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a href="#" class="waves-effect">Introduction</a>
-								</li>
-								<li><a href="#" class="waves-effect">Monthly meetings</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Contact me<i class="fa fa-angle-down rotate-icon"></i></a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a href="#" class="waves-effect">FAQ</a>
-								</li>
-								<li><a href="#" class="waves-effect">Write a message</a>
+								<li>
+									<a href="#" class="waves-effect">Alle categoriën</a>
 								</li>
 							</ul>
 						</div>
 					</li>
 				</ul>
 			</li>
-			<!--/. Side navigation links -->
-			<div class="sidenav-bg mask-strong"></div>
+			<li>
+				<ul class="collapsible collapsible-accordion">
+					<li>
+						<a class="collapsible-header waves-effect arrow-r">
+							Producten
+							<i class="fa fa-angle-down rotate-icon"></i>
+						</a>
+						<div class="collapsible-body">
+							<ul>
+								<li>
+									<a href="#" class="waves-effect">Product aanmaken</a>
+								</li>
+								<li>
+									<a href="#" class="waves-effect">Alle producten</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li class="nav-item waves-effect">
+				<a class="nav-link">Categoriën</a>
+			</li>
 		</ul>
 		<!--/. Sidebar navigation -->
+		<nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar double-nav">
+			<!-- SideNav slide-out button -->
+			<div class="float-left">
+				<a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+			</div>
+			<!-- Breadcrumb-->
+			<div class="breadcrumb-dn mr-auto">
+				<p>Breadcrumb or page title</p>
+			</div>
+			<ul class="nav navbar-nav nav-flex-icons ml-auto">
+				<li class="nav-item">
+					<a class="nav-link"><i class="fa fa-envelope"></i> <span
+								class="hidden-sm-down">Contact</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"><i class="fa fa-comments-o"></i> <span class="hidden-sm-down">Support</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"><i class="fa fa-user"></i> <span class="hidden-sm-down">Account</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+					   aria-haspopup="true" aria-expanded="false">
+						Dropdown
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
 	@yield("content")
-	</div>
-	<script src="{{ asset('js/app.js') }}"></script>
-	<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
-	<script src="{{ asset('js/tether.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/mdb.min.js') }}"></script>
+</div>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('js/tether.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/mdb.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+    });
+</script>
 </body>
