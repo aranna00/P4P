@@ -17,3 +17,40 @@
   background-size: cover;
   height: 100vh;
 }
+
+body{
+  position: relative;
+  min-height: 100vh;
+  margin: 0 !important;
+}
+
+#app{
+  padding: 0 !important;
+}
+
+footer{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.home-block{
+  height: 100vh !important;
+  padding-top: 4rem;
+  background-color: #eee !important;
+}
+
+.home-block-image{
+  height: 50vh !important;
+  img{
+  }
+}
+
+//.fb_iframe_widget{
+//  max-height: 88vh;
+//  span{
+//    max-height: 88vh;
+//    iframe{
+//      max-height: 88vh;
+//    }
+//  }
+//}
