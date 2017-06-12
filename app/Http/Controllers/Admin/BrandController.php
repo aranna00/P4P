@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Brand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Toastr;
 
 class BrandController extends Controller
 {
@@ -15,7 +17,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::select(["id","name","description","created_at"])->paginate(8);
+        
+        return view("admin.brands.index",compact(["brands"]));
     }
 
     /**
@@ -25,18 +29,26 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.brands.create");
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $brand = new Brand();
+        $brand->name = $request->get("name");
+        $brand->description = $request->get("description");
+        $brand->save();
+    
+        Toastr::success("Het merk is successvol aangemaakt");
+    
+        return Redirect::action("Admin\BrandController@index");
     }
 
     /**
@@ -56,9 +68,11 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        
+        return view("admin.brands.edit",compact(["brand"]));
     }
 
     /**
@@ -66,21 +80,39 @@ class BrandController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Brand  $brand
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        $brand->name = $request->get("name");
+        $brand->description = $request->get("description");
+        $brand->save();
+    
+        Toastr::success("Het merk is successvol bijgewerkt");
+        
+        return Redirect::action("Admin\BrandController@index");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Brand  $brand
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        //
+        $brand=Brand::find($id);
+        if($brand==null){
+            Toastr::error("Dit merk bestaat niet");
+        }else{
+            $brand->delete();
+        
+            Toastr::success("Het merk ". $brand->name ." is successvol verwijderd");
+        }
+    
+        return Redirect::action("Admin\BrandController@index");
     }
 }
