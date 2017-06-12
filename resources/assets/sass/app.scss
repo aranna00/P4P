@@ -45,12 +45,10 @@ footer{
   }
 }
 
-//.fb_iframe_widget{
-//  max-height: 88vh;
-//  span{
-//    max-height: 88vh;
-//    iframe{
-//      max-height: 88vh;
-//    }
-//  }
-//}
+.navbar {
+  border-radius: 0 !important;
+}
+
+.fa-fix{
+  margin-top: 3px !important;
+}

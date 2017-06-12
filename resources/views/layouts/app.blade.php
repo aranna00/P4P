@@ -18,21 +18,7 @@
 </head>
 <body class="row">
 <div id="fb-root"></div>
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v2.9";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
 
-    $(window).bind("load resize", function () {
-        var height = $('.fb-container').height();
-        $('.fb-container').html('<div class="fb-page card-block p-0" data-href="https://www.facebook.com/JansmaHaule.nl" data-tabs="timeline" data-width="500" data-height="' + height + '" data-hide-cover="false" data-show-facepile="false" data-show-posts="false">');
-        FB.XFBML.parse();
-    });
-</script>
 <div id="app" class="col-12">
     <nav class="navbar fixed-top navbar-toggleable-md scrolling-navbar navbar-dark bg-primary">
         {{--<div class="container">--}}
@@ -130,6 +116,7 @@
 </footer>
 <!--/.Footer-->
 
+@yield("scripts")
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}"></script>
