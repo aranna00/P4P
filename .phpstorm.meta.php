@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-06-07.
+    * Generated on 2017-06-12.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -56,6 +56,7 @@ namespace PHPSTORM_META {
             'sentinel.checkpoint.throttle' instanceof \Cartalyst\Sentinel\Checkpoints\ThrottleCheckpoint,
             'sentinel.reminders' instanceof \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository,
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
+            'toastr' instanceof \Kamaln7\Toastr\Toastr,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,
@@ -190,6 +191,7 @@ namespace PHPSTORM_META {
             'sentinel.checkpoint.throttle' instanceof \Cartalyst\Sentinel\Checkpoints\ThrottleCheckpoint,
             'sentinel.reminders' instanceof \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository,
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
+            'toastr' instanceof \Kamaln7\Toastr\Toastr,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,
@@ -324,6 +326,7 @@ namespace PHPSTORM_META {
             'sentinel.checkpoint.throttle' instanceof \Cartalyst\Sentinel\Checkpoints\ThrottleCheckpoint,
             'sentinel.reminders' instanceof \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository,
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
+            'toastr' instanceof \Kamaln7\Toastr\Toastr,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,
@@ -458,6 +461,7 @@ namespace PHPSTORM_META {
             'sentinel.checkpoint.throttle' instanceof \Cartalyst\Sentinel\Checkpoints\ThrottleCheckpoint,
             'sentinel.reminders' instanceof \Cartalyst\Sentinel\Reminders\IlluminateReminderRepository,
             'sentinel' instanceof \Cartalyst\Sentinel\Sentinel,
+            'toastr' instanceof \Kamaln7\Toastr\Toastr,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,

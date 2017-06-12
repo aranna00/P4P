@@ -11,7 +11,7 @@
     |
     */
     
-    Route::group(["prefix"=>"admin","namespace"=>"Admin"],function(){
+    Route::group(["prefix"=>"beheer","namespace"=>"Admin"],function(){
     
         Route::get('/', 'HomeController@index')->name('admin.home');
         Route::resource("producten","ProductController");
@@ -21,4 +21,5 @@
         Route::resource("Bestellingen", "OrderController");
         Route::resource("gebruikers", "UserController");
         Route::resource("belastingen", "TaxController");
+        Route::resource("eigenschappen","AttributeGroupController");
     });

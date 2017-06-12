@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereParentId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $children
  */
 class Category extends Model
 {
@@ -31,6 +32,11 @@ class Category extends Model
     public function parent(){
         return $this->belongsTo(Category::class, "parent_id");
     }
+    
+    public function children(){
+        return $this->hasMany(Category::class, "parent_id");
+    }
+    
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
