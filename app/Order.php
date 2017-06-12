@@ -18,6 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Order whereUserId($value)
  * @mixin \Eloquent
+ * @property string $delivery
+ * @property bool $processed
+ * @method static \Illuminate\Database\Query\Builder|\App\Order whereDelivery($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Order whereProcessed($value)
  */
 class Order extends Model
 {

@@ -12,6 +12,7 @@
 	
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('ckeditor/contents.css') }}" rel="stylesheet">
 {{--	<link href="{{ asset('css/mdb.css') }}" rel="stylesheet">--}}
 	<link href="{{ asset('css/compiled.min.css') }}" rel="stylesheet">
 
@@ -39,10 +40,10 @@
 						<div class="collapsible-body">
 							<ul>
 								<li>
-									<a href="#" class="waves-effect">Categorie aanmaken</a>
+									<a href="{{ action("Admin\CategoryController@create") }}" class="waves-effect">Categorie aanmaken</a>
 								</li>
 								<li>
-									<a href="#" class="waves-effect">Alle categoriën</a>
+									<a href="{{ action("Admin\CategoryController@index") }}" class="waves-effect">Alle categoriën</a>
 								</li>
 							</ul>
 						</div>
@@ -59,18 +60,55 @@
 						<div class="collapsible-body">
 							<ul>
 								<li>
-									<a href="#" class="waves-effect">Product aanmaken</a>
+									<a href="{{ action("Admin\ProductController@create") }}" class="waves-effect">Product aanmaken</a>
 								</li>
 								<li>
-									<a href="#" class="waves-effect">Alle producten</a>
+									<a href="{{ action("Admin\ProductController@index") }}" class="waves-effect">Alle producten</a>
 								</li>
 							</ul>
 						</div>
 					</li>
 				</ul>
 			</li>
-			<li class="nav-item waves-effect">
-				<a class="nav-link">Categoriën</a>
+			<li>
+				<ul class="collapsible collapsible-accordion">
+					<li>
+						<a class="collapsible-header waves-effect arrow-r">
+							Merken
+							<i class="fa fa-angle-down rotate-icon"></i>
+						</a>
+						<div class="collapsible-body">
+							<ul>
+								<li>
+									<a href="{{ action("Admin\BrandController@create") }}" class="waves-effect">Merk aanmaken</a>
+								</li>
+								<li>
+									<a href="{{ action("Admin\BrandController@index") }}" class="waves-effect">Alle merken</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="collapsible collapsible-accordion">
+					<li>
+						<a class="collapsible-header waves-effect arrow-r">
+							Product eigenschappen
+							<i class="fa fa-angle-down rotate-icon"></i>
+						</a>
+						<div class="collapsible-body">
+							<ul>
+								<li>
+									<a href="{{ action("Admin\AttributeGroupController@create") }}" class="waves-effect">Eigenschap aanmaken</a>
+								</li>
+								<li>
+									<a href="{{ action("Admin\AttributeGroupController@index") }}" class="waves-effect">Alle eigenschappen</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
 			</li>
 		</ul>
 		<!--/. Sidebar navigation -->
@@ -81,43 +119,31 @@
 			</div>
 			<!-- Breadcrumb-->
 			<div class="breadcrumb-dn mr-auto">
-				<p>Breadcrumb or page title</p>
+				@yield("breadcrumbs")
 			</div>
 			<ul class="nav navbar-nav nav-flex-icons ml-auto">
-				<li class="nav-item">
-					<a class="nav-link"><i class="fa fa-envelope"></i> <span
-								class="hidden-sm-down">Contact</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link"><i class="fa fa-comments-o"></i> <span class="hidden-sm-down">Support</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link"><i class="fa fa-user"></i> <span class="hidden-sm-down">Account</span></a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false">
-						Dropdown
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
-				</li>
+			
 			</ul>
 		</nav>
 	</header>
-	@yield("content")
+	<main>
+		<div class="container-fluid">
+			@yield("content")
+		</div>
+	</main>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/mdb.min.js') }}"></script>
+<script src="{{ asset('js/toastr.js') }}"></script>
 <script>
     $(document).ready(function () {
         $(".button-collapse").sideNav();
     });
 </script>
+{!! Toastr::render() !!}
+@yield("scripts")
 </body>
+</html>
