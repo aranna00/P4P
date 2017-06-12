@@ -20,10 +20,43 @@
   height: 100vh;
 }
 
-body{
-  background-color: #eee !important;
-}
 
 .text-area-label{
   color: #757575 !important;
+}
+
+body{
+  background-color: #eee !important;
+  position: relative;
+  min-height: 100vh;
+  margin: 0 !important;
+}
+
+#app{
+  padding: 0 !important;
+}
+
+footer{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.home-block{
+  height: 100vh !important;
+  padding-top: 4rem;
+  background-color: #eee !important;
+}
+
+.home-block-image{
+  height: 50vh !important;
+  img{
+  }
+}
+
+.navbar {
+  border-radius: 0 !important;
+}
+
+.fa-fix{
+  margin-top: 3px !important;
 }

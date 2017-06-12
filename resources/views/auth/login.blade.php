@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
 
 </head>
@@ -21,7 +20,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card card-block">
-                    <div class="row justify-content-center my-5">
+                    <div class="row justify-content-center mb-5 mt-3">
                         <img src="{{asset('img/jansma_logo.png')}}" class="img-fluid">
                     </div>
 
@@ -55,7 +54,7 @@
                             <div class="md-form">
                                 <div class="checkbox">
                                     <input type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label for="remember">onthoud mij</label>
+                                    <label for="remember">Onthoud mij</label>
                                 </div>
                             </div>
 
