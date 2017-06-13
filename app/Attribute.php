@@ -36,6 +36,6 @@ class Attribute extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,"products_attributes");
     }
 }

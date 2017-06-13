@@ -36,6 +36,6 @@ class Order extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot("amount");
+        return $this->belongsToMany(Product::class, "orders_products")->withPivot("amount");
     }
 }

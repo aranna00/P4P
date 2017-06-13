@@ -25,13 +25,13 @@ class Wishlist extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, "users_wishlists");
     }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,"products_wishlists");
     }
 }
