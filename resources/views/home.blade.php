@@ -86,10 +86,14 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        $(window).bind("load resize", function () {
+        $(window).bind("resize", loadFbWidget());
+
+        $(window).load(loadFbWidget());
+
+        function loadFbWidget() {
             var height = $('.fb-container').height();
             $('.fb-container').html('<div class="fb-page card-block p-0" data-href="https://www.facebook.com/JansmaHaule.nl" data-tabs="timeline" data-width="500" data-height="' + height + '" data-hide-cover="false" data-show-facepile="false" data-show-posts="false">');
             FB.XFBML.parse();
-        });
+        }
     </script>
 @endsection

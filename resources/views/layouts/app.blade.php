@@ -17,7 +17,6 @@
 </head>
 <body class="row">
 <div id="fb-root"></div>
-
 <div id="app" class="col-12">
     <nav class="navbar fixed-top navbar-toggleable-md scrolling-navbar navbar-dark bg-navbar">
         {{--<div class="container">--}}
@@ -37,7 +36,7 @@
                 <li class="nav-item @if(Route::current()->getName() == 'product' || Route::current()->getName() == 'filtered') active @endif">
                     <a href="{{ route('product') }}" class="nav-link">Producten</a>
                 </li>
-                <li class="nav-item @if(contains(Route::current()->getName(), 'favorieten')) active @endif">
+                <li class="nav-item @if(str_contains(Route::current()->getName(), 'favorieten')) active @endif">
                     <a href="{{ route('favorieten.index') }}" class="nav-link">Favorieten</a>
                 </li>
             </ul>
@@ -121,10 +120,10 @@
 <!--/.Footer-->
 
 <!-- Scripts -->
+@yield('scripts')
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/mdb.min.js') }}"></script>
-@yield('scripts')
 </body>
 </html>
