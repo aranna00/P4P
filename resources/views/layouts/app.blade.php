@@ -118,7 +118,6 @@
 </footer>
 <!--/.Footer-->
 
-@yield("scripts")
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}"></script>

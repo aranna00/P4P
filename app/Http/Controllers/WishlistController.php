@@ -11,7 +11,7 @@ class WishlistController extends Controller
 {
     public function index()
     {
-        $user = User::find(1);
+        $user = User::find(1); //TODO: get user id from current user
         $wishlists = $user->wishlists;
 
         return view('wishlist.index', compact("wishlists"));
@@ -28,7 +28,7 @@ class WishlistController extends Controller
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        User::find(1)->wishlists()->attach($wishlist);
+        User::find(1)->wishlists()->attach($wishlist); //TODO: get user id from current user
 
         //Toastr::success("De favorietenlijst is successvol aangemaakt");
 
@@ -61,6 +61,9 @@ class WishlistController extends Controller
     public function destroy($id)
     {
         $wishlist = Wishlist::findOrFail($id);
+
+        User::find(1)->wishlists()->detach($wishlist); //TODO: get user id from current user
+
         if ($wishlist != null){
             $wishlist->delete();
 
