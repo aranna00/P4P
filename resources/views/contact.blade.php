@@ -47,13 +47,14 @@
                 title: "Jansma Boerenproducten"
             });
 
-            var_map.addListener('center_changed', function() {
-                // 3 seconds after the center of the map has changed, pan back to the
-                // marker.
-                window.setTimeout(function() {
-                    var_map.panTo(var_marker.getPosition());
-                }, 3000);
-            });
+
+//            var_map.addListener('center_changed', function() {
+//                // 3 seconds after the center of the map has changed, pan back to the
+//                // marker.
+//                window.setTimeout(function() {
+//                    var_map.panTo(var_marker.getPosition());
+//                }, 3000);
+//            });
 
 
             var_marker.addListener('click', function() {
