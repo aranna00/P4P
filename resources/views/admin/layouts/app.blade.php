@@ -13,8 +13,6 @@
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('ckeditor/contents.css') }}" rel="stylesheet">
-{{--	<link href="{{ asset('css/mdb.css') }}" rel="stylesheet">--}}
-	<link href="{{ asset('css/compiled.min.css') }}" rel="stylesheet">
 
 </head>
 <body class="fixed-sn cyan-skin">

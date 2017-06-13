@@ -47,7 +47,6 @@
                     card's content.</p>
             </div>
             <!--/.Card content-->
-            >
         </div>
         <div class="col-sm-6 col-lg-3 card home-block px-0"><!--Card image-->
             <div class="view overlay hm-white-slight home-block-image">

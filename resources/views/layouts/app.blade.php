@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/compiled.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 
 </head>
@@ -20,7 +19,7 @@
 <div id="fb-root"></div>
 
 <div id="app" class="col-12">
-    <nav class="navbar fixed-top navbar-toggleable-md scrolling-navbar navbar-dark bg-primary">
+    <nav class="navbar fixed-top navbar-toggleable-md scrolling-navbar navbar-dark bg-navbar">
         {{--<div class="container">--}}
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false"
@@ -33,10 +32,13 @@
         <div class="collapse navbar-collapse" id="navbarNav1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @if(Route::current()->getName() == 'home') active @endif">
-                    <a href="/home" class="nav-link">Home</a>
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item @if(Route::current()->getName() == 'product' || Route::current()->getName() == 'filtered') active @endif">
-                    <a href="/producten" class="nav-link">Producten</a>
+                    <a href="{{ route('product') }}" class="nav-link">Producten</a>
+                </li>
+                <li class="nav-item @if(contains(Route::current()->getName(), 'favorieten')) active @endif">
+                    <a href="{{ route('favorieten.index') }}" class="nav-link">Favorieten</a>
                 </li>
             </ul>
             <form class="form-inline waves-effect waves-light">
@@ -78,7 +80,7 @@
 
 
 <!--Footer-->
-<footer class="page-footer secondary-color center-on-small-only col-12 align-self-end m-0">
+<footer class="page-footer bg-navbar center-on-small-only col-12 align-self-end m-0">
 
     <!--Footer Links-->
     <div class="container-fluid">

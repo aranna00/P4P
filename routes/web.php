@@ -18,9 +18,9 @@
     Route::post("logout", "Auth\LoginController@logout")->name("logout");
     Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/producten', 'ProductController@index')->name('product');
+Route::get('/filter', 'ProductController@index')->name('product');
 
-Route::get('/producten/{category}', 'ProductController@filtered')->name('filtered');
+Route::get('/filter/{category}', 'ProductController@filtered')->name('filtered');
 
 Route::resource('/favorieten', 'WishlistController');
 

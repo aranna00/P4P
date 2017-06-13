@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AttributeGroup;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class ProductController extends Controller
         $categories = $categories->get();
 
         $products = Product::all();
-//        $products = $products->get();
+        $products->load("brand");
 
 //        dd($products);
 
@@ -40,16 +41,17 @@ class ProductController extends Controller
 
         $parent = Category::find($parent_id);
 
+        $products = $parent->products;
+
+        $attribute_groups = AttributeGroup::all();
+
         $breadcrumbs = [[$parent->id,$parent->name]];
         while($parent->parent_id != null){
             $parent = $parent->parent;
-//            $breadcrumbs[$parent->id]=($parent->name);
             array_push($breadcrumbs,[$parent->id, $parent->name]);
         }
 
-//        dd($breadcrumbs);
-
-        return view('product', compact(["categories", "breadcrumbs"]));
+        return view('product', compact(["categories", "breadcrumbs", "products", "attribute_groups"]));
     }
 
 
