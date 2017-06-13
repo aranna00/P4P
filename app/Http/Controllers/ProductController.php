@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
+use function Sodium\add;
 
 class ProductController extends Controller
 {
@@ -13,29 +16,42 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product');
+        $categories = Category::whereNull("parent_id");
+        $categories = $categories->get();
+
+        $products = Product::all();
+//        $products = $products->get();
+
+//        dd($products);
+
+        return view('product', compact(["categories", "products"]));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
+     * @param int $parent_id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function filtered($parent_id)
     {
-        //
+        $categories = Category::whereParentId($parent_id);
+        $categories = $categories->get();
+
+        $parent = Category::find($parent_id);
+
+        $breadcrumbs = [[$parent->id,$parent->name]];
+        while($parent->parent_id != null){
+            $parent = $parent->parent;
+//            $breadcrumbs[$parent->id]=($parent->name);
+            array_push($breadcrumbs,[$parent->id, $parent->name]);
+        }
+
+//        dd($breadcrumbs);
+
+        return view('product', compact(["categories", "breadcrumbs"]));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -44,40 +60,6 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

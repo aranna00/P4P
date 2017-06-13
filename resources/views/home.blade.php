@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row m-0">
+    <div class="container-fluid row m-0 p-0">
         <div class="col-sm-6 col-lg-3 card home-block px-0"><!--Card image-->
             <div class="view overlay hm-white-slight home-block-image">
                 <img src="https://cookinglife.nl/uploads/webshop/hertog%202.jpg" class="" alt="">
@@ -74,7 +74,6 @@
         </div>
         <div class="col-sm-6 col-lg-3 card home-block px-0 fb-container">
         </div>
-    </div>
     </div>
 @endsection
 

@@ -32,8 +32,11 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNav1">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item @if(Route::current()->getName() == 'home') active @endif">
+                    <a href="/home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item @if(Route::current()->getName() == 'product' || Route::current()->getName() == 'filtered') active @endif">
+                    <a href="/producten" class="nav-link">Producten</a>
                 </li>
             </ul>
             <form class="form-inline waves-effect waves-light">
