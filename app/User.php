@@ -2,28 +2,33 @@
 
 namespace App;
 
+use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 /**
  * App\User
  *
- * @property int $id
- * @property string $email
- * @property string $password
- * @property string $permissions
- * @property string $last_login
- * @property string $first_name
- * @property string $last_name
- * @property int $business_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\Business $business
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $cart
+ * @property int                                                                                                            $id
+ * @property string                                                                                                         $email
+ * @property string                                                                                                         $password
+ * @property array                                                                                                          $permissions
+ * @property string                                                                                                         $last_login
+ * @property string                                                                                                         $first_name
+ * @property string                                                                                                         $last_name
+ * @property int                                                                                                            $business_id
+ * @property \Carbon\Carbon                                                                                                 $created_at
+ * @property \Carbon\Carbon                                                                                                 $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Activations\EloquentActivation[]             $activations
+ * @property-read \App\Business                                                                                             $business
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[]                                                   $cart
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[] $orders
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Wishlist[] $wishlists
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[]                                                     $orders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Persistences\EloquentPersistence[]           $persistences
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Reminders\EloquentReminder[]                 $reminders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Roles\EloquentRole[]                         $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Throttling\EloquentThrottle[]                $throttle
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Wishlist[]                                                  $wishlists
  * @method static \Illuminate\Database\Query\Builder|\App\User whereBusinessId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
@@ -36,25 +41,33 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends EloquentUser
 {
     use Notifiable;
-
+    
+    public $name;
+    
+    public function __construct(array $attributes=[])
+    {
+        $this->name=$this->first_name . " " . $this->last_name;
+        parent::__construct($attributes);
+    }
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable= [
         'name', 'email', 'password',
     ];
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
+    protected $hidden= [
         'password', 'remember_token',
     ];
     

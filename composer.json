@@ -44,6 +44,7 @@
             "php artisan optimize"
         ],
         "post-update-cmd": [
+          "npm install",
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize",
             "php artisan ide-helper:generate",

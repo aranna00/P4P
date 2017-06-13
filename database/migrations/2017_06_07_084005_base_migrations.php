@@ -1,10 +1,10 @@
 <?php
-
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
-
-class BaseMigrations extends Migration
+    
+    use Illuminate\Database\Migrations\Migration;
+    use Illuminate\Database\Schema\Blueprint;
+    use Illuminate\Support\Facades\Schema;
+    
+    class BaseMigrations extends Migration
 {
     /**
      * Run the migrations.
@@ -38,12 +38,12 @@ class BaseMigrations extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments("id");
             $table->string("name");
-            $table->text("description");
+            $table->text("description")->nullable();
             $table->float("price");
             $table->date("available_from");
-            $table->date("available_until");
+            $table->date("available_until")->nullable();
             $table->integer("coli")->default(1);
-            $table->boolean("subtracts")->default(true);
+            $table->boolean("subtracts")->default(false);
             $table->integer("stock")->default(0);
             $table->boolean("active")->default(true);
             $table->integer("weight")->nullable();
@@ -76,7 +76,7 @@ class BaseMigrations extends Migration
     
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("name");
+            $table->string("name")->nullable();
             $table->string("value");
             $table->unsignedInteger("attribute_group_id")->index();
             $table->foreign("attribute_group_id")->references("id")->on("attribute_groups");
