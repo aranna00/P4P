@@ -22,6 +22,6 @@ Route::get('/producten', 'ProductController@index')->name('product');
 
 Route::get('/producten/{category}', 'ProductController@filtered')->name('filtered');
 
-Route::get('/favorieten', 'WishlistController@index')->name('wishlist');
+Route::resource('/favorieten', 'WishlistController');
 
 Route::get('/contact', 'ContactController@index')->name('contact');
