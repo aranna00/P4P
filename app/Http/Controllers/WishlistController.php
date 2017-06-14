@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Wishlist;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -11,7 +12,7 @@ class WishlistController extends Controller
 {
     public function index()
     {
-        $user = User::find(1); //TODO: get user id from current user
+        $user = User::find(Sentinel::check()->getUserId());
         $wishlists = $user->wishlists;
 
         return view('wishlist.index', compact("wishlists"));
@@ -28,7 +29,7 @@ class WishlistController extends Controller
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        User::find(1)->wishlists()->attach($wishlist); //TODO: get user id from current user
+        User::find(Sentinel::check()->getUserId())->wishlists()->attach($wishlist);
 
         //Toastr::success("De favorietenlijst is successvol aangemaakt");
 
@@ -62,7 +63,7 @@ class WishlistController extends Controller
     {
         $wishlist = Wishlist::findOrFail($id);
 
-        User::find(1)->wishlists()->detach($wishlist); //TODO: get user id from current user
+        User::find(Sentinel::check()->getUserId())->wishlists()->detach($wishlist);
 
         if ($wishlist != null){
             $wishlist->delete();
