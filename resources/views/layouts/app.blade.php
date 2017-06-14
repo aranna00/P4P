@@ -44,6 +44,9 @@
                 <input class="form-control" type="text" placeholder="Search">
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item @if(Route::current()->getName() == 'winkelwagen') active @endif">
+                    <a href="{{ route('winkelwagen.index') }}" class="nav-link">Winkelwagen</a>
+                </li>
                 <!-- Authentication Links -->
 	            @if (Sentinel::guest())
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
@@ -120,10 +123,10 @@
 <!--/.Footer-->
 
 <!-- Scripts -->
-@yield('scripts')
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/mdb.min.js') }}"></script>
+@yield('scripts')
 </body>
 </html>
