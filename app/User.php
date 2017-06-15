@@ -97,7 +97,7 @@ class User extends EloquentUser
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cart(){
-        return $this->belongsToMany(Product::class)->withPivot("amount");
+        return $this->belongsToMany(Product::class, "cart")->withPivot("amount");
     }
     
 }

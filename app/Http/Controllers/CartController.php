@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Wishlist;
 
-class WishlistController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlists = \Sentinel::check()->wishlists;
+        $cart = \Sentinel::check()->cart;
 
-        return view('wishlist.index', compact("wishlists"));
+        return view('cart.index', compact('cart'));
     }
 
     /**
@@ -27,7 +25,7 @@ class WishlistController extends Controller
      */
     public function create()
     {
-        return view('wishlist.create');
+        //
     }
 
     /**
@@ -38,15 +36,21 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        $wishlist = new Wishlist();
-        $wishlist->name = $request->get("name");
-        $wishlist->save();
+        $product = $request->get("id");
+        $amount = $request->get("amount");
 
-        \Sentinel::check()->wishlists()->attach($wishlist);
+        $user = \Sentinel::check();
 
-        //Toastr::success("De favorietenlijst is successvol aangemaakt");
+        // if product is already in cart, add the amount to it
+        if ($user->cart()->wherePivot("product_id", "=", $product)->count() > 0)
+        {
+            $current_amount = $user->cart()->wherePivot("product_id", "=", $product);
+            $amount += $current_amount;
+            $user->cart()->detach($product);
+        }
+        $user->cart()->attach($product, ["amount" => $amount]);
 
-        return \Redirect::action("WishlistController@index");
+        return \Redirect::action("CartController@index");
     }
 
     /**
@@ -68,9 +72,7 @@ class WishlistController extends Controller
      */
     public function edit($id)
     {
-        $wishlist = Wishlist::findOrFail($id);
-
-        return view('wishlist.edit', compact("wishlist"));
+        //
     }
 
     /**
@@ -82,33 +84,28 @@ class WishlistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $wishlist = Wishlist::findOrFail(($id));
-        $wishlist->name = $request->get("name");
-        $wishlist->save();
+        $product = $request->get("id");
+        $amount = $request->get("amount");
 
-        //Toastr::success("De favorietenlijst is successvol bijgewerkt");
+        $user = \Sentinel::check();
 
-        return \Redirect::action("WishlistController@index");
+        $user->cart()->detach($product);
+
+        if ($amount > 0) {
+            $user->cart()->attach($product, ["amount" => $amount]);
+        }
+
+        return \Redirect::action("CartController@index");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $wishlist = Wishlist::findOrFail($id);
-
-        \Sentinel::check()->wishlists()->detach($wishlist);
-
-        if ($wishlist != null){
-            $wishlist->delete();
-
-            //Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
-        }
-
-        return \Redirect::action("WishlistController@index");
+        //
     }
 }
