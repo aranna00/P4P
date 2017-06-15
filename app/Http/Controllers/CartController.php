@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
@@ -16,7 +13,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = User::find(Sentinel::check()->getUserId())->cart;
+        $cart = \Sentinel::check()->cart;
 
         return view('cart.index', compact('cart'));
     }
@@ -53,7 +50,7 @@ class CartController extends Controller
         }
         $user->cart()->attach($product, ["amount" => $amount]);
 
-        return Redirect::action("CartController@index");
+        return \Redirect::action("CartController@index");
     }
 
     /**
@@ -90,7 +87,7 @@ class CartController extends Controller
         $product = $request->get("id");
         $amount = $request->get("amount");
 
-        $user = User::find(Sentinel::check()->getUserId());
+        $user = \Sentinel::check();
 
         $user->cart()->detach($product);
 
@@ -98,7 +95,7 @@ class CartController extends Controller
             $user->cart()->attach($product, ["amount" => $amount]);
         }
 
-        return Redirect::action("CartController@index");
+        return \Redirect::action("CartController@index");
     }
 
     /**

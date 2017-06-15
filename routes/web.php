@@ -26,4 +26,4 @@ Route::resource('/favorieten', 'WishlistController');
 
 Route::resource('/winkelwagen', 'CartController');
 
-Route::get('/contact', 'ContactController@index')->name('contact');
+Route::get('/contact', 'ContactController@index')->name('contact')->middleware('sentinel.auth');

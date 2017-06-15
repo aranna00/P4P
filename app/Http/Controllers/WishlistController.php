@@ -2,45 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\User;
 use App\Wishlist;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class WishlistController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $user = User::find(Sentinel::check()->getUserId());
-        $wishlists = $user->wishlists;
+        $wishlists = \Sentinel::check()->wishlists;
 
         return view('wishlist.index', compact("wishlists"));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('wishlist.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $wishlist = new Wishlist();
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        User::find(Sentinel::check()->getUserId())->wishlists()->attach($wishlist);
+        \Sentinel::check()->wishlists()->attach($wishlist);
 
         //Toastr::success("De favorietenlijst is successvol aangemaakt");
 
-        return Redirect::action("WishlistController@index");
+        return \Redirect::action("WishlistController@index");
     }
 
-    public function show(Wishlist $wishlist)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $wishlist = Wishlist::findOrFail($id);
@@ -48,6 +73,13 @@ class WishlistController extends Controller
         return view('wishlist.edit', compact("wishlist"));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         $wishlist = Wishlist::findOrFail(($id));
@@ -56,14 +88,20 @@ class WishlistController extends Controller
 
         //Toastr::success("De favorietenlijst is successvol bijgewerkt");
 
-        return Redirect::action("WishlistController@index");
+        return \Redirect::action("WishlistController@index");
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         $wishlist = Wishlist::findOrFail($id);
 
-        User::find(Sentinel::check()->getUserId())->wishlists()->detach($wishlist);
+        \Sentinel::check()->wishlists()->detach($wishlist);
 
         if ($wishlist != null){
             $wishlist->delete();
@@ -71,6 +109,6 @@ class WishlistController extends Controller
             //Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
         }
 
-        return Redirect::action("WishlistController@index");
+        return \Redirect::action("WishlistController@index");
     }
 }
