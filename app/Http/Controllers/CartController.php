@@ -44,7 +44,8 @@ class CartController extends Controller
         // if product is already in cart, add the amount to it
         if ($user->cart()->wherePivot("product_id", "=", $product)->count() > 0)
         {
-            $current_amount = $user->cart()->wherePivot("product_id", "=", $product);
+            $current_amount = $user->cart()->wherePivot("product_id", "=", $product)->get()->first()->pivot->amount;
+//            dd($current_amount);
             $amount += $current_amount;
             $user->cart()->detach($product);
         }

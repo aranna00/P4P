@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 
 </head>
 <body class="row">
@@ -48,29 +47,29 @@
                     <a href="{{ route('winkelwagen.index') }}" class="nav-link">Winkelwagen</a>
                 </li>
                 <!-- Authentication Links -->
-	            @if (Sentinel::guest())
+                @if (Sentinel::guest())
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-		            {{--<li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>--}}
+                    {{--<li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>--}}
                 @else
-		            <li class="nav-item dropdown btn-group">
-			            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
+                    <li class="nav-item dropdown btn-group">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
                            aria-expanded="false">
-				            {{ Sentinel::check()->first_name }} {{ Sentinel::check()->last_name }} <span
-						            class="caret"></span>
+                            {{ Sentinel::check()->first_name }} {{ Sentinel::check()->last_name }} <span
+                                    class="caret"></span>
                         </a>
-			
-			            <div class="dropdown-menu dropdown" role="menu">
-				            <a class="dropdown-item" href="{{ route('logout') }}"
-				               onclick="event.preventDefault();
+
+                        <div class="dropdown-menu dropdown" role="menu">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-					            Logout
-				            </a>
-				
-				            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-				                  style="display: none;">
-					            {{ csrf_field() }}
-				            </form>
-			            </div>
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </li>
                 @endif
             </ul>
@@ -124,6 +123,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/mdb.min.js') }}"></script>

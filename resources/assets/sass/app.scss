@@ -71,7 +71,6 @@ footer{
 }
 
 
-
 // bootstrap colors override
 .primary-color, .bg-primary, .btn-primary{
   background-color: $primary !important;
@@ -81,6 +80,19 @@ footer{
   background-color: $secondary !important;
 }
 
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover{
+  background-color: lighten($primary, 10%) !important;
+}
+
 .bg-navbar{
   background-color: $navbar !important;
+}
+
+.modal-dialog.modal-notify.modal-success .badge, .modal-dialog.modal-notify.modal-success .modal-header{
+  background-color: $primary !important;
+}
+
+.btn-outline-secondary{
+  border-color: $primary !important;
+  color: $primary !important;
 }
