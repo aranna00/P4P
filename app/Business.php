@@ -33,21 +33,25 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Business whereSubdossiernummer($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Address $billing
+ * @property-read \App\Address $shipping
  */
 class Business extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function billingAddress(){
-        return $this->hasOne(Address::class);
+    public function billing()
+    {
+        return $this->belongsTo(Address::class, "billing_address");
     }
     
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function shippingAddress(){
-        return $this->hasOne(Address::class);
+    public function shipping()
+    {
+        return $this->belongsTo(Address::class, "shipping_address");
     }
     
     /**
