@@ -25,7 +25,7 @@ class ProductController extends Controller
 
 //        dd($products);
 
-        return view('product', compact(["categories", "products"]));
+        return view('product.index', compact(["categories", "products"]));
     }
 
     /**
