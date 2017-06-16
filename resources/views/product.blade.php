@@ -166,6 +166,9 @@
         <!-- /.Content -->
 
     </div>
+@endsection
+
+@section('scripts')
     <script>
         function updatePrice(id, price, count) {
             document.getElementById("modal_price_" + id).innerHTML = count + " × €" + price.toFixed(2) + " = €" + (count * price).toFixed(2);
