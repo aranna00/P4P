@@ -16,7 +16,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlists = \Sentinel::check()->wishlists;
+        /** @var User $user */
+        $user = \Sentinel::check();
+        $wishlists = $user->wishlists;
 
         return view('wishlist.index', compact("wishlists"));
     }
@@ -39,13 +41,15 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
+        /** @var User $user */
+        $user = \Sentinel::check();
+
         $wishlist = new Wishlist();
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        \Sentinel::check()->wishlists()->attach($wishlist);
-
-        //Toastr::success("De favorietenlijst is successvol aangemaakt");
+        $user->wishlists()->attach($wishlist);
+        //\Toastr::success("De favorietenlijst is successvol aangemaakt");
 
         return \Redirect::action("WishlistController@index");
     }
@@ -100,9 +104,11 @@ class WishlistController extends Controller
      */
     public function destroy($id)
     {
+        /** @var User $user */
+        $user = \Sentinel::check();
         $wishlist = Wishlist::findOrFail($id);
 
-        \Sentinel::check()->wishlists()->detach($wishlist);
+        $user->wishlists()->detach($wishlist);
 
         if ($wishlist != null) {
             $wishlist->delete();

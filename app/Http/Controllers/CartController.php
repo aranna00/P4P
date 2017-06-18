@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,7 +14,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = \Sentinel::check()->cart;
+        /** @var User $user */
+        $user = \Sentinel::check();
+        $cart = $user->cart;
 
         return view('cart.index', compact('cart'));
     }
@@ -39,6 +42,7 @@ class CartController extends Controller
         $product = $request->get("id");
         $amount = $request->get("amount");
 
+        /** @var User $user */
         $user = \Sentinel::check();
 
         // if product is already in cart, add the amount to it
@@ -88,6 +92,7 @@ class CartController extends Controller
         $product = $request->get("id");
         $amount = $request->get("amount");
 
+        /** @var User $user */
         $user = \Sentinel::check();
 
         $user->cart()->detach($product);
