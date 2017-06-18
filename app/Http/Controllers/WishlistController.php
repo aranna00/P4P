@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\User;
 use App\Wishlist;
@@ -33,7 +34,7 @@ class WishlistController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -52,7 +53,7 @@ class WishlistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +64,7 @@ class WishlistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +77,8 @@ class WishlistController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
@@ -94,7 +95,7 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
@@ -103,12 +104,31 @@ class WishlistController extends Controller
 
         \Sentinel::check()->wishlists()->detach($wishlist);
 
-        if ($wishlist != null){
+        if ($wishlist != null) {
             $wishlist->delete();
 
             //Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
         }
 
         return \Redirect::action("WishlistController@index");
+    }
+
+    public function add($product_id, $wishlist_id)
+    {
+
+        $wishlist = Wishlist::whereId($wishlist_id)->get()->first();
+
+        $product = Product::whereId($product_id)->get()->first();
+
+        if ($wishlist->products()->wherePivot("product_id", "=", $product_id)->count() == 0) {
+
+            $wishlist->products()->attach($product_id);
+            \Toastr::success($product->name . " is toegevoegd aan " . $wishlist->name);
+        } else {
+            \Toastr::warning($product->name . " staat al in " . $wishlist->name);
+        }
+
+        return \Redirect::back();
+
     }
 }

@@ -60,7 +60,7 @@
             <!-- Content -->
             <div class="col-md-10 my-2">
 
-                <ol class="breadcrumb">
+                <ol class="breadcrumb breadcrumb-white">
                     <li class="breadcrumb-item"><a href="{{route('product')}}">Producten</a></li>
                     @if(isset($breadcrumbs))
                         @foreach(array_reverse($breadcrumbs) as $breadcrumb)
@@ -89,9 +89,25 @@
                             </div>
                             <div class="col-2 text-center">
                                 <button class="btn btn-large primary-color" href="#" data-toggle="modal"
-                                        data-target="#{{ $product->id }}"><i
-                                            class="fa fa-fix fa-shopping-cart"></i></button>
-                                <a class="btn btn-large red"><i class="fa fa-fix fa-star"></i></a>
+                                        data-target="#{{ $product->id }}">&nbsp;<i
+                                            class="fa fa-fix fa-shopping-cart"></i>&nbsp;&nbsp;</button>
+                                <div class="dropdown">
+
+                                    <!--Trigger-->
+                                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                                class="fa fa-fix fa-star"></i></button>
+
+                                    <!--Menu-->
+                                    <div class="dropdown-menu dropdown-danger">
+                                        @foreach($wishlists as $wishlist)
+                                            <a class="dropdown-item"
+                                               href="{{ action("WishlistController@add", ["product_id"=>$product->id, "wishlist_id"=>$wishlist->id ])}}">{{ $wishlist->name }}</a>
+                                        @endforeach()
+                                        <a class="dropdown-item"
+                                           href="{{ action("WishlistController@create")}}">+ Maak nieuwe lijst</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

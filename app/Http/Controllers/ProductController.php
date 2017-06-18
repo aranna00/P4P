@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\AttributeGroup;
 use App\Category;
 use App\Product;
+use App\User;
+use App\Wishlist;
 use Illuminate\Http\Request;
 use function Sodium\add;
 
@@ -23,9 +25,13 @@ class ProductController extends Controller
         $products = Product::all();
         $products->load("brand");
 
-//        dd($products);
+        $user = User::whereId(\Sentinel::check()->getUserId())->get()->first();
 
-        return view('product.index', compact(["categories", "products"]));
+        $wishlists = $user->wishlists()->get();
+
+//        dd($wishlists);
+
+        return view('product.index', compact(["categories", "products", "wishlists"]));
     }
 
     /**
@@ -51,7 +57,12 @@ class ProductController extends Controller
             array_push($breadcrumbs,[$parent->id, $parent->name]);
         }
 
-        return view('product', compact(["categories", "breadcrumbs", "products", "attribute_groups"]));
+        $user = User::whereId(\Sentinel::check()->getUserId());
+
+        $wishlists = $user->wishlists();
+
+
+        return view('product', compact(["categories", "breadcrumbs", "products", "attribute_groups", "wishlists"]));
     }
 
 
@@ -63,6 +74,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 }
