@@ -29,7 +29,7 @@
                                             <td>{{ $order->delivery }}</td>
                                             <td>@if ($order->processed) Verwerkt @else Nog niet verwerkt @endif</td>
                                             <td>
-                                                <a href="{{ action('OrderController@show', ["order"=>$order->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ action('OrderController@show', ["order"=>$order->id]) }}" class="btn btn-sm btn-primary m-0">
                                                     Bekijk order
                                                 </a>
                                             </td>

@@ -28,6 +28,8 @@ Route::get('/favorieten/{product_id}/{wishlist_id}', 'WishlistController@add');
 
 Route::resource('/winkelwagen', 'CartController');
 
+Route::resource('/orders', 'OrderController');
+
 Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('sentinel.auth');
 Route::post('/checkout', 'CheckoutController@checkout')->name('checkout')->middleware('sentinel.auth');
 
