@@ -49,7 +49,7 @@ class WishlistController extends Controller
         $wishlist->save();
 
         $user->wishlists()->attach($wishlist);
-        //\Toastr::success("De favorietenlijst is successvol aangemaakt");
+        \Toastr::success("De favorietenlijst is successvol aangemaakt");
 
         return \Redirect::action("WishlistController@index");
     }
@@ -91,9 +91,14 @@ class WishlistController extends Controller
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        //Toastr::success("De favorietenlijst is successvol bijgewerkt");
+        if ($request->has("delete"))
+        {
+            $wishlist->products()->detach($request->get("delete"));
+        }
 
-        return \Redirect::action("WishlistController@index");
+        \Toastr::success("De favorietenlijst is successvol bijgewerkt");
+
+        return \Redirect::back();
     }
 
     /**
@@ -113,7 +118,7 @@ class WishlistController extends Controller
         if ($wishlist != null) {
             $wishlist->delete();
 
-            //Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
+            \Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
         }
 
         return \Redirect::action("WishlistController@index");

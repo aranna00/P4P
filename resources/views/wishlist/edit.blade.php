@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-2">
+        <div class="card mt-2 mb-2">
             <div class="card-header primary-color white-text">
                 Producten in deze lijst
             </div>
@@ -38,13 +38,28 @@
                               action="{{ action("WishlistController@update",["wishlist"=>$wishlist->id]) }}"
                               method="post">
                             {!! csrf_field() !!}
+                            {!! method_field("put") !!}
+                            <input type="hidden" name="name" value="{{ $wishlist->name }}">
                             <div class="md-form">
                                 @if (count($wishlist->products) > 0)
-                                    <ul class="list-group">
-                                        @foreach ($wishlist->products as $product)
-                                            <li class="list-group-item">{{ $product->name }}</li>
-                                        @endforeach
-                                    </ul>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Acties</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach ($wishlist->products as $product)
+                                                <tr>
+                                                    <td>{{ $product->name }}</td>
+                                                    <td><button class="btn btn-sm btn-danger" name="delete" value="{{ $product->id }}">Verwijderen</button></td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 @else
                                     Deze lijst bevat geen producten
                                 @endif

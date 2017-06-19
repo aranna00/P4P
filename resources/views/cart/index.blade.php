@@ -5,8 +5,10 @@
         <div class="container-fluid mt-5">
             <section>
                 <div class="card">
+                    <div class="card-header primary-color white-text">
+                        Mand
+                    </div>
                     <div class="card-block">
-                        <h2 class="card-title text-center">Mand</h2>
                         <div class="table-responsive">
                             <table class="table product-table">
                                 <!-- Table head -->
@@ -34,7 +36,7 @@
                                             </th>
                                             <td>
                                                 <h5><strong>{{ $product->name }}</strong></h5>
-                                                <p class="text-muted">{{ $product->description }}</p>
+                                                <p class="text-muted">{!! $product->description !!}</p>
                                             </td>
                                             <td>&euro;{{ number_format($product->price, 2, ",", ".") }}</td>
                                             <td>
@@ -91,7 +93,7 @@
                                         <td>
                                             <h4><strong>Totaal</strong></h4></td>
                                         <td>
-                                            <h4><strong>&euro;0</strong></h4></td>
+                                            <h4><strong>&euro;{{ number_format($total, 2, ",", ".") }}</strong></h4></td>
                                         <td colspan="3">
                                             <a href="{{ action("CheckoutController@index") }}">
                                                 <button type="button" class="btn btn-primary">Verder naar order plaatsen

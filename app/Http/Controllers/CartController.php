@@ -18,7 +18,11 @@ class CartController extends Controller
         $user = \Sentinel::check();
         $cart = $user->cart;
 
-        return view('cart.index', compact('cart'));
+        $total = $cart->map(function($item, $key){
+            return $item->price * $item->pivot->amount;
+        })->sum();
+
+        return view('cart.index', compact('cart', 'total'));
     }
 
     /**
