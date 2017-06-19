@@ -29,11 +29,8 @@
                     return $item->id;
                 }));
             })->get();
-            $user = \Sentinel::check();
     
-            $wishlists = $user->wishlists;
-            
-            return view('products.index', compact(["categories", "products", "brands","wishlists"]));
+            return view('products.index', compact(["categories", "products", "brands"]));
         }
         
         /**
@@ -106,7 +103,6 @@
             $products=$products->with("brand")
                                ->orderBy($request->has("type") ? $request->query("type") : "name",
                                    $request->has("sorting") ? $request->query("sorting") : "asc")
-                               ->distinct("id")
                                ->paginate($request->has("perPage") ? $request->query("perPage") : 10)
                                ->appends($_REQUEST);
     

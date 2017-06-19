@@ -4,7 +4,8 @@
 	<div class="list-group m-0">
 		<div class="list-group-item list-group-item-action row px-0 mx-0">
 			<div class="col-1">
-				<img src="http://www.supermarktaanbiedingen.com/public/images/product/2014/34/90411-4-57.jpg"
+				<img src="{{ asset("img/producten/".$product->code.".jpg") }}"
+				     onerror="this.src='{{ asset("img/noimage.png") }}'"
 				     style="max-height: 10vh" class="img-fluid">
 			</div>
 			

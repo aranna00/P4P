@@ -30,7 +30,8 @@
                                     @foreach ($cart as $product)
                                         <tr>
                                             <th scope="row">
-                                                <img src="https://fanart.tv/fanart/music/88bdc8b5-b254-40f4-b626-434332081c05/artistbackground/duijts-frans-50fa82f99e7f0.jpg"
+                                                <img src="{{ asset("img/producten/".$product->code.".jpg") }}"
+                                                     onerror="this.src='{{ asset("img/noimage.png") }}'"
                                                      alt=""
                                                      class="img-fluid z-depth-0">
                                             </th>

@@ -43,14 +43,21 @@
                 <input class="form-control" type="text" placeholder="Search">
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item @if(Route::current()->getName() == 'winkelwagen') active @endif">
-                    <a href="{{ route('winkelwagen.index') }}" class="nav-link">Winkelwagen</a>
-                </li>
                 <!-- Authentication Links -->
                 @if (Sentinel::guest())
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     {{--<li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>--}}
                 @else
+                    @if(Sentinel::inRole("admin"))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ action("Admin\HomeController@index") }}">
+                                Beheer
+                            </a>
+                        </li>
+                    @endif
+                    <li class="nav-item @if(Route::current()->getName() == 'winkelwagen') active @endif">
+                        <a href="{{ route('winkelwagen.index') }}" class="nav-link">Winkelwagen</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle nav-link waves-effect waves-light" typeof="button" id="navbarProfle"
                            data-toggle="dropdown" aria-haspopup="true"
