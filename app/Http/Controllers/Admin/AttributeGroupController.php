@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\AttributeGroup;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class AttributeGroupController extends Controller
 {
@@ -15,7 +15,7 @@ class AttributeGroupController extends Controller
      */
     public function index()
     {
-        $attributeGroups = AttributeGroup::all();
+        $attributeGroups=AttributeGroup::with(["attributes"])->paginate(8);
         
         return view("admin.attributeGroups.index", compact("attributeGroups"));
     }

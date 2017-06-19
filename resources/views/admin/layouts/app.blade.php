@@ -11,8 +11,8 @@
 	<title>{{ config('app.name', 'Laravel') }}</title>
 	
 	<!-- Styles -->
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('ckeditor/contents.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 <body class="fixed-sn cyan-skin">
@@ -23,7 +23,9 @@
 			<!-- Logo -->
 			<li>
 				<div>
-					<img src="{{ asset("img/jansma_logo.png") }}" class="img-fluid flex-center p-4">
+					<a class="waves-effect waves-light logo-wrapper" href="{{ action("HomeController@index") }}">
+						<img src="{{ asset("img/jansma_logo.png") }}" class="img-fluid flex-center p-4">
+					</a>
 				</div>
 			</li>
 			<!--/. Logo -->

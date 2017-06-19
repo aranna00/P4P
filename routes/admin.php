@@ -11,7 +11,7 @@
     |
     */
     
-    Route::group(["prefix"=>"beheer", "namespace"=>"Admin", "middleware"=>"sentinel.auth:admin"], function () {
+    Route::group(["prefix"=>"beheer", "namespace"=>"Admin", "middleware"=>"sentinel.role:admin,auth"], function () {
     
         Route::get('/', 'HomeController@index')->name('admin.home');
         Route::resource("producten","ProductController");
