@@ -34,7 +34,7 @@ class CheckoutController extends Controller
         })->sum();
 
         $tax = $cart->map(function($item, $key){
-            return $item->tax->value * $item->price / 100;
+            return $item->tax->value * $item->price * $item->pivot->amount / 100;
         })->sum();
 
         return view('checkout', compact('cart', 'total', 'tax', 'business', 'shipping', 'billing'));

@@ -3,8 +3,10 @@
 @section('content')
     <div class="container-fluid mt-5">
         <div class="card mb-2">
+            <div class="card-header primary-color white-text">
+                Product overzicht
+            </div>
             <div class="card-block">
-                <h2 class="card-title">Product overzicht</h2>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -45,9 +47,10 @@
         </div>
 
         <div class="card mb-2">
+            <div class="card-header primary-color white-text">
+                Gegevens
+            </div>
             <div class="card-block">
-                <h2 class="card-title">Uw gegevens</h2>
-
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <div class="md-form">
