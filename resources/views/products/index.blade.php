@@ -25,7 +25,7 @@
 					</div>
 				@endif
 				
-				<div class="card mb-2">
+				<div class="card mb-1">
 					<!-- Panel -->
 					<div class="card-header">
 						<h5 class="m-0"><strong>Trefwoord</strong></h5>
@@ -141,7 +141,7 @@
 						@endforeach
 					@endif
 				</ol>
-				<div class="card row pt-1 mx-0">
+				<div class="card row pt-1 mx-0 mb-1">
 					<div class="col-md-3">
 						<select id="perPage" class="mdb-select">
 							<option value="10">10</option>
@@ -170,9 +170,9 @@
 							Sorteren
 						</label>
 					</div>
-					<div id="filtered_products">
-						<i class='fa fa-5x fa-spinner fa-spin'></i>
-					</div>
+				</div>
+				<div id="filtered_products">
+					<i class='fa fa-5x fa-spinner fa-spin'></i>
 				</div>
 			</div>
 			<!-- /.Filter Area -->

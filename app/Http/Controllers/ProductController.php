@@ -7,7 +7,7 @@
     use App\Category;
     use App\Product;
     use Symfony\Component\HttpFoundation\Request;
-    
+
     class ProductController extends Controller
     {
         /**
@@ -69,13 +69,9 @@
                 $parent=$parent->parent;
                 array_push($breadcrumbs, [$parent->id, $parent->name]);
             }
-    
-            $user = \Sentinel::check();
-    
-            $wishlists = $user->wishlists;
             
             return view('products.index',
-                compact(["parent_id", "categories", "breadcrumbs", "attribute_groups", "brands", "products","wishlists"]));
+                compact(["parent_id", "categories", "breadcrumbs", "attribute_groups", "brands", "products"]));
         }
         
         /**
@@ -113,8 +109,12 @@
                                ->distinct("id")
                                ->paginate($request->has("perPage") ? $request->query("perPage") : 10)
                                ->appends($_REQUEST);
-            
-            return view("products.products", compact(["products", "parentId"]));
+    
+            $user=\Sentinel::check();
+    
+            $wishlists=$user->wishlists;
+    
+            return view("products.products", compact(["products", "parentId", "wishlists"]));
         }
         
         

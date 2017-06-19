@@ -58,8 +58,8 @@ class CartController extends Controller
             $user->cart()->detach($product);
         }
         $user->cart()->attach($product, ["amount" => $amount]);
-
-        return \Redirect::action("CartController@index");
+    
+        return \Redirect::back();
     }
 
     /**
