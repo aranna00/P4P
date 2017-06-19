@@ -29,8 +29,11 @@
                     return $item->id;
                 }));
             })->get();
+            $user = \Sentinel::check();
+    
+            $wishlists = $user->wishlists;
             
-            return view('products.index', compact(["categories", "products", "brands"]));
+            return view('products.index', compact(["categories", "products", "brands","wishlists"]));
         }
         
         /**
@@ -66,9 +69,13 @@
                 $parent=$parent->parent;
                 array_push($breadcrumbs, [$parent->id, $parent->name]);
             }
+    
+            $user = \Sentinel::check();
+    
+            $wishlists = $user->wishlists;
             
             return view('products.index',
-                compact(["parent_id", "categories", "breadcrumbs", "attribute_groups", "brands", "products"]));
+                compact(["parent_id", "categories", "breadcrumbs", "attribute_groups", "brands", "products","wishlists"]));
         }
         
         /**

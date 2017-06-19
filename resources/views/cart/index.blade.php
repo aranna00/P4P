@@ -5,8 +5,10 @@
         <div class="container-fluid mt-5">
             <section>
                 <div class="card">
+                    <div class="card-header primary-color-darken white-text">
+                        Mand
+                    </div>
                     <div class="card-block">
-                        <h2 class="card-title text-center">Mand</h2>
                         <div class="table-responsive">
                             <table class="table product-table">
                                 <!-- Table head -->
@@ -34,9 +36,9 @@
                                             </th>
                                             <td>
                                                 <h5><strong>{{ $product->name }}</strong></h5>
-                                                <p class="text-muted">{{ $product->description }}</p>
+                                                <p class="text-muted">{!! $product->description !!}</p>
                                             </td>
-                                            <td>&euro;{{ $product->price }}</td>
+                                            <td>&euro;{{ number_format($product->price, 2, ",", ".") }}</td>
                                             <td>
                                                 <form id="update{{ $product->id }}"
                                                       action="{{ action("CartController@update", ["product"=>$product->id]) }}"
@@ -47,7 +49,8 @@
 
                                                     <div class="input-group">
                                                         <input class="form-control" type="number" name="amount"
-                                                               value="{{ $product->pivot->amount }}" min="0" title="amount">
+                                                               value="{{ $product->pivot->amount }}" min="0"
+                                                               title="amount">
                                                         <span class="input-group-btn">
                                                             <button type="submit" class="btn blue btn-md">
                                                             <i class="fa fa-refresh"></i>
@@ -56,7 +59,8 @@
                                                     </div>
                                                 </form>
                                             </td>
-                                            <td>&euro;{{ $product->price * $product->pivot->amount }}</td>
+                                            <td>
+                                                &euro;{{ number_format($product->price * $product->pivot->amount, 2, ",", ".") }}</td>
                                             <td>
                                                 <form id="delete{{ $product->id }}"
                                                       action="{{ action("CartController@update", ["product"=>$product->id]) }}"
@@ -66,11 +70,12 @@
                                                     <input type="hidden" name="id" value="{{ $product->id }}">
                                                     <input type="hidden" name="amount" value="0">
 
-                                                    <a class="btn btn-sm btn-danger" data-toggle="tooltip"
+                                                    <i class="fa fa-fixed fa-2x fa-times text-grey hover-red" data-toggle="tooltip"
                                                        data-placement="top"
                                                        title="Verwijder uit winkelwagen"
-                                                       onclick="if (confirm('Weet u zeker dat u dit item uit de winkelwagen wilt verwijderen?')){ {$('#delete{{ $product->id }}').submit();} }"><b>X</b>
-                                                    </a>
+                                                       onclick="if (confirm('Weet u zeker dat u dit item uit de winkelwagen wilt verwijderen?')){ {$('#delete{{ $product->id }}').submit();} }">
+
+                                                    </i>
                                                 </form>
                                             </td>
                                         </tr>
@@ -89,10 +94,12 @@
                                         <td>
                                             <h4><strong>Totaal</strong></h4></td>
                                         <td>
-                                            <h4><strong>&euro;0</strong></h4></td>
+                                            <h4><strong>&euro;{{ number_format($total, 2, ",", ".") }}</strong></h4></td>
                                         <td colspan="3">
-                                            <button type="button" class="btn btn-primary">Order plaatsen <i
-                                                        class="fa fa-angle-right right"></i></button>
+                                            <a href="{{ action("CheckoutController@index") }}">
+                                                <button type="button" class="btn btn-primary">Verder naar order plaatsen
+                                                    <i class="fa fa-angle-right right"></i></button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endif

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\User;
 use App\Wishlist;
@@ -15,7 +16,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlists = \Sentinel::check()->wishlists;
+        /** @var User $user */
+        $user = \Sentinel::check();
+        $wishlists = $user->wishlists;
 
         return view('wishlist.index', compact("wishlists"));
     }
@@ -33,18 +36,20 @@ class WishlistController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        /** @var User $user */
+        $user = \Sentinel::check();
+
         $wishlist = new Wishlist();
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        \Sentinel::check()->wishlists()->attach($wishlist);
-
-        //Toastr::success("De favorietenlijst is successvol aangemaakt");
+        $user->wishlists()->attach($wishlist);
+        \Toastr::success("De favorietenlijst is successvol aangemaakt");
 
         return \Redirect::action("WishlistController@index");
     }
@@ -52,7 +57,7 @@ class WishlistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +68,7 @@ class WishlistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +81,8 @@ class WishlistController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
@@ -86,29 +91,54 @@ class WishlistController extends Controller
         $wishlist->name = $request->get("name");
         $wishlist->save();
 
-        //Toastr::success("De favorietenlijst is successvol bijgewerkt");
+        if ($request->has("delete"))
+        {
+            $wishlist->products()->detach($request->get("delete"));
+        }
 
-        return \Redirect::action("WishlistController@index");
+        \Toastr::success("De favorietenlijst is successvol bijgewerkt");
+
+        return \Redirect::back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         $wishlist = Wishlist::findOrFail($id);
 
-        \Sentinel::check()->wishlists()->detach($wishlist);
+        $wishlist->users()->detach();
+        $wishlist->products()->detach();
 
-        if ($wishlist != null){
+        if ($wishlist != null) {
             $wishlist->delete();
 
-            //Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
+            \Toastr::success("De favorietenlijst ". $wishlist->name ." is successvol verwijderd");
         }
 
         return \Redirect::action("WishlistController@index");
+    }
+
+    public function add($product_id, $wishlist_id)
+    {
+
+        $wishlist = Wishlist::whereId($wishlist_id)->get()->first();
+
+        $product = Product::whereId($product_id)->get()->first();
+
+        if ($wishlist->products()->wherePivot("product_id", "=", $product_id)->count() == 0) {
+
+            $wishlist->products()->attach($product_id);
+            \Toastr::success($product->name . " is toegevoegd aan " . $wishlist->name);
+        } else {
+            \Toastr::warning($product->name . " staat al in " . $wishlist->name);
+        }
+
+        return \Redirect::back();
+
     }
 }

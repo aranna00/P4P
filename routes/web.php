@@ -24,6 +24,11 @@ Route::get('/filter/{category}', 'ProductController@filtered')->name('filtered')
 
 Route::resource('/favorieten', 'WishlistController');
 
+Route::get('/favorieten/{product_id}/{wishlist_id}', 'WishlistController@add');
+
 Route::resource('/winkelwagen', 'CartController');
+
+Route::get('/checkout', 'CheckoutController@index')->name('checkout')->middleware('sentinel.auth');
+Route::post('/checkout', 'CheckoutController@checkout')->name('checkout')->middleware('sentinel.auth');
 
 Route::get('/contact', 'ContactController@index')->name('contact')->middleware('sentinel.auth');
