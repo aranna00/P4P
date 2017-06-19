@@ -39,6 +39,7 @@
             $table->increments("id");
             $table->string("name");
             $table->text("description")->nullable();
+            $table->string("code");
             $table->float("price");
             $table->date("available_from");
             $table->date("available_until")->nullable();

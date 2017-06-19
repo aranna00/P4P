@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Attribute whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Attribute whereValue($value)
  * @mixin \Eloquent
+ * @property int               $product_id
+ * @property-read \App\Product $product
+ * @method static \Illuminate\Database\Query\Builder|\App\Attribute whereProductId($value)
  */
 class Attribute extends Model
 {
@@ -33,9 +36,10 @@ class Attribute extends Model
     }
     
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function products(){
-        return $this->belongsToMany(Product::class,"products_attributes");
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

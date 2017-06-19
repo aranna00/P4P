@@ -19,8 +19,8 @@
     Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/filter', 'ProductController@index')->name('product');
-
 Route::get('/filter/{category}', 'ProductController@filtered')->name('filtered');
+    Route::any("producten/ajax", "ProductController@filtered_products")->name("filter.ajax");
 
 Route::resource('/favorieten', 'WishlistController');
 

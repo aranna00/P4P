@@ -21,6 +21,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "font-awesome": "^4.7.0",
+    "ion-rangeslider": "^2.1.7",
     "toastr": "^2.1.2"
   }
 }

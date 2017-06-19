@@ -10,6 +10,8 @@
 @import "node_modules/font-awesome/scss/font-awesome";
 @import "node_modules/toastr/toastr";
 @import "resources/assets/css/mdb";
+@import "node_modules/ion-rangeslider/css/ion.rangeSlider";
+@import "node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat";
 
 $primary: #20BF55;
 $secondary: #01BAEF ;
@@ -87,6 +89,11 @@ footer{
 .bg-navbar{
   background-color: $navbar !important;
 }
+
+.loading {
+  filter: grayscale(100%);
+}
+
 
 .modal-dialog.modal-notify.modal-success .badge, .modal-dialog.modal-notify.modal-success .modal-header{
   background-color: $primary !important;

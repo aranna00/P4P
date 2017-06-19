@@ -53,6 +53,8 @@
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereVolume($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereWeight($value)
  * @mixin \Eloquent
+     * @property string $code
+     * @method static \Illuminate\Database\Query\Builder|\App\Product whereCode($value)
  */
     class Product extends Model
     {

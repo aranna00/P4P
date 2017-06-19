@@ -51,14 +51,13 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     {{--<li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>--}}
                 @else
-                    <li class="nav-item dropdown btn-group">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
-                           aria-expanded="false">
-                            {{ Sentinel::check()->first_name }} {{ Sentinel::check()->last_name }} <span
-                                    class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown" role="menu">
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link waves-effect waves-light" typeof="button" id="navbarProfle"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="true">{{ Sentinel::check()->first_name }} {{ Sentinel::check()->last_name }}
+                            <span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-default dropdown-menu-right" aria-labelledby="navbarProfle"
+                             data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -127,6 +126,7 @@
 <script src="{{ asset('js/tether.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/mdb.min.js') }}"></script>
+<script src="{{ asset('js/ion.rangeSlider.js') }}"></script>
 @yield('scripts')
 </body>
 </html>
