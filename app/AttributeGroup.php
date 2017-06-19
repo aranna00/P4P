@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\AttributeGroup whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\AttributeGroup whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $type
+ * @method static \Illuminate\Database\Query\Builder|\App\AttributeGroup whereType($value)
  */
 class AttributeGroup extends Model
 {

@@ -3,7 +3,7 @@
 @section("content")
     <div class="col-md-12 mt-5">
         <div class="card">
-            <div class="card-header primary-color white-text">
+            <div class="card-header primary-color-darken white-text">
                 Favorietenlijst aanmaken
             </div>
             <div class="admin-panel">

@@ -5,7 +5,7 @@
         <div class="container-fluid mt-5">
             <section>
                 <div class="card">
-                    <div class="card-header primary-color white-text">
+                    <div class="card-header primary-color-darken white-text">
                         Mand
                     </div>
                     <div class="card-block">
@@ -70,11 +70,12 @@
                                                     <input type="hidden" name="id" value="{{ $product->id }}">
                                                     <input type="hidden" name="amount" value="0">
 
-                                                    <a class="btn btn-sm btn-danger" data-toggle="tooltip"
+                                                    <i class="fa fa-fixed fa-2x fa-times text-grey hover-red" data-toggle="tooltip"
                                                        data-placement="top"
                                                        title="Verwijder uit winkelwagen"
-                                                       onclick="if (confirm('Weet u zeker dat u dit item uit de winkelwagen wilt verwijderen?')){ {$('#delete{{ $product->id }}').submit();} }"><b>X</b>
-                                                    </a>
+                                                       onclick="if (confirm('Weet u zeker dat u dit item uit de winkelwagen wilt verwijderen?')){ {$('#delete{{ $product->id }}').submit();} }">
+
+                                                    </i>
                                                 </form>
                                             </td>
                                         </tr>

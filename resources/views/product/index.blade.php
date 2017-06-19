@@ -105,7 +105,7 @@
                                                href="{{ action("WishlistController@add", ["product_id"=>$product->id, "wishlist_id"=>$wishlist->id ])}}">{{ $wishlist->name }}</a>
                                         @endforeach()
                                         <a class="dropdown-item"
-                                           href="{{ action("WishlistController@create")}}">+ Maak nieuwe lijst</a>
+                                           href="{{ action("WishlistController@create")}}">+    `npmMaak nieuwe lijst</a>
                                     </div>
                                 </div>
                             </div>

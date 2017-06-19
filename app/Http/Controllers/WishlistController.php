@@ -109,11 +109,10 @@ class WishlistController extends Controller
      */
     public function destroy($id)
     {
-        /** @var User $user */
-        $user = \Sentinel::check();
         $wishlist = Wishlist::findOrFail($id);
 
-        $user->wishlists()->detach($wishlist);
+        $wishlist->users()->detach();
+        $wishlist->products()->detach();
 
         if ($wishlist != null) {
             $wishlist->delete();

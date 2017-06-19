@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Attribute whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Attribute whereValue($value)
  * @mixin \Eloquent
+ * @property int $product_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Attribute whereProductId($value)
  */
 class Attribute extends Model
 {

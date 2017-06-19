@@ -70,6 +70,14 @@ footer{
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 
+.text-grey{
+  color: gray;
+}
+
+.hover-red:hover, .hover-red:focus{
+  color: #d9534f;
+}
+
 //toaster override
 .toast{
   opacity: 100 !important;
@@ -78,6 +86,10 @@ footer{
 // bootstrap colors override
 .primary-color, .bg-primary, .btn-primary{
   background-color: $primary !important;
+}
+
+.primary-color-darken, .bg-primary-darken, .btn-primary-darken{
+  background-color: darken($primary,10) !important;
 }
 
 .secondary-color, .btn-secondary{

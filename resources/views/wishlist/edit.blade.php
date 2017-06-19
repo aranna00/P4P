@@ -3,7 +3,7 @@
 @section("content")
     <div class="col-md-12 mt-5">
         <div class="card">
-            <div class="card-header primary-color white-text">
+            <div class="card-header primary-color-darken white-text">
                 {{ $wishlist->name }}
             </div>
             <div>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="card mt-2 mb-2">
-            <div class="card-header primary-color white-text">
+            <div class="card-header primary-color-darken white-text">
                 Producten in deze lijst
             </div>
             <div>
