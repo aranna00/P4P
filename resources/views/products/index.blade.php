@@ -1,191 +1,202 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container-fluid mt-4 mx-2">
-		
-		<div class="row">
-			
-			<!-- Sidebar -->
-			<div class="col-md-2 hidden-sm-down mt-2">
-				@if(count($categories) > 0)
-					<div class="card mb-1">
-						<!-- Panel -->
-						<div class="card-header">
-							<h5 class="m-0"><strong>Categorie</strong></h5>
-						</div>
-						<div class="card-block p-3">
-							<ul class="m-0">
-								@foreach($categories as $category)
-									<li>
-										<a href="{{ action("ProductController@filtered", ["category"=>$category->id]) }}?page=1">{{ $category->name }}</a>
-									</li>
-								@endforeach
-							</ul>
-						</div>
-					</div>
-				@endif
-				
-				<div class="card mb-1">
-					<!-- Panel -->
-					<div class="card-header">
-						<h5 class="m-0"><strong>Trefwoord</strong></h5>
-					</div>
-					<div class="card-block p-3">
-						<div class="form-inline waves-effect waves-light">
-							<input type="text" id="search" placeholder="Verfijnd zoeken" class="form-control">
-						</div>
-					</div>
-				</div>
-				
-				
-				<div class="card mb-1">
-					<!-- Panel -->
-					<div class="card-header">
-						<h5 class="m-0"><strong>Merk</strong></h5>
-					</div>
-					<div class="card-block p-3">
-						@foreach($brands as $brand)
-							<div>
-								<input type="checkbox" id="brand{{ $brand->id }}" class="brand-filter"
-								       data-id="{{ $brand->id }}">
-								<label for="brand{{ $brand->id }}">{{ $brand->name }}</label>
-							</div>
-						@endforeach
-					</div>
-				</div>
-				
-				<div class="card mb-1">
-					<!-- Panel -->
-					<div class="card-header">
-						<h5 class="m-0"><strong>Prijs</strong></h5>
-					</div>
-					<div class="card-block p-3">
-						<input id="priceRange"
-						       name="Prijs"
-						       title="Prijs">
-					</div>
-					<script>
+    <div class="container-fluid mt-4 mx-2">
+
+        <div class="row">
+
+            <!-- Sidebar -->
+            <div class="col-md-2 hidden-sm-down mt-2">
+                @if(count($categories) > 0)
+                    <div class="card mb-1">
+                        <!-- Panel -->
+                        <div class="card-header">
+                            <h5 class="m-0"><strong>Categorie</strong></h5>
+                        </div>
+                        <div class="card-block p-3">
+                            <ul class="m-0">
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="{{ action("ProductController@filtered", ["category"=>$category->id]) }}?page=1">{{ $category->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="card mb-1">
+                    <!-- Panel -->
+                    <div class="card-header">
+                        <h5 class="m-0"><strong>Trefwoord</strong></h5>
+                    </div>
+                    <div class="card-block p-3">
+                        <div class="form-inline waves-effect waves-light">
+                            <input type="text" id="search" placeholder="Verfijnd zoeken" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card mb-1">
+                    <!-- Panel -->
+                    <div class="card-header">
+                        <h5 class="m-0"><strong>Merk</strong></h5>
+                    </div>
+                    <div class="card-block p-3">
+                        @foreach($brands as $brand)
+                            <div>
+                                <input type="checkbox" id="brand{{ $brand->id }}" class="brand-filter"
+                                       data-id="{{ $brand->id }}">
+                                <label for="brand{{ $brand->id }}">{{ $brand->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="card mb-1">
+                    <!-- Panel -->
+                    <div class="card-header">
+                        <h5 class="m-0"><strong>Prijs</strong></h5>
+                    </div>
+                    <div class="card-block p-3">
+                        <input id="priceRange"
+                               name="Prijs"
+                               title="Prijs">
+                    </div>
+                    <script>
                         document.addEventListener("DOMContentLoaded", function () {
                             loadRangeSliders("price", "#priceRange", "{{ $products->map(function ($item,$index){ return $item->price; })->min() }}", "{{ $products->map(function ($item,$index){ return $item->price; })->max() }}", {{ array_key_exists("price_from",$_REQUEST)?$_REQUEST["price_from"]:0 }}, {{ array_key_exists("price_to",$_REQUEST)?$_REQUEST["price_to"]:0 }});
                         });
-					</script>
-				</div>
-				@if(Route::current()->getName() == 'filtered')
-					@foreach($attribute_groups as $attribute_group)
-						<div class="card mb-1">
-							<!-- Panel -->
-							<div class="card-header">
-								<h5 class="m-0"><strong>{{ $attribute_group->name }}</strong></h5>
-							</div>
-							<div class="card-block p-3">
-								<ul class="m-0">
-									@if($attribute_group->type==="checkbox"||$attribute_group->type==="radio")
-										@foreach($attribute_group->attributes as $attribute)
-											<li>
-												@if ($attribute_group->type === "checkbox")
-													<input type="checkbox" id="checkbox{{ $attribute->id }}"
-													       name="{{ $attribute_group->id }}[]" class="filter"
-													       value="{{ $attribute->value }}">
-													<label for="checkbox{{ $attribute->id }}">{{ $attribute->value }}</label>
-												@elseif ($attribute_group->type === "radio")
-													<input type="radio" id="radio{{ $attribute->id }}"
-													       name="{{ $attribute_group->id }}" class="filter"
-													       value="{{ $attribute->value }}">
-													<label for="radio{{ $attribute->id }}">{{ $attribute->value }}</label>
-												@endif
-											</li>
-										@endforeach
-									@elseif($attribute_group->type==="range")
-										<li>
-											<input id="range{{ $attribute_group->id }}"
-											       name="{{ $attribute_group->name }}"
-											       title="{{ $attribute_group->name }}">
-										</li>
-										<script>
+                    </script>
+                </div>
+                @if(Route::current()->getName() == 'filtered')
+                    @foreach($attribute_groups as $attribute_group)
+                        <div class="card mb-1">
+                            <!-- Panel -->
+                            <div class="card-header">
+                                <h5 class="m-0"><strong>{{ $attribute_group->name }}</strong></h5>
+                            </div>
+                            <div class="card-block p-3">
+                                <ul class="m-0">
+                                    @if($attribute_group->type==="checkbox"||$attribute_group->type==="radio")
+                                        @foreach($attribute_group->attributes as $attribute)
+                                            <li>
+                                                @if ($attribute_group->type === "checkbox")
+                                                    <input type="checkbox" id="checkbox{{ $attribute->id }}"
+                                                           name="{{ $attribute_group->id }}[]" class="filter"
+                                                           value="{{ $attribute->value }}">
+                                                    <label for="checkbox{{ $attribute->id }}">{{ $attribute->value }}</label>
+                                                @elseif ($attribute_group->type === "radio")
+                                                    <input type="radio" id="radio{{ $attribute->id }}"
+                                                           name="{{ $attribute_group->id }}" class="filter"
+                                                           value="{{ $attribute->value }}">
+                                                    <label for="radio{{ $attribute->id }}">{{ $attribute->value }}</label>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    @elseif($attribute_group->type==="range")
+                                        <li>
+                                            <input id="range{{ $attribute_group->id }}"
+                                                   name="{{ $attribute_group->name }}"
+                                                   title="{{ $attribute_group->name }}">
+                                        </li>
+                                        <script>
                                             document.addEventListener("DOMContentLoaded", function () {
                                                 loadRangeSliders("{{ ($attribute_group->id) }}", "#range{{ $attribute_group->id }}", {{ $attribute_group->attributes->map(function($item,$index){ return $item->value; })->min() }}, {{ $attribute_group->attributes->map(function($item,$index){ return $item->value; })->max() }},{{ array_key_exists(($attribute_group->id)."_from",$_REQUEST)?$_REQUEST[($attribute_group->id)."_from"]:0 }},{{ array_key_exists(($attribute_group->id)."_to",$_REQUEST)?$_REQUEST[($attribute_group->id)."_to"]:0 }});
                                             });
-										</script>
-									@elseif($attribute_group->type==="slider")
-										<li>
-											<input id="slider{{ $attribute_group->id }}"
-											       name="{{ $attribute_group->name }}"
-											       title="{{ $attribute_group->name }}">
-										</li>
-										<script>
+                                        </script>
+                                    @elseif($attribute_group->type==="slider")
+                                        <li>
+                                            <input id="slider{{ $attribute_group->id }}"
+                                                   name="{{ $attribute_group->name }}"
+                                                   title="{{ $attribute_group->name }}">
+                                        </li>
+                                        <script>
                                             document.addEventListener("DOMContentLoaded", function () {
                                                 loadSliders("{{ ($attribute_group->id) }}", "#slider{{ $attribute_group->id }}", 0, 100,{{ array_key_exists(($attribute_group->id)."_to",$_REQUEST)?$_REQUEST[($attribute_group->id)."_to"]:0 }});
                                             });
-										</script>
-									@endif
-								</ul>
-							</div>
-						</div>
-					@endforeach
-				
-				@endif
-			
-			</div>
-			<!-- /.Sidebar -->
-			
-			<!-- Content -->
-			<div class="col-md-10 my-2">
-				
-				<ol class="breadcrumb mx-0">
-					<li class="breadcrumb-item"><a href="{{route('product')}}">Producten</a></li>
-					@if(isset($breadcrumbs))
-						@foreach(array_reverse($breadcrumbs) as $breadcrumb)
-							<li class="breadcrumb-item"><a
-										href="{{ action("ProductController@filtered", $breadcrumb[0]) }}">{{ $breadcrumb[1] }}</a>
-							</li>
-						@endforeach
-					@endif
-				</ol>
-				<div class="card row pt-1 mx-0 mb-1">
-					<div class="col-md-3">
-						<select id="perPage" class="mdb-select">
-							<option value="10">10</option>
-							<option {{ array_key_exists("perPage",$_REQUEST)?$_REQUEST["perPage"]==25?"selected":"":"" }} value="25">
-								25
-							</option>
-							<option {{ array_key_exists("perPage",$_REQUEST)?$_REQUEST["perPage"]==50?"selected":"":"" }} value="50">
-								50
-							</option>
-							<option {{ array_key_exists("perPage",$_REQUEST)?$_REQUEST["perPage"]==100?"selected":"":"" }} value="100">
-								100
-							</option>
-						</select>
-						<label for="perPage">
-							Producten per pagina
-						</label>
-					</div>
-					<div class="float-md-right col-md-3">
-						<select id="sorting" class="mdb-select">
-							<option value="name_asc">Naam (A - Z)</option>
-							<option value="name_desc">Naam (Z - A)</option>
-							<option value="price_asc">Prijs oplopend</option>
-							<option value="price_desc">Prijs aflopend</option>
-						</select>
-						<label for="sorting">
-							Sorteren
-						</label>
-					</div>
-				</div>
-				<div id="filtered_products">
-					<i class='fa fa-5x fa-spinner fa-spin'></i>
-				</div>
-			</div>
-			<!-- /.Filter Area -->
-		</div>
-		<!-- /.Content -->
-	
-	</div>
+                                        </script>
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
+                    @endforeach
+
+                @endif
+
+            </div>
+            <!-- /.Sidebar -->
+
+            <!-- Content -->
+            <div class="col-md-10 my-2">
+
+                <ol class="breadcrumb breadcrumb-white mx-0">
+                    <li class="breadcrumb-item"><a href="{{route('product')}}">Producten</a></li>
+                    @if(isset($breadcrumbs))
+                        @foreach(array_reverse($breadcrumbs) as $breadcrumb)
+                            <li class="breadcrumb-item"><a
+                                        href="{{ action("ProductController@filtered", $breadcrumb[0]) }}">{{ $breadcrumb[1] }}</a>
+                            </li>
+                        @endforeach
+                    @endif
+                </ol>
+                <div class="card pt-2 px-3 mx-0 mb-1">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select id="perPage" class="mdb-select">
+                                <option value="10">10</option>
+                                <option {{ array_key_exists("perPage",$_REQUEST)?$_REQUEST["perPage"]==25?"selected":"":"" }} value="25">
+                                    25
+                                </option>
+                                <option {{ array_key_exists("perPage",$_REQUEST)?$_REQUEST["perPage"]==50?"selected":"":"" }} value="50">
+                                    50
+                                </option>
+                                <option {{ array_key_exists("perPage",$_REQUEST)?$_REQUEST["perPage"]==100?"selected":"":"" }} value="100">
+                                    100
+                                </option>
+                            </select>
+                            <label for="perPage">
+                                Producten per pagina
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="sorting" class="mdb-select text-left">
+                                <option value="name_asc">Naam (A - Z)</option>
+                                <option value="name_desc">Naam (Z - A)</option>
+                                <option value="price_asc">Prijs oplopend</option>
+                                <option value="price_desc">Prijs aflopend</option>
+                            </select>
+                            <label for="sorting">
+                                Sorteren
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div id="filtered_products">
+                        <div class="w-100 text-center">
+                            {{--<i class='fa fa-5x fa-spinner fa-pulse mx-auto'></i>--}}
+                            {{--<img src="{{ asset('img/loading-cow.gif') }}">--}}
+                        </div>
+                    </div>
+                    <div class="w-100 text-center hiddendiv loading-cow">
+                        {{--<i class='fa fa-5x fa-spinner fa-pulse mx-auto'></i>--}}
+                        <img src="{{ asset('img/loading-cow.gif') }}">
+                    </div>
+                </div>
+            </div>
+            <!-- /.Filter Area -->
+        </div>
+        <!-- /.Content -->
+
+    </div>
 
 @endsection
 
 @section("scripts")
-	
-	<script>
+
+    <script>
 
         $(document).ready(function () {
             $('.mdb-select').material_select();
@@ -293,12 +304,14 @@
                 },
                 beforeSend: function () {
                     filtered_products.addClass("loading");
+                    $(".loading-cow").removeClass("hiddendiv");
                 },
                 error: function (result) {
                     toastr["error"](result.statusText, result.status);
                 },
                 complete: function () {
                     filtered_products.removeClass("loading");
+                    $(".loading-cow").addClass("hiddendiv");
                 }
             });
         }
@@ -335,6 +348,6 @@
                 }
             }
         };
-	</script>
+    </script>
 
 @endsection
