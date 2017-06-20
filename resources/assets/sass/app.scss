@@ -89,7 +89,11 @@ footer{
 
 .filtered-products, .loading-cow{
   position: absolute;
-  top: 20vh;
+  top: 22vh;
+  img{
+    width: 5rem;
+    height: 5rem;
+  }
 }
 
 .loading-cow{

@@ -180,7 +180,7 @@
                             {{--<img src="{{ asset('img/loading-cow.gif') }}">--}}
                         </div>
                     </div>
-                    <div class="w-100 text-center hiddendiv loading-cow">
+                    <div class="w-100 pr-5 text-center hiddendiv loading-cow">
                         {{--<i class='fa fa-5x fa-spinner fa-pulse mx-auto'></i>--}}
                         <img src="{{ asset('img/loading-cow.gif') }}">
                     </div>
