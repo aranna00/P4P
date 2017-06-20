@@ -89,7 +89,7 @@ footer{
 
 .filtered-products, .loading-cow{
   position: absolute;
-  top: 22vh;
+  top: 25vh;
   img{
     width: 5rem;
     height: 5rem;
@@ -134,6 +134,10 @@ footer{
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover{
   background-color: lighten($primary, 10%) !important;
+}
+
+.btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover{
+  background-color: lighten($secondary, 10%) !important;
 }
 
 .bg-navbar{

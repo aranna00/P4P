@@ -123,6 +123,23 @@ class WishlistController extends Controller
         return \Redirect::action("WishlistController@index");
     }
 
+    public function remove($product_id, $wishlist_id)
+    {
+        $wishlist = Wishlist::whereId($wishlist_id)->get()->first();
+
+        $product = Product::whereId($product_id)->get()->first();
+
+        if ($wishlist->products()->wherePivot("product_id", "=", $product_id)->count() > 0) {
+
+            $wishlist->products()->detach($product_id);
+            \Toastr::success($product->name . " is verwijderd uit " . $wishlist->name);
+        } else {
+            \Toastr::warning($product->name . " staat niet in " . $wishlist->name);
+        }
+
+        return \Redirect::back();
+    }
+
     public function add($product_id, $wishlist_id)
     {
 

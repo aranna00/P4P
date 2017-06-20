@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="col-md-12 mt-5">
+    <div class="container mt-5">
         <div class="card">
             <div class="card-header primary-color-darken white-text">
                 Favorietenlijst aanmaken
@@ -16,7 +16,7 @@
                                 <label for="name" class="control-label">Lijst naam</label>
                             </div>
                             <button class="btn btn-primary" value="Opslaan">Opslaan</button>
-                            <a class="btn btn-secondary" href="{{ action("WishlistController@index") }}">Annuleren</a>
+                            <a class="btn btn-danger" href="{{ action("WishlistController@index") }}">Annuleren</a>
                         </form>
                     </div>
                 </div>

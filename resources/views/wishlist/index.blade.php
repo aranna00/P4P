@@ -26,9 +26,45 @@
         </div>
 
         <!-- Lelijk responsive, needs fix -->
-        <a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 220px; right: 24px;"
-           href="{{ action("WishlistController@create") }}">
-            <i class="fa"><b>+</b></i>
-        </a>
+        <button class="btn btn-floating btn-large primary-color" style="position: fixed; bottom: 220px; right: 24px;"
+           onclick="$('#createWishlist').modal('show')">
+            <i class="fa py-1"><h4 class="font-weight-bold">+</h4></i>
+        </button>
     </div>
+
+
+    <!--Modal: Subscription From-->
+    <div class="modal fade" id="createWishlist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header primary-color-darken white-text">
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="title">Favorietenlijst maken</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+                    <form action="{{ action("WishlistController@store") }}" method="post">
+                        {!! csrf_field() !!}
+                        <div class="md-form form-sm">
+                            <input type="text" id="name" class="form-control" name="name"
+                                   value="">
+                            <label for="name">Lijstnaam</label>
+                        </div>
+
+                        <div class="text-center mt-1-half">
+                            <button class="btn btn-primary mb-1">Aanmaken <i class="fa fa-check ml-1"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Subscription From-->
 @endsection

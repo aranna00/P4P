@@ -10,21 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-    
-    Route::get("login", "Auth\LoginController@showLoginForm")->name("login");
-    Route::post("login", "Auth\LoginController@login");
-    
-    
-    Route::post("logout", "Auth\LoginController@logout")->name("logout");
-    Route::get('/', 'HomeController@index')->name('home');
+
+Route::get("login", "Auth\LoginController@showLoginForm")->name("login");
+Route::post("login", "Auth\LoginController@login");
+
+
+Route::post("logout", "Auth\LoginController@logout")->name("logout");
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/filter', 'ProductController@index')->name('product');
 Route::get('/filter/{category}', 'ProductController@filtered')->name('filtered');
-    Route::any("producten/ajax", "ProductController@filtered_products")->name("filter.ajax");
+Route::any("producten/ajax", "ProductController@filtered_products")->name("filter.ajax");
 
 Route::resource('/favorieten', 'WishlistController');
-
-Route::get('/favorieten/{product_id}/{wishlist_id}', 'WishlistController@add');
+Route::get('/favorieten/add/{product_id}/{wishlist_id}', 'WishlistController@add');
+Route::get('/favorieten/remove/{product_id}/{wishlist_id}', 'WishlistController@remove');
 
 Route::resource('/winkelwagen', 'CartController');
 
