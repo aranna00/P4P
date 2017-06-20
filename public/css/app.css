@@ -45684,6 +45684,12 @@ footer {
   z-index: 10;
 }
 
+.loading-cow img {
+  margin-top: -2.5rem;
+  height: 5rem;
+  width: 5rem;
+}
+
 .irs-from,
 .irs-to,
 .irs-single {

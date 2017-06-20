@@ -98,6 +98,11 @@ footer{
 
 .loading-cow{
   z-index: 10;
+  img {
+    margin-top: -2.5rem;
+    height: 5rem;
+    width: 5rem;
+  }
 }
 
 //slider override

@@ -304,14 +304,14 @@
                 },
                 beforeSend: function () {
                     filtered_products.addClass("loading");
-                    $(".loading-cow").removeClass("hiddendiv");
+                    $(".loading-cow").removeClass("hiddendiv-");
                 },
                 error: function (result) {
                     toastr["error"](result.statusText, result.status);
                 },
                 complete: function () {
                     filtered_products.removeClass("loading");
-                    $(".loading-cow").addClass("hiddendiv");
+                    $(".loading-cow").addClass("hiddendiv-");
                 }
             });
         }
