@@ -180,7 +180,7 @@
                             {{--<img src="{{ asset('img/loading-cow.gif') }}">--}}
                         </div>
                     </div>
-                    <div class="w-100 text-center hiddendiv loading-cow">
+                    <div class="col-12 pr-5 text-center hiddendiv- loading-cow">
                         {{--<i class='fa fa-5x fa-spinner fa-pulse mx-auto'></i>--}}
                         <img src="{{ asset('img/loading-cow.gif') }}">
                     </div>
@@ -304,14 +304,14 @@
                 },
                 beforeSend: function () {
                     filtered_products.addClass("loading");
-                    $(".loading-cow").removeClass("hiddendiv");
+                    $(".loading-cow").removeClass("hiddendiv-");
                 },
                 error: function (result) {
                     toastr["error"](result.statusText, result.status);
                 },
                 complete: function () {
                     filtered_products.removeClass("loading");
-                    $(".loading-cow").addClass("hiddendiv");
+                    $(".loading-cow").addClass("hiddendiv-");
                 }
             });
         }
