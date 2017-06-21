@@ -182,7 +182,7 @@
                     </div>
                     <div class="w-100 pr-5 text-center hiddendiv loading-cow">
                         {{--<i class='fa fa-5x fa-spinner fa-pulse mx-auto'></i>--}}
-                        <img src="{{ asset('img/loading-cow.gif') }}">
+                        <img src="{{ asset('img/loading-alt.gif') }}">
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-grey">
     <div class="card-block mx-auto p-0 pt-1">
 {!! $products->withPath("/filter/".$parentId) !!}
     </div>
@@ -119,7 +119,7 @@
         </div>
     </div>
 @endforeach
-<div class="card">
+<div class="card card-grey">
     <div class="card-block mx-auto p-0 pt-1">
         {!! $products->withPath("/filter/".$parentId) !!}
     </div>
