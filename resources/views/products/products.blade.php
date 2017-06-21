@@ -1,4 +1,8 @@
+<div class="card">
+    <div class="card-block mx-auto p-0 pt-1">
 {!! $products->withPath("/filter/".$parentId) !!}
+    </div>
+</div>
 @foreach($products as $product)
 
     <div class="list-group m-0">
@@ -115,7 +119,11 @@
         </div>
     </div>
 @endforeach
-{!! $products->withPath("/filter/".$parentId) !!}
+<div class="card">
+    <div class="card-block mx-auto p-0 pt-1">
+        {!! $products->withPath("/filter/".$parentId) !!}
+    </div>
+</div>
 
 @if(count($products)===0)
 

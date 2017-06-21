@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-block p-3">
                         <div class="form-inline waves-effect waves-light">
-                            <input type="text" id="search" placeholder="Verfijnd zoeken" class="form-control">
+                            <input type="text" id="search" placeholder="Verfijnd zoeken" class="form-control w-100">
                         </div>
                     </div>
                 </div>
