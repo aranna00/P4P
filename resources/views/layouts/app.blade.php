@@ -25,15 +25,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <strong>Navbar</strong>
+            {{--<strong>Navbar</strong>--}}
+            <img src="{{ asset('img/jansma_logo_nav.png') }}" style="height: 32px;">
         </a>
         <div class="collapse navbar-collapse" id="navbarNav1">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @if(Route::current()->getName() == 'home') active @endif">
                     <a href="{{ route('home') }}" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item @if(Route::current()->getName() == 'product' || Route::current()->getName() == 'filtered') active @endif">
-                    <a href="{{ route('product') }}" class="nav-link">Producten</a>
+                <li class="nav-item @if(Route::current()->getName() == 'producten' || Route::current()->getName() == 'filtered') active @endif">
+                    <a href="{{ route('producten') }}" class="nav-link">Producten</a>
                 </li>
                 <li class="nav-item @if(str_contains(Route::current()->getName(), 'favorieten')) active @endif">
                     <a href="{{ route('favorieten.index') }}" class="nav-link">Favorieten</a>

@@ -6,7 +6,7 @@
         <div class="row">
 
             <!-- Sidebar -->
-            <div class="col-md-2 hidden-sm-down mt-2">
+            <div class="col-md-2 hidden-md-down mt-2">
                 @if(count($categories) > 0)
                     <div class="card mb-1">
                         <!-- Panel -->
@@ -129,10 +129,10 @@
             <!-- /.Sidebar -->
 
             <!-- Content -->
-            <div class="col-md-10 my-2">
+            <div class="col-lg-10 my-2">
 
                 <ol class="breadcrumb breadcrumb-white mx-0">
-                    <li class="breadcrumb-item"><a href="{{route('product')}}">Producten</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('producten')}}">Producten</a></li>
                     @if(isset($breadcrumbs))
                         @foreach(array_reverse($breadcrumbs) as $breadcrumb)
                             <li class="breadcrumb-item"><a

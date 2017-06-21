@@ -58,6 +58,8 @@ class CartController extends Controller
             $user->cart()->detach($product);
         }
         $user->cart()->attach($product, ["amount" => $amount]);
+
+        \Toastr::success('toegevoegd aan winkelmand');
     
         return \Redirect::back();
     }

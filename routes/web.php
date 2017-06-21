@@ -18,9 +18,11 @@ Route::post("login", "Auth\LoginController@login");
 Route::post("logout", "Auth\LoginController@logout")->name("logout");
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/filter', 'ProductController@index')->name('product');
+Route::get('/filter', 'ProductController@index')->name('producten');
 Route::get('/filter/{category}', 'ProductController@filtered')->name('filtered');
 Route::any("producten/ajax", "ProductController@filtered_products")->name("filter.ajax");
+
+Route::get('/product/{product_id}', 'ProductController@show')->name('product');
 
 Route::resource('/favorieten', 'WishlistController');
 Route::get('/favorieten/add/{product_id}/{wishlist_id}', 'WishlistController@add');
