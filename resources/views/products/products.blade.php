@@ -63,7 +63,7 @@
             <div class="modal-content">
                 <!--Header-->
                 <div class="modal-header">
-                    <p class="heading lead">Hoeveelheid</p>
+                    <p class="heading lead">Toevoegen</p>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="white-text">&times;</span>
@@ -104,7 +104,7 @@
                     </div>
 
                     <!--Footer-->
-                    <div class="modal-footer justify-content-center">
+                    <div class="modal-footer justify-content-around">
                         <a type="button" class="btn btn-outline-secondary waves-effect"
                            data-dismiss="modal">Annuleren</a>
                         <button type="submit" class="btn btn-primary">Voeg toe</button>
@@ -128,3 +128,7 @@
     </div>
 
 @endif
+
+@section('scripts')
+
+@endsection
