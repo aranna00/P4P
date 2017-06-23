@@ -125,6 +125,9 @@
         {
             $product = Product::whereId($id)->get()->first();
 
-            return view('products.product', compact('product'));
+            $user=\Sentinel::check();
+            $wishlists=$user->wishlists;
+
+            return view('products.product', compact(['product', 'wishlists']));
         }
     }
