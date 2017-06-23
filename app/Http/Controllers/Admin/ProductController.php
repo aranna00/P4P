@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Brand;
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
@@ -15,11 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::with(["brand", "tax"])->paginate(8);
-
-//        dd($products);
+        $products = Product::with(["brand", "tax"])->paginate(8);
         
-        return view("admin.products.index", compact(["products"]));
+        return view("admin.products.index", compact("products"));
     }
     
     /**
@@ -29,7 +29,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::all();
+        $categories = Category::select(['name', 'id', 'parent_id'])->orderBy('name', 'asc')->get(); // ->where("visible","=",true)
+        $categories_sel = $categories->load('children');
+
+
+        return view('admin.products.create', ['brands'=>$brands, 'categories'=>$categories, 'categories_sel'=>$categories_sel]);
     }
     
     /**
