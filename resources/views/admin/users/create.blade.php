@@ -1,7 +1,6 @@
 @extends("admin.layouts.app")
 
 @section("breadcrumbs")
-
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="fa fa-home"></i>
@@ -14,15 +13,13 @@
             <a href="">Aanmaken</a>
         </li>
     </ol>
-
 @endsection
 
-
 @section("content")
-    <div class="col-md-12">
+    <div class="container-fluid">
         <div class="card">
             <div class="card-header primary-color text-center white-text">
-                Gebruiker aanmaken
+                Gebruiker aanmaken (Bedrijfsleider)
             </div>
             <div class="admin-panel m-3">
                 <form action="{{ action("Admin\UserController@store") }}" method="post">

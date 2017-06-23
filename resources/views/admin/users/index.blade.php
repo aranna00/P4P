@@ -29,6 +29,7 @@
                                         <th>Naam</th>
                                         <th>Email</th>
                                         <th>Bedrijf</th>
+                                        <th>Functie</th>
                                         <th>Laatst ingelogd</th>
                                         <th>Acties</th>
                                     </tr>
@@ -46,17 +47,26 @@
                                                 {{ $user->business->bestaandehandelsnaam }}
                                             </td>
                                             <td>
+                                                @foreach($user->roles as $role)
+                                                    {{ $role->name }}
+                                                @endforeach
+                                            </td>
+                                            <td>
                                                 {{ $user->last_login }}
                                             </td>
                                             <td>
-                                                <form id="delete{{ $user->id }}" action="{{ action("Admin\UserController@destroy", ["user"=>$user->id]) }}" method="post">
+                                                <form id="delete{{ $user->id }}"
+                                                      action="{{ action("Admin\UserController@destroy", ["user"=>$user->id]) }}"
+                                                      method="post">
                                                     {!! csrf_field() !!}
                                                     {!! method_field("delete") !!}
                                                     <a class="btn btn-primary"
                                                        href="{{ action("Admin\UserController@edit",["user"=>$user->id]) }}">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <a class="btn btn-danger" onclick="if (confirm('Weet u het zeker')){ {$('#delete{{ $user->id }}').submit();} }"><i class="fa fa-times"></i></a>
+                                                    <a class="btn btn-danger"
+                                                       onclick="if (confirm('Weet u het zeker')){ {$('#delete{{ $user->id }}').submit();} }"><i
+                                                                class="fa fa-times"></i></a>
                                                 </form>
                                             </td>
                                         </tr>
