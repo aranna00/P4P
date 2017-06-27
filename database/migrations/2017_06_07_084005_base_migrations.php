@@ -97,6 +97,8 @@
         
         Schema::create('businesses', function (Blueprint $table) {
             $table->increments("id");
+            $table->string("kvk");
+            $table->integer("relatie_nummer");
             $table->string("bestaandehandelsnaam");
             $table->string("dossiernummer")->index();
             $table->string("subdossiernummer")->index();

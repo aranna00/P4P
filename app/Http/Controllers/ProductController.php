@@ -17,20 +17,20 @@
          */
         public function index()
         {
-            $categories=Category::whereNull('parent_id');
+            $categories=Category::whereNull("parent_id");
             $categories=$categories->get();
             
             $products=Product::all();
-            $products->load('brand');
-            
-            $brands=Brand::whereHas('products', function ($query) use ($products) {
+            $products->load("brand");
+    
+            $brands=Brand::whereHas("products", function ($query) use ($products) {
                 /** @var \Illuminate\Database\Eloquent\Builder $query */
-                $query->whereIn('id', $products->map(function ($item, $key) {
+                $query->whereIn("id", $products->map(function ($item, $key) {
                     return $item->id;
                 }));
             })->get();
     
-            return view('products.index', compact(['categories', 'products', 'brands']));
+            return view('products.index', compact(["categories", "products", "brands"]));
         }
         
         /**
@@ -45,18 +45,18 @@
             $parent=Category::find($parent_id);
             $categories=$parent->children;
             $products=$parent->products;
-            $attribute_groups=AttributeGroup::whereHas('attributes', function ($query) use ($products) {
-                $query->whereHas('product', function ($query) use ($products) {
-                    $query->whereIn('id', $products->map(function ($item, $key) {
+            $attribute_groups=AttributeGroup::whereHas("attributes", function ($query) use ($products) {
+                $query->whereHas("product", function ($query) use ($products) {
+                    $query->whereIn("id", $products->map(function ($item, $key) {
                         return $item->id;
                     }));
                 });
             });
-            $attribute_groups=$attribute_groups->with(['attributes'])->get();
-            
-            $brands=Brand::whereHas('products', function ($query) use ($products) {
+            $attribute_groups=$attribute_groups->with(["attributes"])->get();
+    
+            $brands=Brand::whereHas("products", function ($query) use ($products) {
                 /** @var \Illuminate\Database\Eloquent\Builder $query */
-                $query->whereIn('id', $products->map(function ($item, $key) {
+                $query->whereIn("id", $products->map(function ($item, $key) {
                     return $item->id;
                 }));
             })->get();
@@ -68,7 +68,7 @@
             }
             
             return view('products.index',
-                compact(['parent_id', 'categories', 'breadcrumbs', 'attribute_groups', 'brands', 'products']));
+                compact(["parent_id", "categories", "breadcrumbs", "attribute_groups", "brands", "products"]));
         }
         
         /**
@@ -76,41 +76,42 @@
          */
         public function filtered_products(Request $request)
         {
-            if (array_key_exists('parent', $_REQUEST)) {
-                $parentId=$request->query('parent');
+            if (array_key_exists("parent", $_REQUEST)) {
+                $parentId=$request->query("parent");
                 $parent=Category::find($parentId);
                 $products=$parent->products();
             } else {
                 $products=Product::query();
                 $parentId=null;
             }
-            if ($request->has('search')) {
+            if ($request->has("search")) {
+                /** @var \App\Product $products */
                 $products->where(function ($query) use ($request) {
-                    $query->orWhere('name', 'like', '%' . $request->query('search') . '%');
-                    $query->orWhere('code', 'like', '%' . $request->query('search') . '%');
+                    $query->orWhere("name", "like", "%" . $request->query("search") . "%");
+                    $query->orWhere("code", "like", "%" . $request->query("search") . "%");
                 });
             }
-            if ($request->has('brands')) {
-                $products->whereIn('brand_id', explode(',', $request->query('brands')));
+            if ($request->has("brands")) {
+                $products->whereIn("brand_id", explode(",", $request->query("brands")));
             }
-            if ($request->has('price_from')) {
-                $products->where('price', '>=', $request->query('price_from'));
+            if ($request->has("price_from")) {
+                $products->where("price", ">=", $request->query("price_from"));
             }
-            if ($request->has('price_to')) {
-                $products->where('price', '<=', $request->query('price_to'));
+            if ($request->has("price_to")) {
+                $products->where("price", "<=", $request->query("price_to"));
             }
-            
-            $products=$products->with('brand')
-                               ->orderBy($request->has('type') ? $request->query('type') : 'name',
-                                   $request->has('sorting') ? $request->query('sorting') : 'asc')
-                               ->paginate($request->has('perPage') ? $request->query('perPage') : 10)
+    
+            $products=$products->with("brand")
+                               ->orderBy($request->has("type") ? $request->query("type") : "name",
+                                   $request->has("sorting") ? $request->query("sorting") : "asc")
+                               ->paginate($request->has("perPage") ? $request->query("perPage") : 10)
                                ->appends($_REQUEST);
     
             $user=\Sentinel::check();
     
             $wishlists=$user->wishlists;
     
-            return view('products.products', compact(['products', 'parentId', 'wishlists']));
+            return view("products.products", compact(["products", "parentId", "wishlists"]));
         }
         
         

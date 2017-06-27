@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -51,13 +51,16 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+        /** @var \App\Order $order */
         $order = Order::findOrFail($id);
-
-        $total = $order->products->map(function($item, $key){
+        $products=$order->products;
+        $products->load("tax");
+    
+        $total=$products->map(function ($item, $key) {
             return $item->price * $item->pivot->amount;
         })->sum();
-
-        $tax = $order->products->map(function($item, $key){
+    
+        $tax=$products->map(function ($item, $key) {
             return $item->tax->value * $item->price * $item->pivot->amount / 100;
         })->sum();
 

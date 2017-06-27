@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -22,6 +21,8 @@ class CheckoutController extends Controller
         $cart = $user->cart;
 
         if ($cart->count() == 0) {
+            \Toastr::warning("U heeft geen producten in de winkelwagen liggen");
+            
             return \Redirect::action('CartController@index');
         }
 
