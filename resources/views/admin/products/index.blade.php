@@ -33,7 +33,7 @@
 									<th>Beschrijving</th>
 									<th>Merk</th>
 									<th>Prijs</th>
-									<th>Momenteel beschibaar</th>
+									<th>Momenteel beschikbaar</th>
 									<th>Aangemaakt op</th>
 									<th>Acties</th>
 								</tr>

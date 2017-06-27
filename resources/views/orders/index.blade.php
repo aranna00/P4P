@@ -27,7 +27,7 @@
                                             <td>{{ $order->id }}</td>
                                             <td>{{ $order->created_at }}</td>
                                             <td>{{ $order->delivery }}</td>
-                                            <td>@if ($order->processed) Verwerkt @else Nog niet verwerkt @endif</td>
+                                            <td>{{ $order->processed?"Verwerkt":"Nog niet verwerkt" }}</td>
                                             <td>
                                                 <a href="{{ action('OrderController@show', ["order"=>$order->id]) }}" class="btn btn-sm btn-primary m-0">
                                                     Bekijk order
