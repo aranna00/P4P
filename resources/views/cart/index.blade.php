@@ -39,7 +39,8 @@
                                                 <h5><strong>{{ $product->name }}</strong></h5>
                                                 <p class="text-muted">{!! $product->description !!}</p>
                                             </td>
-                                            <td>&euro;{{ number_format($product->price, 2, ",", ".") }}</td>
+	                                        <td class="cart-price" data-price="{{ $product->price    }}">
+		                                        &euro;{{ number_format($product->price, 2, ",", ".") }}</td>
                                             <td>
                                                 <form id="update{{ $product->id }}"
                                                       action="{{ action("CartController@update", ["product"=>$product->id]) }}"
@@ -49,19 +50,17 @@
                                                     <input type="hidden" value="{{ $product->id }}" name="id">
 
                                                     <div class="input-group">
-                                                        <input class="form-control" type="number" name="amount"
-                                                               value="{{ $product->pivot->amount }}" min="0"
-                                                               title="amount">
-                                                        <span class="input-group-btn">
-                                                            <button type="submit" class="btn blue btn-md">
-                                                            <i class="fa fa-refresh"></i>
-                                                        </button>
-                                                        </span>
+	                                                    <input data-id="{{ $product->id }}"
+	                                                           class="form-control cart-amount" type="number"
+	                                                           name="amount"
+	                                                           value="{{ $product->pivot->amount }}" min="0"
+	                                                           title="amount" src="">
                                                     </div>
                                                 </form>
                                             </td>
-                                            <td>
-                                                &euro;{{ number_format($product->price * $product->pivot->amount, 2, ",", ".") }}</td>
+	                                        <td class="cart-total">
+		                                        &euro;{{ number_format($product->price * $product->pivot->amount, 2, ",", ".") }}
+	                                        </td>
                                             <td>
                                                 <form id="delete{{ $product->id }}"
                                                       action="{{ action("CartController@update", ["product"=>$product->id]) }}"
@@ -95,7 +94,9 @@
                                         <td>
                                             <h4><strong>Totaal</strong></h4></td>
                                         <td>
-                                            <h4><strong>&euro;{{ number_format($total, 2, ",", ".") }}</strong></h4></td>
+	                                        <h4><strong id="cart-total"
+	                                                    data-price="{{ $total }}">&euro;{{ number_format($total, 2, ",", ".") }}</strong>
+	                                        </h4></td>
                                         <td colspan="3">
                                             <a href="{{ action("CheckoutController@index") }}">
                                                 <button type="button" class="btn btn-primary">Verder naar order plaatsen
@@ -117,4 +118,50 @@
 @endsection
 
 @section('scripts')
+	
+	<script>
+        Number.prototype.formatMoney = function (c, d, t) {
+            var n = this,
+                c = isNaN(c = Math.abs(c)) ? 2 : c,
+                d = d == undefined ? "," : d,
+                t = t == undefined ? "." : t,
+                s = n < 0 ? "-" : "",
+                i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+                j = (j = i.length) > 3 ? j % 3 : 0;
+            return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+        };
+        var cartTotal = $("#cart-total");
+        $(".cart-amount").change(function () {
+            var row = $(this).parent().parent().parent().parent();
+            var that = $(this);
+            var rowTotal = row.find(".cart-total");
+            var rowProductPrice = row.find(".cart-price");
+            rowProductPrice = rowProductPrice.data("price");
+            $.ajax({
+                url: "{{ action("CartController@index") }}/" + $(this).data("id"),
+                method: "post",
+                data: {
+                    _method: "put",
+                    _token: "{{ csrf_token() }}",
+                    amount: $(this).prop("value"),
+                    id: $(this).data("id")
+                },
+                success: function (data) {
+                    rowTotal.text("€" + data.productTotal.formatMoney(2));
+                    cartTotal.text("€" + data.total.formatMoney(2));
+                }
+            })
+        });
+
+        function updateCartTotal() {
+            var total;
+            $(".cart-total").each(function () {
+                if ($(this) !== undefined) {
+                    total += parseFloat($(this).text().trim().substring(1).replace(",", "."));
+                }
+            });
+            cartTotal.text("€" + total.formatMoney(2));
+        }
+	</script>
+    
 @endsection
