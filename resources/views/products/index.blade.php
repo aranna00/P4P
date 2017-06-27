@@ -71,57 +71,57 @@
                     </script>
                 </div>
                 @if(Route::current()->getName() == 'filtered')
-                    @foreach($attribute_groups as $attribute_group)
-                        <div class="card mb-1">
-                            <!-- Panel -->
-                            <div class="card-header">
-                                <h5 class="m-0"><strong>{{ $attribute_group->name }}</strong></h5>
-                            </div>
-                            <div class="card-block p-3">
-                                <ul class="m-0">
-                                    @if($attribute_group->type==="checkbox"||$attribute_group->type==="radio")
-                                        @foreach($attribute_group->attributes as $attribute)
-                                            <li>
-                                                @if ($attribute_group->type === "checkbox")
-                                                    <input type="checkbox" id="checkbox{{ $attribute->id }}"
-                                                           name="{{ $attribute_group->id }}[]" class="filter"
-                                                           value="{{ $attribute->value }}">
-                                                    <label for="checkbox{{ $attribute->id }}">{{ $attribute->value }}</label>
-                                                @elseif ($attribute_group->type === "radio")
-                                                    <input type="radio" id="radio{{ $attribute->id }}"
-                                                           name="{{ $attribute_group->id }}" class="filter"
-                                                           value="{{ $attribute->value }}">
-                                                    <label for="radio{{ $attribute->id }}">{{ $attribute->value }}</label>
-                                                @endif
-                                            </li>
-                                        @endforeach
-                                    @elseif($attribute_group->type==="range")
-                                        <li>
-                                            <input id="range{{ $attribute_group->id }}"
-                                                   name="{{ $attribute_group->name }}"
-                                                   title="{{ $attribute_group->name }}">
-                                        </li>
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", function () {
-                                                loadRangeSliders("{{ ($attribute_group->id) }}", "#range{{ $attribute_group->id }}", {{ $attribute_group->attributes->map(function($item,$index){ return $item->value; })->min() }}, {{ $attribute_group->attributes->map(function($item,$index){ return $item->value; })->max() }},{{ array_key_exists(($attribute_group->id)."_from",$_REQUEST)?$_REQUEST[($attribute_group->id)."_from"]:0 }},{{ array_key_exists(($attribute_group->id)."_to",$_REQUEST)?$_REQUEST[($attribute_group->id)."_to"]:0 }});
-                                            });
-                                        </script>
-                                    @elseif($attribute_group->type==="slider")
-                                        <li>
-                                            <input id="slider{{ $attribute_group->id }}"
-                                                   name="{{ $attribute_group->name }}"
-                                                   title="{{ $attribute_group->name }}">
-                                        </li>
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", function () {
-                                                loadSliders("{{ ($attribute_group->id) }}", "#slider{{ $attribute_group->id }}", 0, 100,{{ array_key_exists(($attribute_group->id)."_to",$_REQUEST)?$_REQUEST[($attribute_group->id)."_to"]:0 }});
-                                            });
-                                        </script>
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-                    @endforeach
+		                {{--@foreach($attribute_groups as $attribute_group)--}}
+		                {{--<div class="card mb-1">--}}
+		                {{--<!-- Panel -->--}}
+		                {{--<div class="card-header">--}}
+		                {{--<h5 class="m-0"><strong>{{ $attribute_group->name }}</strong></h5>--}}
+		                {{--</div>--}}
+		                {{--<div class="card-block p-3">--}}
+		                {{--<ul class="m-0">--}}
+		                {{--@if($attribute_group->type==="checkbox"||$attribute_group->type==="radio")--}}
+		                {{--@foreach($attribute_group->attributes as $attribute)--}}
+		                {{--<li>--}}
+		                {{--@if ($attribute_group->type === "checkbox")--}}
+		                {{--<input type="checkbox" id="checkbox{{ $attribute->id }}"--}}
+		                {{--name="{{ $attribute_group->id }}[]" class="filter"--}}
+		                {{--value="{{ $attribute->value }}">--}}
+		                {{--<label for="checkbox{{ $attribute->id }}">{{ $attribute->value }}</label>--}}
+		                {{--@elseif ($attribute_group->type === "radio")--}}
+		                {{--<input type="radio" id="radio{{ $attribute->id }}"--}}
+		                {{--name="{{ $attribute_group->id }}" class="filter"--}}
+		                {{--value="{{ $attribute->value }}">--}}
+		                {{--<label for="radio{{ $attribute->id }}">{{ $attribute->value }}</label>--}}
+		                {{--@endif--}}
+		                {{--</li>--}}
+		                {{--@endforeach--}}
+		                {{--@elseif($attribute_group->type==="range")--}}
+		                {{--<li>--}}
+		                {{--<input id="range{{ $attribute_group->id }}"--}}
+		                {{--name="{{ $attribute_group->name }}"--}}
+		                {{--title="{{ $attribute_group->name }}">--}}
+		                {{--</li>--}}
+		                {{--<script>--}}
+		                {{--document.addEventListener("DOMContentLoaded", function () {--}}
+		                {{--loadRangeSliders("{{ ($attribute_group->id) }}", "#range{{ $attribute_group->id }}", {{ $attribute_group->attributes->map(function($item,$index){ return $item->value; })->min() }}, {{ $attribute_group->attributes->map(function($item,$index){ return $item->value; })->max() }},{{ array_key_exists(($attribute_group->id)."_from",$_REQUEST)?$_REQUEST[($attribute_group->id)."_from"]:0 }},{{ array_key_exists(($attribute_group->id)."_to",$_REQUEST)?$_REQUEST[($attribute_group->id)."_to"]:0 }});--}}
+		                {{--});--}}
+		                {{--</script>--}}
+		                {{--@elseif($attribute_group->type==="slider")--}}
+		                {{--<li>--}}
+		                {{--<input id="slider{{ $attribute_group->id }}"--}}
+		                {{--name="{{ $attribute_group->name }}"--}}
+		                {{--title="{{ $attribute_group->name }}">--}}
+		                {{--</li>--}}
+		                {{--<script>--}}
+		                {{--document.addEventListener("DOMContentLoaded", function () {--}}
+		                {{--loadSliders("{{ ($attribute_group->id) }}", "#slider{{ $attribute_group->id }}", 0, 100,{{ array_key_exists(($attribute_group->id)."_to",$_REQUEST)?$_REQUEST[($attribute_group->id)."_to"]:0 }});--}}
+		                {{--});--}}
+		                {{--</script>--}}
+		                {{--@endif--}}
+		                {{--</ul>--}}
+		                {{--</div>--}}
+		                {{--</div>--}}
+		                {{--@endforeach--}}
 
                 @endif
 
@@ -244,7 +244,6 @@
 
         };
         var filterChanged = function (that) {
-            console.log(that.prop("value"));
             updateQueryStringParam(that.prop("name"), that.prop("value"));
         };
         function loadRangeSliders(name, sliderId, min, max, currentFrom, currentTo) {
