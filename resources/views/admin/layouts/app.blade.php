@@ -35,22 +35,35 @@
 				<ul class="collapsible collapsible-accordion">
 					<li>
 						<a class="collapsible-header waves-effect arrow-r">
-							Gebruikers
+							Orders
 							<i class="fa fa-angle-down rotate-icon"></i>
 						</a>
 						<div class="collapsible-body">
 							<ul>
 								<li>
-									<a href="{{ action("Admin\UserController@create") }}" class="waves-effect">Gebruiker aanmaken</a>
+									<a href="{{ action("Admin\OrderController@index") }}?open" class="waves-effect">Open orders</a>
 								</li>
 								<li>
-									<a href="{{ action("Admin\UserController@index") }}" class="waves-effect">Alle gebruikers</a>
+									<a href="{{ action("Admin\OrderController@index") }}" class="waves-effect">Alle orders</a>
 								</li>
 							</ul>
 						</div>
 					</li>
 				</ul>
 			</li>
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a href="{{ action("Admin\UserController@index") }}" class="waves-effect">Gebruikers</a>
+                    </li>
+                </ul>
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a href="{{ action("Admin\ProductController@index") }}" class="waves-effect">Producten</a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>

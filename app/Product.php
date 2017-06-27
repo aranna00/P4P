@@ -12,8 +12,8 @@
  * @property int                                                                                          $id
  * @property string                                                                                       $name
  * @property string                                                                                       $description
-     * @property string                                                                                   $code
-     * @property float                                                                                    $price
+ * @property string                                                                                   $code
+ * @property float                                                                                    $price
  * @property string                                                                                       $available_from
  * @property string                                                                                       $available_until
  * @property int                                                                                          $coli
@@ -35,7 +35,7 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[]                                   $orders
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[]                                 $relatedProducts
  * @property-read \App\Tax                                                                                $tax
-     * @method static \Illuminate\Database\Query\Builder|\App\Product whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Product whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereActive($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereAvailableFrom($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereAvailableUntil($value)
