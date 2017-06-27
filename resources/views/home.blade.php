@@ -8,11 +8,10 @@
                     <h1 class="font-weight-bold"><b>Jansma Boerenproducten</b></h1>
                 </div>
             </div>
-            {{--<div class="col-12 mt-2"><h1><b>Nieuw</b></h1></div>--}}
-            <div class="col-sm-10 col-lg-9">
+            <div class="col-12 col-lg-9">
                 <div class="row pr-1">
                     @for($i = 0; $i < 3; $i++)
-                        <div class="col-4 px-1 mb-1">
+                        <div class="col-12 col-md-4 px-1 mb-1">
                             <a href="{{ action('ProductController@show', $products[$i]->id) }}">
                                 <div class="card white hoverable h-100 home-product">
                                     {{--<div class="corner-ribbon top-right green">Nieuw</div>--}}
@@ -25,14 +24,14 @@
                             </a>
                         </div>
                     @endfor
-                    <div class="col-6 px-1 mb-1">
+                    <div class="col-md-6 px-1 mb-1">
                         <a href="{{ route('producten') }}">
                             <div class="card hoverable p-0">
                                 <img class="img-fluid" src="/img/block_1.jpg">
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 px-1 mb-1">
+                    <div class="col-md-6 px-1 mb-1">
                         <a href="{{ route('favorieten.index') }}">
                             <div class="card hoverable p-0">
                                 <img class="img-fluid" src="/img/block_2.jpg">
@@ -40,7 +39,7 @@
                         </a>
                     </div>
                     @for($i = 0; $i < 3; $i++)
-                        <div class="col-4 px-1">
+                        <div class="col-md-4 px-1 mb-1">
                             <a href="{{ action('ProductController@show', $products[$i]->id) }}">
                                 <div class="card white hoverable h-100 home-product">
                                     {{--<div class="corner-ribbon top-right blue">Uitgelicht</div>--}}
@@ -55,7 +54,7 @@
                     @endfor
                 </div>
             </div>
-            <div class="col-sm-2 col-lg-3 card home-block p-0 fb-container">
+            <div class="col-3 card home-block p-0 mb-1 fb-container hidden-md-down">
             </div>
         </div>
     </div>

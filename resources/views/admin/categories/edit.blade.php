@@ -51,7 +51,7 @@
 								<label for="parent" class="control-label">Hoofd categorie</label>
 							</div>
 							<button class="btn btn-primary" value="Opslaan">Opslaan</button>
-							<a class="btn btn-secondary" href="{{ action("Admin\CategoryController@index") }}">Annuleren</a>
+							<a class="btn btn-danger" href="{{ action("Admin\CategoryController@index") }}">Annuleren</a>
 						</form>
 					</div>
 				</div>

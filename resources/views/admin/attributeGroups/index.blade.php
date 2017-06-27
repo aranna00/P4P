@@ -30,7 +30,6 @@
 								<thead>
 								<tr>
 									<th>Naam</th>
-									<th>Beschrijving</th>
 									<th>Aangemaakt op</th>
 									<th>Acties</th>
 								</tr>
@@ -42,15 +41,12 @@
 											{{ $attributeGroup->name }}
 										</td>
 										<td>
-											{!! $attributeGroup->description !!}
-										</td>
-										<td>
 											{{ $attributeGroup->created_at }}
 										</td>
 										<td>
 											<form id="delete{{ $attributeGroup->id }}"
 											      action="{{ action("Admin\AttributeGroupController@destroy", ["attributeGroup"=>$attributeGroup->id]) }}"
-											      method="post">
+											      method="post" class="btn-group">
 												{!! csrf_field() !!}
 												{!! method_field("delete") !!}
 												<a class="btn btn-primary"
@@ -74,7 +70,7 @@
 		</div>
 	</div>
 	
-	<a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 45px; right: 24px;"
+	<a class="btn-floating btn-large primary-color" style="position: fixed; bottom: 45px; right: 24px;"
 	   href="{{ action("Admin\AttributeGroupController@create") }}">
 		<i class="fa"><b>+</b></i>
 	</a>
