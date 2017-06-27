@@ -30,8 +30,7 @@
 								<thead>
 								<tr>
 									<th>Naam</th>
-									<th>Beschrijving</th>
-									<th>Aangemaakt op</th>
+									<th>Aanmaakdatum</th>
 									<th>Acties</th>
 								</tr>
 								</thead>
@@ -42,13 +41,10 @@
 											{{ $brand->name }}
 										</td>
 										<td>
-											{!! $brand->description !!}
-										</td>
-										<td>
 											{{ $brand->created_at }}
 										</td>
 										<td>
-											<form id="delete{{ $brand->id }}" action="{{ action("Admin\BrandController@destroy", ["brand"=>$brand->id]) }}" method="post">
+											<form id="delete{{ $brand->id }}" action="{{ action("Admin\BrandController@destroy", ["brand"=>$brand->id]) }}" method="post" class="btn-group">
 												{!! csrf_field() !!}
 												{!! method_field("delete") !!}
 												<a class="btn btn-primary"
@@ -70,7 +66,7 @@
 		</div>
 	</div>
 	
-	<a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 45px; right: 24px;"
+	<a class="btn-floating btn-large primary-color" style="position: fixed; bottom: 45px; right: 24px;"
 	   href="{{ action("Admin\BrandController@create") }}">
 		<i class="fa"><b>+</b></i>
 	</a>

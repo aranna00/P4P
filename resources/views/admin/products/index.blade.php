@@ -33,8 +33,8 @@
 									<th>Beschrijving</th>
 									<th>Merk</th>
 									<th>Prijs</th>
-									<th>Momenteel beschibaar</th>
-									<th>Aangemaakt op</th>
+									<th>Beschikbaar</th>
+									<th>Aanmaakdatum</th>
 									<th>Acties</th>
 								</tr>
 								</thead>
@@ -45,7 +45,7 @@
 											{{ $product->name }}
 										</td>
 										<td>
-											{!! $product->description !!}
+											{!! str_limit($product->description,150) !!}
 										</td>
 										<td>
 											{{ $product->brand->name }}
@@ -62,7 +62,7 @@
 										<td>
 											<form id="delete{{ $product->id }}"
 											      action="{{ action("Admin\ProductController@destroy", ["brand"=>$product->id]) }}"
-											      method="post">
+											      method="post" class="btn-group">
 												{!! csrf_field() !!}
 												{!! method_field("delete") !!}
 												<a class="btn btn-primary"
@@ -86,7 +86,7 @@
 		</div>
 	</div>
 	
-	<a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 45px; right: 24px;"
+	<a class="btn-floating btn-large primary-color" style="position: fixed; bottom: 45px; right: 24px;"
 	   href="{{ action("Admin\ProductController@create") }}">
 		<i class="fa"><b>+</b></i>
 	</a>

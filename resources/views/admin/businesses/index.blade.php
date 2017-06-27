@@ -32,8 +32,8 @@
 									<th>KVK nummer</th>
 									<th>Naam</th>
 									<th>Relatie nummer</th>
-									<th>Vactuur adres</th>
-									<th>Lever adres</th>
+									<th>Factuuradres</th>
+									<th>Afleveradres</th>
 									<th>Aangemaakt op</th>
 									<th>Acties</th>
 								</tr>
@@ -62,7 +62,7 @@
 										<td>
 											<form id="delete{{ $business->id }}"
 											      action="{{ action("Admin\BusinessController@destroy", ["brand"=>$business->id]) }}"
-											      method="post">
+											      method="post" class="btn-group">
 												{!! csrf_field() !!}
 												{!! method_field("delete") !!}
 												<a class="btn btn-primary"
@@ -86,7 +86,7 @@
 		</div>
 	</div>
 	
-	<a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 45px; right: 24px;"
+	<a class="btn-floating btn-large primary-color" style="position: fixed; bottom: 45px; right: 24px;"
 	   href="{{ action("Admin\BusinessController@create") }}">
 		<i class="fa"><b>+</b></i>
 	</a>

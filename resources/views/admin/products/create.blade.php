@@ -71,7 +71,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<button class="btn btn-primary" value="Opslaan">Opslaan</button>
-							<a class="btn btn-secondary"
+							<a class="btn btn-danger"
 							   href="{{ action("Admin\ProductController@index") }}">Annuleren</a>
 						</div>
 					</div>

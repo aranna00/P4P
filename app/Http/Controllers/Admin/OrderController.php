@@ -15,7 +15,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if (isset($_GET['open'])) {
+            $orders = Order::all()->where("processed", "where", 0);
+        } else {
+            $orders = Order::all();
+        }
+        return view("admin.orders.index", compact("orders"));
     }
 
     /**
@@ -42,12 +47,25 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        /** @var \App\Order $order */
+        $order = Order::findOrFail($id);
+        $products=$order->products;
+        $products->load("tax");
+
+        $total=$products->map(function ($item, $key) {
+            return $item->price * $item->pivot->amount;
+        })->sum();
+
+        $tax=$products->map(function ($item, $key) {
+            return $item->tax->value * $item->price * $item->pivot->amount / 100;
+        })->sum();
+
+        return view('orders.show', compact('order', 'total', 'tax'));
     }
 
     /**
@@ -65,12 +83,17 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        if ($request->exists("process")) {
+            $order = Order::findOrFail($id);
+            $order->processed = true;
+            $order->save();
+        }
+        return \Redirect::back();
     }
 
     /**
