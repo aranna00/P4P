@@ -14,9 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body class="w-100">
+<body class="row">
 <div id="fb-root"></div>
-<div id="app" class="">
+<div id="app" class="col-12">
     <nav class="navbar fixed-top navbar-toggleable-md scrolling-navbar navbar-dark bg-navbar">
         {{--<div class="container">--}}
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
