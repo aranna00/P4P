@@ -131,12 +131,16 @@
             return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
         };
         var cartTotal = $("#cart-total");
+        var prevValue;
+        $(".cart-amount").focusin(function () {
+            prevValue = $(this).prop("value");
+        });
         $(".cart-amount").change(function () {
             var row = $(this).parent().parent().parent().parent();
-            var that = $(this);
             var rowTotal = row.find(".cart-total");
-            var rowProductPrice = row.find(".cart-price");
-            rowProductPrice = rowProductPrice.data("price");
+            var currentRowTotal = rowTotal.html();
+            var currentCartTotal = cartTotal.html();
+            var that = $(this);
             $.ajax({
                 url: "{{ action("CartController@index") }}/" + $(this).data("id"),
                 method: "post",
@@ -149,19 +153,19 @@
                 success: function (data) {
                     rowTotal.text("€" + data.productTotal.formatMoney(2));
                     cartTotal.text("€" + data.total.formatMoney(2));
+                },
+                beforeSend: function (data) {
+                    rowTotal.html("<i class='fa fa-spinner fa-spin'></i>");
+                    cartTotal.html("<i class='fa fa-spinner fa-spin'></i>");
+                },
+                error: function () {
+                    rowTotal.html(currentRowTotal);
+                    cartTotal.html(currentCartTotal);
+                    that.prop("value", prevValue);
+                    toastr["error"]("Er ging wat fout tijdens het veranderen van de winkelwagen", "Probeer het later opnieuw");
                 }
             })
         });
-
-        function updateCartTotal() {
-            var total;
-            $(".cart-total").each(function () {
-                if ($(this) !== undefined) {
-                    total += parseFloat($(this).text().trim().substring(1).replace(",", "."));
-                }
-            });
-            cartTotal.text("€" + total.formatMoney(2));
-        }
 	</script>
     
 @endsection

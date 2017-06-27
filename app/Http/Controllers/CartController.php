@@ -1,131 +1,135 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use App\Product;
-use App\User;
-use Illuminate\Http\Request;
-
-class CartController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        /** @var User $user */
-        $user = \Sentinel::check();
-        $cart = $user->cart;
-        
-        $total = $cart->map(function($item, $key){
-            return $item->price * $item->pivot->amount;
-        })->sum();
-        
-        return view('cart.index', compact('cart', 'total'));
-    }
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    namespace App\Http\Controllers;
     
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request)
+    use App\Product;
+    use App\User;
+    use Illuminate\Http\Request;
+    
+    class CartController extends Controller
     {
-        $product = $request->get("id");
-        $amount = $request->get("amount");
+        /**
+         * Display a listing of the resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function index()
+        {
+            /** @var User $user */
+            $user=\Sentinel::check();
+            $cart=$user->cart;
+            
+            $total=$cart->map(function ($item, $key) {
+                return $item->price * $item->pivot->amount;
+            })->sum();
+            
+            return view('cart.index', compact('cart', 'total'));
+        }
         
-        /** @var User $user */
-        $user = \Sentinel::check();
+        /**
+         * Show the form for creating a new resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function create()
+        {
+            //
+        }
         
-        // if product is already in cart, add the amount to it
-        if ($user->cart()->wherePivot("product_id", "=", $product)->count() > 0) {
-            $current_amount = $user->cart()->wherePivot("product_id", "=", $product)->get()->first()->pivot->amount;
+        /**
+         * Store a newly created resource in storage.
+         *
+         * @param  \Illuminate\Http\Request $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function store(Request $request)
+        {
+            $product=$request->get("id");
+            $amount=$request->get("amount");
+            
+            /** @var User $user */
+            $user=\Sentinel::check();
+            
+            // if product is already in cart, add the amount to it
+            if ($user->cart()->wherePivot("product_id", "=", $product)->count() > 0) {
+                $current_amount=$user->cart()->wherePivot("product_id", "=", $product)->get()->first()->pivot->amount;
 //            dd($current_amount);
-            $amount += $current_amount;
+                $amount+=$current_amount;
+                $user->cart()->detach($product);
+            }
+            $user->cart()->attach($product, ["amount"=>$amount]);
+            
+            \Toastr::success('toegevoegd aan winkelmand');
+            
+            return \Redirect::back();
+        }
+        
+        /**
+         * Display the specified resource.
+         *
+         * @param  int $id
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function show($id)
+        {
+            //
+        }
+        
+        /**
+         * Show the form for editing the specified resource.
+         *
+         * @param  int $id
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function edit($id)
+        {
+            //
+        }
+        
+        /**
+         * Update the specified resource in storage.
+         *
+         * @param  \Illuminate\Http\Request $request
+         * @param  int                      $id
+         *
+         * @return \App\Product[]|\Illuminate\Database\Eloquent\Collection
+         */
+        public function update(Request $request, $id)
+        {
+            $product=$request->get("id");
+            $amount=$request->get("amount");
+            
+            /** @var User $user */
+            $user=\Sentinel::check();
+            $cart=$user->cart;
+            
             $user->cart()->detach($product);
+            
+            if ($amount > 0) {
+                $user->cart()->attach($product, ["amount"=>$amount]);
+            }
+            $productTotal=Product::find($product)->price * $amount;
+            
+            
+            $total=$cart->map(function ($item, $key) {
+                return $item->price * $item->pivot->amount;
+            })->sum();
+            
+            return ["productTotal"=>$productTotal, "total"=>$total];
         }
-        $user->cart()->attach($product, ["amount" => $amount]);
         
-        \Toastr::success('toegevoegd aan winkelmand');
-        
-        return \Redirect::back();
-    }
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-    
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
-     *
-     * @return \App\Product[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function update(Request $request, $id)
-    {
-        $product = $request->get("id");
-        $amount = $request->get("amount");
-        
-        /** @var User $user */
-        $user = \Sentinel::check();
-        $cart=$user->cart;
-        
-        $user->cart()->detach($product);
-        
-        if ($amount > 0) {
-            $user->cart()->attach($product, ["amount"=> $amount]);
+        /**
+         * Remove the specified resource from storage.
+         *
+         * @param  int $id
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function destroy($id)
+        {
+            //
         }
-        $productTotal=Product::find($product)->price * $amount;
-        
-        
-        $total=$cart->map(function ($item, $key) {
-            return $item->price * $item->pivot->amount;
-        })->sum();
-        
-        return ["productTotal"=>$productTotal, "total"=>$total];
     }
-    
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-}
