@@ -64,11 +64,11 @@
                                     inloggen
                                 </button>
                             </div>
-                            <div class="md-form text-center">
-	                            {{--                                <a class="" href="{{ route('password.request') }}">--}}
-	                            {{--wachtwoord vergeten?--}}
-	                            {{--</a>--}}
-                            </div>
+                            {{--<div class="md-form text-center">--}}
+                                {{--<a class="" href="{{ route('password.request') }}">--}}
+                                    {{--wachtwoord vergeten?--}}
+                                {{--</a>--}}
+                            {{--</div>--}}
                         </div>
                     </form>
                 </div>

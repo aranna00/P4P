@@ -13,7 +13,7 @@
 
 $primary: #20BF55;
 $secondary: #01BAEF;
-$navbar: #0B4F6C;
+$navbar: #2196F3;
 
 #Login_Body {
   background: url(/img/login_bg.jpg) no-repeat center center fixed;
@@ -45,8 +45,7 @@ footer {
 }
 
 .home-block {
-  height: 100vh !important;
-  padding-top: 4rem;
+  //height: 80vh !important;
   background-color: #eee !important;
 }
 
@@ -119,12 +118,62 @@ footer {
   }
 }
 
-.page-grey{
+.page-grey {
   background-color: #dddddd !important;
 }
 
-.page-grey:hover{
+.page-grey:hover {
   background-color: #cccccc !important;
+}
+
+.thumbimg {
+  background: url(/img/noimage.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+  height: 30vh;
+  a {
+    display: block;
+  }
+  a:hover {
+
+  }
+}
+
+.corner-ribbon{
+  width: 150px;
+  background: #e43;
+  position: absolute;
+  top: 25px;
+  left: -50px;
+  text-align: center;
+  line-height: 40px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  padding-top: 25px;
+}
+
+.home-product{
+  overflow: hidden;
+}
+
+/* Custom styles */
+
+.corner-ribbon.sticky{
+  position: fixed;
+}
+
+.corner-ribbon.shadow{
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+
+/* Different positions */
+
+.corner-ribbon.top-right{
+  top: -8px;
+  right: -52px;
+  left: auto;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 //slider override
@@ -163,7 +212,7 @@ footer {
 }
 
 .bg-navbar {
-  background-color: $navbar !important;
+  background-color: darken($navbar,10) !important;
 }
 
 .modal-dialog.modal-notify.modal-success .badge, .modal-dialog.modal-notify.modal-success .modal-header {
