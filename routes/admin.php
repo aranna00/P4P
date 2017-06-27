@@ -25,7 +25,7 @@
                 "BusinessController@getFullRegisterInfo")->name("kvk.get.full.register.info");
         });
         Route::resource("categorieen","CategoryController");
-        Route::resource("Bestellingen", "OrderController");
+        Route::resource("bestellingen", "OrderController");
         Route::resource("gebruikers", "UserController");
         Route::resource("belastingen", "TaxController");
         Route::resource("eigenschappen","AttributeGroupController");
