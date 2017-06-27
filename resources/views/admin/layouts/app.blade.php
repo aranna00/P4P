@@ -57,12 +57,6 @@
                         <a href="{{ action("Admin\UserController@index") }}" class="waves-effect">Gebruikers</a>
                     </li>
                 </ul>
-            <li>
-                <ul class="collapsible collapsible-accordion">
-                    <li>
-                        <a href="{{ action("Admin\ProductController@index") }}" class="waves-effect">Producten</a>
-                    </li>
-                </ul>
             </li>
             <li>
                 <ul class="collapsible collapsible-accordion">

@@ -12,13 +12,13 @@
                 <div class="row pr-1">
                     @for($i = 0; $i < 3; $i++)
                         <div class="col-12 col-md-4 px-1 mb-1">
-                            <a href="{{ action('ProductController@show', $products[$i]->id) }}">
+                            <a href="{{ action('ProductController@show', $new[$i]->id) }}">
                                 <div class="card white hoverable h-100 home-product">
                                     {{--<div class="corner-ribbon top-right green">Nieuw</div>--}}
                                     <h4 class="text-center mt-2"><span class="badge green">Nieuw</span></h4>
-                                    <h4 class="text-center black-text px-2">{{ $products[$i]->name }}</h4>
+                                    <h4 class="text-center black-text px-2">{{ $new[$i]->name }}</h4>
                                     <div class="thumbimg"
-                                         style="background-image: url({{ asset("img/producten/".$products[$i]->code.".jpg") }})">
+                                         style="background-image: url({{ asset("img/producten/".$new[$i]->code.".jpg") }})">
                                     </div>
                                 </div>
                             </a>
@@ -40,13 +40,12 @@
                     </div>
                     @for($i = 0; $i < 3; $i++)
                         <div class="col-md-4 px-1 mb-1">
-                            <a href="{{ action('ProductController@show', $products[$i]->id) }}">
+                            <a href="{{ action('ProductController@show', $featured[$i]->id) }}">
                                 <div class="card white hoverable h-100 home-product">
-                                    {{--<div class="corner-ribbon top-right blue">Uitgelicht</div>--}}
                                     <h4 class="text-center mt-2"><span class="badge blue">Uitgelicht</span></h4>
-                                    <h4 class="text-center black-text px-2">{{ $products[$i]->  name }}</h4>
+                                    <h4 class="text-center black-text px-2">{{ $featured[$i]->  name }}</h4>
                                     <div class="thumbimg"
-                                         style="background-image: url({{ asset("img/producten/".$products[$i]->code.".jpg") }})">
+                                         style="background-image: url({{ asset("img/producten/".$featured[$i]->code.".jpg") }})">
                                     </div>
                                 </div>
                             </a>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\AttributeGroup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Toastr;
 
 class AttributeGroupController extends Controller
 {
@@ -15,11 +17,11 @@ class AttributeGroupController extends Controller
      */
     public function index()
     {
-        $attributeGroups=AttributeGroup::with(["attributes"])->paginate(8);
-        
+        $attributeGroups = AttributeGroup::with(["attributes"])->paginate(8);
+
         return view("admin.attributeGroups.index", compact("attributeGroups"));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,56 +35,82 @@ class AttributeGroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $attributeGroup = new AttributeGroup();
+        $attributeGroup->name = $request->get("name");
+        $attributeGroup->description = $request->get("description");
+        $attributeGroup->type = $request->get("type");
+        $attributeGroup->save();
+
+        Toastr::success("De producteigenschap is successvol aangemaakt");
+
+        return Redirect::action("Admin\AttributeGroupController@index");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\AttributeGroup  $attributeGroup
+     * @param  \App\AttributeGroup $attributeGroup
      * @return \Illuminate\Http\Response
      */
     public function show(AttributeGroup $attributeGroup)
     {
-        //
+//
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AttributeGroup  $attributeGroup
+     * @param  \App\AttributeGroup $attributeGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(AttributeGroup $attributeGroup)
+    public function edit($id)
     {
-        //
+        $attributeGroup = AttributeGroup::findOrFail($id);
+
+        return view("admin.attributeGroups.edit", compact("attributeGroup"));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AttributeGroup  $attributeGroup
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\AttributeGroup $attributeGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AttributeGroup $attributeGroup)
+    public function update(Request $request, $id)
     {
-        //
+        $attributeGroup = AttributeGroup::findOrFail($id);
+        $attributeGroup->name = $request->get("name");
+        $attributeGroup->description = $request->get("description");
+        $attributeGroup->save();
+
+        Toastr::success("De producteigenschap is successvol bijgewerkt");
+
+        return Redirect::action("Admin\AttributeGroupController@index");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AttributeGroup  $attributeGroup
+     * @param  \App\AttributeGroup $attributeGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AttributeGroup $attributeGroup)
+    public function destroy($id)
     {
-        //
+        $attributeGroup=AttributeGroup::find($id);
+        if($attributeGroup==null){
+            Toastr::error("Deze eigenschap bestaat niet");
+        }else{
+            $attributeGroup->delete();
+
+            Toastr::success("De eigenschap ". $attributeGroup->name ." is successvol verwijderd");
+        }
+
+        return Redirect::action("Admin\AttributeGroupController@index");
     }
 }
