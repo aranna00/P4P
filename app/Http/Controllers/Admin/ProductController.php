@@ -29,12 +29,23 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $brands = Brand::all();
-        $categories = Category::select(['name', 'id', 'parent_id'])->orderBy('name', 'asc')->get(); // ->where("visible","=",true)
-        $categories_sel = $categories->load('children');
-
-
-        return view('admin.products.create', ['brands'=>$brands, 'categories'=>$categories, 'categories_sel'=>$categories_sel]);
+        $brands=Brand::all();
+        $categories=Category::select(['name', 'id', 'parent_id'])->orderBy('name', 'asc')->get();
+        $brands_arr=[];
+        $categories->load('children');
+        foreach ($brands as $brand) {
+            $brands_arr[$brand->id]=$brand->name;
+        }
+        asort($brands_arr);
+        $brands_sel=[];
+    
+        if (isset($_REQUEST['brand'])) {
+            $brands_sel[]=$_REQUEST['brand'];
+        }
+        natcasesort($brands_arr);
+    
+        return view('admin.products.create',
+            ['brands'=>$brands_arr, 'categories'=>$categories, 'brands_sel'=>$brands_sel]);
     }
     
     /**
@@ -64,13 +75,34 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product $product
+     * @param  int $product
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product=Product::find($id);
+        $brands=Brand::select(['name', 'id'])->orderBy('name', 'asc')->get();
+        $categories=Category::select(['name', 'id', 'parent_id'])->orderBy('name', 'asc')->get();
+        $categories->load('children');
+        $brands_arr=[];
+        $categories_sel=[];
+        foreach ($brands as $brand) {
+            $brands_arr[$brand->id]=$brand->name;
+        }
+        natcasesort($brands_arr);
+        foreach ($product->categories as $category) {
+            $categories_sel[]=$category->id;
+        }
+        $images=$product->images;
+    
+        return view('admin.products.edit', [
+            'product'       =>$product,
+            'brands'        =>$brands_arr,
+            'categories'    =>$categories,
+            'categories_sel'=>$categories_sel,
+            "images"        =>$images
+        ]);
     }
     
     /**
