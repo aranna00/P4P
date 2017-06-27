@@ -110,6 +110,28 @@
 					</li>
 				</ul>
 			</li>
+			<li>
+				<ul class="collapsible collapsible-accordion">
+					<li>
+						<a class="collapsible-header waves-effect arrow-r">
+							Klanten
+							<i class="fa fa-angle-down rotate-icon"></i>
+						</a>
+						<div class="collapsible-body">
+							<ul>
+								<li>
+									<a href="{{ action("Admin\BusinessController@create") }}" class="waves-effect">Klant
+										toevoegen</a>
+								</li>
+								<li>
+									<a href="{{ action("Admin\BusinessController@index") }}" class="waves-effect">Alle
+										Klanten</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
 		</ul>
 		<!--/. Sidebar navigation -->
 		<nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar double-nav">

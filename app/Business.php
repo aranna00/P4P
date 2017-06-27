@@ -33,8 +33,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Business whereSubdossiernummer($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Business whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property-read \App\Address $billing
- * @property-read \App\Address $shipping
+ * @property-read \App\Address                                         $billing
+ * @property-read \App\Address                                         $shipping
+ * @property string                                                    $kvk
+ * @property int                                                       $relatie_nummer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @method static \Illuminate\Database\Query\Builder|\App\Business whereKvk($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Business whereRelatieNummer($value)
  */
 class Business extends Model
 {
@@ -59,5 +64,10 @@ class Business extends Model
      */
     public function orders(){
         return $this->hasManyThrough(Order::class, User::class);
+    }
+    
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

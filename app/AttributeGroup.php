@@ -19,8 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\AttributeGroup whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\AttributeGroup whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string                                                         $type
+ * @property string                                                       $type
  * @method static \Illuminate\Database\Query\Builder|\App\AttributeGroup whereType($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
  */
 class AttributeGroup extends Model
 {
@@ -29,5 +30,10 @@ class AttributeGroup extends Model
      */
     public function attributes(){
         return $this->hasMany(Attribute::class);
+    }
+    
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, "attributes")->withPivot("value")->withTimestamps();
     }
 }
