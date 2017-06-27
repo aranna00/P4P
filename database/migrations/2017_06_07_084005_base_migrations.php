@@ -41,6 +41,7 @@
             $table->text("description")->nullable();
             $table->string("code");
             $table->float("price");
+            $table->boolean("featured")->default(false);
             $table->date("available_from");
             $table->date("available_until")->nullable();
             $table->integer("coli")->default(1);
