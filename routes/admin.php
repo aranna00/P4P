@@ -17,11 +17,13 @@
         Route::resource("producten","ProductController");
         Route::resource("merken","BrandController");
         Route::resource("klanten","BusinessController");
-        Route::any("klanten/kvk/checkRegisterNumber",
-            "BusinessController@checkRegisterNumber")->name("kvk.check.register.number");
-        Route::any("checkRegisterNumber", "BusinessController@checkRegisterNumber")->name("kvk.check.register.number");
-        Route::any("getRegisterNumber", "BusinessController@getRegisterNumber")->name("kvk.get.register.number");
-        Route::any("getFullRegisterInfo", "BusinessController@getFullRegisterInfo")->name("kvk.get.full.register.info");
+        Route::group(["prefix"=>"klanten"], function () {
+            Route::any("checkRegisterNumber",
+                "BusinessController@checkRegisterNumber")->name("kvk.check.register.number");
+            Route::any("getRegisterNumber", "BusinessController@getRegisterNumber")->name("kvk.get.register.number");
+            Route::any("getFullRegisterInfo",
+                "BusinessController@getFullRegisterInfo")->name("kvk.get.full.register.info");
+        });
         Route::resource("categorieen","CategoryController");
         Route::resource("Bestellingen", "OrderController");
         Route::resource("gebruikers", "UserController");
