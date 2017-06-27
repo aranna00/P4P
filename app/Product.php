@@ -9,15 +9,16 @@
     /**
  * App\Product
  *
- * @property int                                                                 $id
- * @property string                                                              $name
- * @property string                                                              $description
- * @property float                                                               $price
- * @property string                                                              $available_from
- * @property string                                                              $available_until
- * @property int                                                                 $coli
- * @property bool                                                                $subtracts
- * @property int                                                                 $stock
+ * @property int                                                                                          $id
+ * @property string                                                                                       $name
+ * @property string                                                                                       $description
+     * @property string                                                                                   $code
+     * @property float                                                                                    $price
+ * @property string                                                                                       $available_from
+ * @property string                                                                                       $available_until
+ * @property int                                                                                          $coli
+ * @property bool                                                                                         $subtracts
+ * @property int                                                                                          $stock
  * @property bool                                                                $active
  * @property int                                                                 $weight
  * @property int                                                                 $volume
@@ -28,12 +29,13 @@
  * @property \Carbon\Carbon                                                      $updated_at
  * @property string                                                              $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\AttributeGroup[] $attributeGroups
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Attribute[]      $attributes
- * @property-read \App\Brand                                                     $brand
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[]       $categories
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[]          $orders
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[]        $relatedProducts
- * @property-read \App\Tax                                                       $tax
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Attribute[] $attributes
+ * @property-read \App\Brand                                                                              $brand
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[]                                $categories
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Order[]                                   $orders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[]                                 $relatedProducts
+ * @property-read \App\Tax                                                                                $tax
+     * @method static \Illuminate\Database\Query\Builder|\App\Product whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereActive($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereAvailableFrom($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereAvailableUntil($value)
@@ -53,8 +55,6 @@
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereVolume($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereWeight($value)
  * @mixin \Eloquent
-     * @property string $code
-     * @method static \Illuminate\Database\Query\Builder|\App\Product whereCode($value)
  */
     class Product extends Model
     {
@@ -66,6 +66,14 @@
         public function isAvailable()
         {
             return ($this->available_from <= Carbon::now() && ($this->available_until > Carbon::now() || $this->available_until == null));
+        }
+    
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+         */
+        public function attributeGroups()
+        {
+            return $this->belongsToMany(AttributeGroup::class, "attributes")->withPivot("value")->withTimestamps();
         }
         
         /**
@@ -81,7 +89,7 @@
          */
         public function categories()
         {
-            return $this->belongsToMany(Category::class,"categories_products");
+            return $this->belongsToMany(Category::class, "categories_products");
         }
         
         /**
@@ -98,14 +106,6 @@
         public function attributes()
         {
             return $this->hasMany(Attribute::class);
-        }
-        
-        /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-         */
-        public function attributeGroups()
-        {
-            return $this->hasManyThrough(AttributeGroup::class, Attribute::class);
         }
         
         /**
