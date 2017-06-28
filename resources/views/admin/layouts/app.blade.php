@@ -31,26 +31,28 @@
             </li>
             <!--/. Logo -->
             <!-- Side navigation links -->
-            			<li>
-				<ul class="collapsible collapsible-accordion">
-					<li>
-						<a class="collapsible-header waves-effect arrow-r">
-							Orders
-							<i class="fa fa-angle-down rotate-icon"></i>
-						</a>
-						<div class="collapsible-body">
-							<ul>
-								<li>
-									<a href="{{ action("Admin\OrderController@index") }}?open" class="waves-effect">Open orders</a>
-								</li>
-								<li>
-									<a href="{{ action("Admin\OrderController@index") }}" class="waves-effect">Alle orders</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</li>
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            Orders
+                            <i class="fa fa-angle-down rotate-icon"></i>
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="{{ action("Admin\OrderController@index") }}?open" class="waves-effect">Open
+                                        orders</a>
+                                </li>
+                                <li>
+                                    <a href="{{ action("Admin\OrderController@index") }}" class="waves-effect">Alle
+                                        orders</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
@@ -89,7 +91,7 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                                    <a href="{{ action("Admin\BusinessController@index") }}" class="waves-effect">Klanten</a>
+                        <a href="{{ action("Admin\BusinessController@index") }}" class="waves-effect">Klanten</a>
                     </li>
                 </ul>
             </li>

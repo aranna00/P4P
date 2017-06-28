@@ -137,7 +137,6 @@
                                        class="form-control datepicker" name="date">
                                 <label for="date-picker">Afleverdatum</label>
                             </div>
-
                         </div>
                     </div>
 

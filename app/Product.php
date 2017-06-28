@@ -61,6 +61,13 @@
     class Product extends Model
     {
         use SoftDeletes;
+
+        protected $dates = [
+            'created_at',
+            'updated_at',
+            'available_from',
+            'available_until'
+        ];
         
         /**
          * @return bool

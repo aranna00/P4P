@@ -6,6 +6,8 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome";
 @import "node_modules/toastr/toastr";
+@import "node_modules/slick-carousel/slick/slick.scss";
+@import "slick-theme";
 @import "resources/assets/css/mdb";
 @import "node_modules/ion-rangeslider/css/ion.rangeSlider";
 @import "node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat";
@@ -154,6 +156,30 @@ footer {
 
 .home-product{
   overflow: hidden;
+}
+
+.carousel-height{
+  height: 400px;
+}
+
+.carousel-left,
+.carousel-right{
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  color: grey;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  z-index: 99;
+}
+
+.carousel-left{
+  left: -18px;
+}
+
+.carousel-right{
+  right: -18px;
 }
 
 /* Custom styles */
