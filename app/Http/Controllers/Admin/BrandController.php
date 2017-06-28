@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Brand;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Toastr;
 
@@ -17,7 +17,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::select(["id","name","description","created_at"])->paginate(8);
+        $brands=Brand::select(["id", "name", "description", "created_at"])->orderBy("name", "asc")->paginate(8);
         
         return view("admin.brands.index",compact(["brands"]));
     }
