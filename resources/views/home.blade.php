@@ -11,7 +11,7 @@
             <div class="col-12 col-lg-9 pr-lg-5">
                 <div class="row">
                     <div class="slick col-12 px-0"
-                         data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplaySpeed": 3000}'>
+                         data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplaySpeed": 3000 }'>
                         @foreach($new as $item)
                             <div class="col-12 col-md-4 px-1 mb-1 carousel-height">
                                 <a href="{{ action('ProductController@show', $item->id) }}">

@@ -142,7 +142,7 @@
                     <div class="col-md-6">
                         <div class="md-form">
                             <input placeholder="Kies een datum" type="text" id="date-picker-from"
-                                   class="form-control datepicker" name="available_from">
+                                   class="form-control datepicker" name="available_from" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                             <label for="date-picker-form">Beschikbaar van</label>
                         </div>
                     </div>

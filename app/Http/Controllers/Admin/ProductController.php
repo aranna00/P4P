@@ -70,8 +70,6 @@ class ProductController extends Controller
 
         $product->coli = $request->get("coli");
 
-        $product->categories()->sync($request->get("categories"));
-
         $product->active = (bool)$request->get("active");
         $product->price = $request->get("price");
         $product->statie_geld = $request->get("statie_geld");
@@ -82,9 +80,14 @@ class ProductController extends Controller
         $product->volume = $request->get("volume");
 
         $product->available_from = date_create_from_format("d-m-Y", $request->get("available_from"), new \DateTimeZone("Europe/Amsterdam"));
-        $product->available_until = date_create_from_format("d-m-Y", $request->get("available_until"), new \DateTimeZone("Europe/Amsterdam"));
+
+        if ($request->get("available_until") != 0) {
+            $product->available_until = date_create_from_format("d-m-Y", $request->get("available_until"), new \DateTimeZone("Europe/Amsterdam"));
+        }
 
         $product->save();
+
+        $product->categories()->sync($request->get("categories"));
 
         return redirect()->action("Admin\ProductController@index");
     }
@@ -157,8 +160,6 @@ class ProductController extends Controller
         $product->brand_id = $request->get("brand");
         $product->description = $request->get("description");
 
-        $product->categories()->sync($request->get("categories"));
-
         $product->coli = $request->get("coli");
 
         $product->active = (bool)$request->get("active");
@@ -175,9 +176,13 @@ class ProductController extends Controller
         // other format (Y-m-d)
         $product->available_from = date_create_from_format("d-m-Y", $request->get("available_from"), new \DateTimeZone("Europe/Amsterdam"));
 
-        $product->available_until = date_create_from_format("d-m-Y", $request->get("available_until"), new \DateTimeZone("Europe/Amsterdam"));
+        if ($request->get("available_until") != 0) {
+            $product->available_until = date_create_from_format("d-m-Y", $request->get("available_until"), new \DateTimeZone("Europe/Amsterdam"));
+        }
 
         $product->save();
+        
+        $product->categories()->sync($request->get("categories"));
 
         return redirect()->action("Admin\ProductController@index");
     }
