@@ -54,7 +54,7 @@
                                             {{ $user->last_login }}
                                         </td>
                                         <td>
-                                            <form id="delete{{ $user->id }}"
+                                            <form id="delete{{ $user->id }}" class="btn-group"
                                                   action="{{ action("Admin\UserController@destroy", ["user"=>$user->id]) }}"
                                                   method="post">
                                                 {!! csrf_field() !!}
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 45px; right: 24px;"
+    <a class="btn-floating btn-large primary-color" style="position: fixed; bottom: 45px; right: 24px;"
        href="{{ action("Admin\UserController@create") }}">
         <i class="fa"><b>+</b></i>
     </a>
