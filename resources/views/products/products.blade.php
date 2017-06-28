@@ -19,7 +19,7 @@
 
             <div class="col-5 col-sm-5 col-lg-6">
                 <a href="{{ action('ProductController@show', $product->id) }}">
-                    <h5 class="mb-1 hidden-sm-down">{{ $product->brand->name }} - {{ $product->name }}</h5>
+                    <h5 class="mb-1 hidden-sm-down">@if ($product->featured == '1')<span class="badge blue">Uitgelicht</span> @endif {{ $product->brand->name }} - {{ $product->name }}</h5>
                     <h6 class="mb-1 hidden-md-up">{{ $product->brand->name }}</h6>
                     <h6 class="mb-1 hidden-md-up">{{ $product->name }}</h6>
                 </a>

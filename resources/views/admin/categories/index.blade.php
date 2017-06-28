@@ -30,7 +30,6 @@
 								<thead>
 								<tr>
 									<th>Naam</th>
-									<th>Beschrijving</th>
 									<th>hoofdcategorie</th>
 									<th>Aantal subcategoriën</th>
 									<th>Aangemaakt op</th>
@@ -44,9 +43,6 @@
 											{{ $category->name }}
 										</td>
 										<td>
-											{!! $category->description !!}
-										</td>
-										<td>
 											{{ $category->parent==null?"Geen hoofdcategory":$category->parent->name }}
 										</td>
 										<td>
@@ -56,7 +52,7 @@
 											{{ $category->created_at }}
 										</td>
 										<td>
-											<form id="delete{{ $category->id }}" action="{{ action("Admin\CategoryController@destroy", ["category"=>$category->id]) }}" method="post">
+											<form id="delete{{ $category->id }}" action="{{ action("Admin\CategoryController@destroy", ["category"=>$category->id]) }}" method="post" class="btn-group">
 												{!! csrf_field() !!}
 												{!! method_field("delete") !!}
 												<a class="btn btn-primary"
@@ -78,7 +74,7 @@
 		</div>
 	</div>
 	
-	<a class="btn-floating btn-large secondary-color" style="position: fixed; bottom: 45px; right: 24px;"
+	<a class="btn-floating btn-large primary-color" style="position: fixed; bottom: 45px; right: 24px;"
 	   href="{{ action("Admin\CategoryController@create") }}">
 		<i class="fa"><b>+</b></i>
 	</a>

@@ -29,13 +29,12 @@
 					</div>
 					<div class="admin-panel">
 						<div class="col-md-12">
-							<div class="card-block">
+							<div class="card-block px-0 pb-0">
 								{!! csrf_field() !!}
 								<div class="md-form">
 									<input type="text" id="kvk-nummer" name="kvk" value="{{ $business->kvk }}"
 									       class="form-control">
 									<label for="kvk-nummer" class="control-label">KVK nummer</label>
-									<a class="btn btn-danger" href="{{ action("Admin\BusinessController@index") }}">Terug</a>
 								</div>
 							</div>
 							<div class="md-form">

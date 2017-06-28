@@ -8,31 +8,30 @@
                     <h1 class="font-weight-bold"><b>Jansma Boerenproducten</b></h1>
                 </div>
             </div>
-            {{--<div class="col-12 mt-2"><h1><b>Nieuw</b></h1></div>--}}
-            <div class="col-sm-10 col-lg-9">
+            <div class="col-12 col-lg-9">
                 <div class="row pr-1">
                     @for($i = 0; $i < 3; $i++)
-                        <div class="col-4 px-1 mb-1">
-                            <a href="{{ action('ProductController@show', $products[$i]->id) }}">
+                        <div class="col-12 col-md-4 px-1 mb-1">
+                            <a href="{{ action('ProductController@show', $new[$i]->id) }}">
                                 <div class="card white hoverable h-100 home-product">
                                     {{--<div class="corner-ribbon top-right green">Nieuw</div>--}}
                                     <h4 class="text-center mt-2"><span class="badge green">Nieuw</span></h4>
-                                    <h4 class="text-center black-text px-2">{{ $products[$i]->name }}</h4>
+                                    <h4 class="text-center black-text px-2">{{ $new[$i]->name }}</h4>
                                     <div class="thumbimg"
-                                         style="background-image: url({{ asset("img/producten/".$products[$i]->code.".jpg") }})">
+                                         style="background-image: url({{ asset("img/producten/".$new[$i]->code.".jpg") }})">
                                     </div>
                                 </div>
                             </a>
                         </div>
                     @endfor
-                    <div class="col-6 px-1 mb-1">
+                    <div class="col-md-6 px-1 mb-1">
                         <a href="{{ route('producten') }}">
                             <div class="card hoverable p-0">
                                 <img class="img-fluid" src="/img/block_1.jpg">
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 px-1 mb-1">
+                    <div class="col-md-6 px-1 mb-1">
                         <a href="{{ route('favorieten.index') }}">
                             <div class="card hoverable p-0">
                                 <img class="img-fluid" src="/img/block_2.jpg">
@@ -40,14 +39,13 @@
                         </a>
                     </div>
                     @for($i = 0; $i < 3; $i++)
-                        <div class="col-4 px-1">
-                            <a href="{{ action('ProductController@show', $products[$i]->id) }}">
+                        <div class="col-md-4 px-1 mb-1">
+                            <a href="{{ action('ProductController@show', $featured[$i]->id) }}">
                                 <div class="card white hoverable h-100 home-product">
-                                    {{--<div class="corner-ribbon top-right blue">Uitgelicht</div>--}}
                                     <h4 class="text-center mt-2"><span class="badge blue">Uitgelicht</span></h4>
-                                    <h4 class="text-center black-text px-2">{{ $products[$i]->  name }}</h4>
+                                    <h4 class="text-center black-text px-2">{{ $featured[$i]->  name }}</h4>
                                     <div class="thumbimg"
-                                         style="background-image: url({{ asset("img/producten/".$products[$i]->code.".jpg") }})">
+                                         style="background-image: url({{ asset("img/producten/".$featured[$i]->code.".jpg") }})">
                                     </div>
                                 </div>
                             </a>
@@ -55,7 +53,7 @@
                     @endfor
                 </div>
             </div>
-            <div class="col-sm-2 col-lg-3 card home-block p-0 fb-container">
+            <div class="col-3 card home-block p-0 mb-1 fb-container hidden-md-down">
             </div>
         </div>
     </div>

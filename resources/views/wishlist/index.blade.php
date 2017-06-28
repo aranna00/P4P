@@ -4,7 +4,7 @@
     <div class="container-fluid p-3 mt-4">
         <div class="row">
             @foreach ($wishlists as $wishlist)
-                <div class="col col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-2">
                     <div class="card">
                         <div class="card-block">
 

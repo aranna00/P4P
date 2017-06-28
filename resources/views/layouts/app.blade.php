@@ -57,7 +57,7 @@
                         </li>
                     @endif
                     <li class="nav-item @if(Route::current()->getName() == 'winkelwagen') active @endif">
-                        <a href="{{ route('winkelwagen.index') }}" class="nav-link">Winkelwagen</a>
+                        <a href="{{ route('winkelwagen.index') }}" class="nav-link">Winkelwagen <span class="badge green">{{ Sentinel::check()->cart()->count() }}</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle nav-link waves-effect waves-light" typeof="button" id="navbarProfle"
