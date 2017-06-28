@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $new = Product::where('available_from', '<', Carbon::now())->orderBy('available_from', 'desc')->limit(5)->get();
+        $new = Product::where('available_from', '<', Carbon::now())->orderBy('available_from', 'desc')->limit(5)->orderBy('created_at', 'desc')->get();
 
         $featured = Product::where('featured', '=', '1')->limit(5)->get();
 
