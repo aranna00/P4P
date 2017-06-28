@@ -8,22 +8,25 @@
                     <h1 class="font-weight-bold"><b>Jansma Boerenproducten</b></h1>
                 </div>
             </div>
-            <div class="col-12 col-lg-9">
-                <div class="row pr-1">
-                    @for($i = 0; $i < 3; $i++)
-                        <div class="col-12 col-md-4 px-1 mb-1">
-                            <a href="{{ action('ProductController@show', $new[$i]->id) }}">
-                                <div class="card white hoverable h-100 home-product">
-                                    {{--<div class="corner-ribbon top-right green">Nieuw</div>--}}
-                                    <h4 class="text-center mt-2"><span class="badge green">Nieuw</span></h4>
-                                    <h4 class="text-center black-text px-2">{{ $new[$i]->name }}</h4>
-                                    <div class="thumbimg"
-                                         style="background-image: url({{ asset("img/producten/".$new[$i]->code.".jpg") }})">
+            <div class="col-12 col-lg-9 pr-lg-5">
+                <div class="row">
+                    <div class="slick col-12 px-0"
+                         data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplaySpeed": 3000}'>
+                        @foreach($new as $item)
+                            <div class="col-12 col-md-4 px-1 mb-1 carousel-height">
+                                <a href="{{ action('ProductController@show', $item->id) }}">
+                                    <div class="card white hoverable h-100 home-product">
+                                        {{--<div class="corner-ribbon top-right green">Nieuw</div>--}}
+                                        <h4 class="text-center mt-2"><span class="badge green">Nieuw</span></h4>
+                                        <h4 class="text-center black-text px-2">{{ $item->name }}</h4>
+                                        <div class="thumbimg"
+                                             style="background-image: url({{ asset("img/producten/".$item->code.".jpg") }})">
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endfor
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                     <div class="col-md-6 px-1 mb-1">
                         <a href="{{ route('producten') }}">
                             <div class="card hoverable p-0">
@@ -38,19 +41,23 @@
                             </div>
                         </a>
                     </div>
-                    @for($i = 0; $i < 3; $i++)
-                        <div class="col-md-4 px-1 mb-1">
-                            <a href="{{ action('ProductController@show', $featured[$i]->id) }}">
-                                <div class="card white hoverable h-100 home-product">
-                                    <h4 class="text-center mt-2"><span class="badge blue">Uitgelicht</span></h4>
-                                    <h4 class="text-center black-text px-2">{{ $featured[$i]->  name }}</h4>
-                                    <div class="thumbimg"
-                                         style="background-image: url({{ asset("img/producten/".$featured[$i]->code.".jpg") }})">
+                    <div class="slick col-12 px-0"
+                         data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "autoplaySpeed": 4000}'>
+                        @foreach($featured as $item)
+                            <div class="col-12 col-md-4 px-1 mb-1 carousel-height">
+                                <a href="{{ action('ProductController@show', $item->id) }}">
+                                    <div class="card white hoverable h-100 home-product">
+                                        {{--<div class="corner-ribbon top-right green">Nieuw</div>--}}
+                                        <h4 class="text-center mt-2"><span class="badge blue">Uitgelicht</span></h4>
+                                        <h4 class="text-center black-text px-2">{{ $item->name }}</h4>
+                                        <div class="thumbimg"
+                                             style="background-image: url({{ asset("img/producten/".$item->code.".jpg") }})">
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endfor
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class="col-3 card home-block p-0 mb-1 fb-container hidden-md-down">
@@ -60,6 +67,15 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/slick.js') }}"></script>
+    <script>
+        $('.slick').slick({
+            autoplay: true,
+            prevArrow: '<i class="fa fa-caret-left carousel-left"></i>',
+            nextArrow:'<i class="fa fa-caret-right carousel-right"></i>'
+
+        });
+    </script>
     <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;

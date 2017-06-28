@@ -23,6 +23,7 @@
     "font-awesome": "^4.7.0",
     "ion-rangeslider": "^2.1.7",
     "multiselect": "^0.9.12",
+    "slick-carousel": "^1.6.0",
     "toastr": "^2.1.2"
   }
 }
