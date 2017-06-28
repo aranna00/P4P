@@ -170,6 +170,10 @@
 
             format: 'dd-mm-yyyy',
             hiddenPrefix: 'd',
+
+            disable: [
+                { from: [1970,1,1], to: true }
+            ]
         });
     </script>
 @endsection

@@ -130,6 +130,7 @@ footer {
 
 .thumbimg {
   background: url(/img/noimage.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+  background-size: contain ;
   height: 30vh;
   a {
     display: block;
