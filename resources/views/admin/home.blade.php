@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <div class="card">
+    <div class="card mb-2">
         <div class="row m-b-0">
 
             <!--First column-->
@@ -26,7 +26,7 @@
                 <div class="row card-block pt-3">
 
                     <!--First column-->
-                    <div class="col-md-6">
+                    <div class="col-md-5">
 
                         <!--Date select-->
                         <h4><span class="badge big-badge primary-color">Tijd periode</span></h4>
@@ -56,8 +56,9 @@
                     <!--/First column-->
 
                     <!--Second column-->
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-6">
                         <!--Summary-->
+                        <h4><span class="badge big-badge primary-color">Samenvatting</span></h4>
                         <p>Totaal aantal orders: <strong>18</strong></p>
                         <p>Totaal bedrag: <strong>&euro;225</strong></p>
                     </div>
@@ -69,7 +70,7 @@
             <!--/First column-->
 
             <!--Second column-->
-            <div class="col-md-7 pt-1">
+            <div class="col-md-7 p-5">
                 <!--Cascading element-->
                 <div class="view right primary-color">
                     <!--Main chart-->
@@ -87,7 +88,7 @@
     <script>
         $(function () {
             var data = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli"],
                 datasets: [{
                     label: "My First dataset",
                     fillColor: "rgba(220,220,220,0.2)",
@@ -110,24 +111,6 @@
                 }]
             };
 
-
-            var dataPie = [{
-                value: 300,
-                color: "#F7464A",
-                highlight: "#FF5A5E",
-                label: "Red"
-            }, {
-                value: 50,
-                color: "#46BFBD",
-                highlight: "#5AD3D1",
-                label: "Green"
-            }, {
-                value: 100,
-                color: "#FDB45C",
-                highlight: "#FFC870",
-                label: "Yellow"
-            }]
-
             var option = {
                 responsive: true,
                 // set font color
@@ -137,23 +120,12 @@
                 // background grid lines color
                 scaleGridLineColor: "rgba(255,255,255,.1)",
                 // hide vertical lines
-                scaleShowVerticalLines: false,
+                scaleShowVerticalLines: false
             };
 
             // Get the context of the canvas element we want to select
             var ctx = document.getElementById("sales").getContext('2d');
             var myLineChart = new Chart(ctx).Line(data, option); //'Line' defines type of the chart.
-        });
-    </script>
-
-    <script>
-        $(function () {
-            $('.min-chart#chart-sales').easyPieChart({
-                barColor: "#4caf50",
-                onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
         });
     </script>
 
@@ -174,7 +146,7 @@
             close: 'Sluit',
 
             format: 'dd-mm-yyyy',
-            hiddenPrefix: 'd',
+            hiddenPrefix: 'd'
         });
 
 
