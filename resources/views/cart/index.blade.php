@@ -98,7 +98,7 @@
 	                                                    data-price="{{ $total }}">&euro;{{ number_format($total, 2, ",", ".") }}</strong>
 	                                        </h4></td>
                                         <td colspan="2">
-                                            <a href="{{ act ion("CheckoutController@index") }}">
+                                            <a href="{{ action("CheckoutController@index") }}">
                                                 <button type="button" class="btn btn-primary">Verder naar order plaatsen
                                                     <i class="fa fa-angle-right right"></i></button>
                                             </a>
