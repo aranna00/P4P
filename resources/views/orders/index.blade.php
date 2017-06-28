@@ -36,7 +36,11 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    Geen orders gevonden
+	                                <tr>
+		                                <td colspan="5" class="text-center">
+			                                Geen orders gevonden
+		                                </td>
+	                                </tr>
                                 @endif
                                 </tbody>
                             </table>

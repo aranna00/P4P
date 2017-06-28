@@ -38,7 +38,7 @@
         Route::post('/checkout', 'CheckoutController@checkout')->name('checkout');
         
         Route::get('/contact', 'ContactController@index')->name('contact');
-        Route::group(["middleware"=>"sentinel.role:ceo,auth"], function () {
-    
-        });
+//        Route::group(["middleware"=>"sentinel.role:ceo,auth"], function () {
+        Route::get("bedrijf/beheren", "BusinessController@index");
+//        });
     });

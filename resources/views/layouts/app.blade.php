@@ -67,10 +67,11 @@
                         <div class="dropdown-menu dropdown-default dropdown-menu-right" aria-labelledby="navbarProfle"
                              data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <a class="dropdown-item" href="{{ action('OrderController@index') }}">Orders</a>
+	                        <a class="dropdown-item" href="{{ action("BusinessController@index") }}">Bedrijf beheren</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                                Logout
+	                            Uitloggen
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
