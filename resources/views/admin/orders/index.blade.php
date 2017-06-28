@@ -7,13 +7,12 @@
             <a href="{{ action("Admin\HomeController@index") }}">Beheer</a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="{{ action("Admin\OrderController@index") }}">Gebruikers</a>
+            <a href="{{ action("Admin\OrderController@index") }}">Bestellingen</a>
         </li>
     </ol>
 @endsection
 
 @section("content")
-    <div class="container">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header primary-color text-center white-text">
@@ -53,16 +52,19 @@
                                                 {{ $order->processed?"Verwerkt":"Nog niet verwerkt" }}
                                             </td>
                                             <td>
-                                                <form action="{{ action("Admin\OrderController@update",["order"=>$order->id]) }}" method="post">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field("put") }}
-                                                    <button class="btn btn-primary btn-sm" name="process" onclick="if (confirm('Weet u zeker dat u deze order al verwerkt wil aangeven?')){ {$('#update{{ $order->id }}').submit();} }">Verwerken</button>
-                                                    <a href="{{ action("Admin\OrderController@show", $order->id) }}">
-                                                        <button class="btn btn-primary btn-sm">henk</button>
-                                                    </a>
+                                                <a href="{{ action("Admin\OrderController@show", $order->id) }}">
+                                                    <button class="btn btn-secondary btn-sm">Bekijk order</button>
+                                                </a>
+
+                                                <button class="btn btn-primary btn-sm"
+                                                        onclick="if (confirm('Weet u zeker dat u deze order al verwerkt wilt aangeven?')){ {$('#update{{ $order->id }}').submit();} }">Verwerken</button>
+
+                                                <form id="update{{ $order->id }}"
+                                                      action="{{ action("Admin\OrderController@update", ["order"=>$order->id]) }}"
+                                                      method="post">
+                                                    {!! csrf_field() !!}
+                                                    {!! method_field("put") !!}
                                                 </form>
-
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -75,5 +77,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

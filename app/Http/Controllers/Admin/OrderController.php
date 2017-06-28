@@ -65,7 +65,7 @@ class OrderController extends Controller
             return $item->tax->value * $item->price * $item->pivot->amount / 100;
         })->sum();
 
-        return view('orders.show', compact('order', 'total', 'tax'));
+        return view('admin.orders.show', compact('order', 'total', 'tax'));
     }
 
     /**
@@ -88,11 +88,9 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->exists("process")) {
-            $order = Order::findOrFail($id);
-            $order->processed = true;
-            $order->save();
-        }
+        $order = Order::findOrFail($id);
+        $order->processed = true;
+        $order->save();
         return \Redirect::back();
     }
 
