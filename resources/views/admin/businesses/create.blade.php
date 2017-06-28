@@ -1,7 +1,6 @@
 @extends("admin.layouts.app")
 
 @section("breadcrumbs")
-	
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
 			<i class="fa fa-home"></i>
@@ -14,7 +13,6 @@
 			<a href="">Aanmaken</a>
 		</li>
 	</ol>
-
 @endsection
 
 
