@@ -61,7 +61,7 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a href="{{ action("Admin\CategoryController@index") }}" class="waves-effect">Categoriën</a>
+	                    <a href="{{ action("Admin\CategoryController@index") }}" class="waves-effect">Categorieën</a>
                     </li>
                 </ul>
             <li>

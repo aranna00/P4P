@@ -47,7 +47,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="md-form">
-								<span>Categoriën</span>
+								<span>Categorieën</span>
 								<select multiple class="form-control multi-select" name="categories[]" id="category"
 								        title="category">
 									@foreach($categories as $category)

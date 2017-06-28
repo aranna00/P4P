@@ -8,7 +8,7 @@
 			<a href="{{ action("Admin\HomeController@index") }}">Beheer</a>
 		</li>
 		<li class="breadcrumb-item active">
-			<a href="{{ action("Admin\CategoryController@index") }}">Categoriën</a>
+			<a href="{{ action("Admin\CategoryController@index") }}">Categorieën</a>
 		</li>
 	</ol>
 

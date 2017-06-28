@@ -10,7 +10,7 @@
 			<a href="{{ action("Admin\ProductController@index") }}">Producten</a>
 		</li>
 		<li class="breadcrumb-item active">
-			<a href="">Aanmaken</a>
+			<a href="">{{ $product->code }}</a>
 		</li>
 	</ol>
 @endsection
@@ -19,7 +19,7 @@
 	<div class="container-fluid">
 		<div class="card">
 			<div class="card-header primary-color text-center white-text">
-				Product aanmaken
+				{{ $product->code }} - {{ $product->name }}
 			</div>
 			<div class="admin-panel m-3">
 				<form action="{{ action("Admin\UserController@store") }}" method="post">
@@ -47,8 +47,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="md-form">
-								<span>Categoriën</span>
-								<select multiple class="form-control multi-select" name="categories[]" id="category">
+								<span>Categorieën</span>
+								<select multiple class="form-control multi-select" name="categories[]" id="category"
+								        title="Categorieën">
 									@foreach($categories as $category)
 										<option id="option{{ $category->id }}"
 										        @if(in_array($category->id,$categories_sel)) selected
