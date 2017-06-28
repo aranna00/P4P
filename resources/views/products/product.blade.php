@@ -56,7 +56,13 @@
                     </div>
                     <div class="card-block pl-0">
                         <h3 class="text-center">extra informatie</h3>
-                        <p>{!! $product->description !!}</p>
+	                    <p>
+		                    @if($download)
+			                    <a href="{{ $download }}" target="_blank">{{ basename($download) }}</a>
+		                    @else
+		
+		                    @endif
+	                    </p>
                     </div>
                 </div>
             </div>

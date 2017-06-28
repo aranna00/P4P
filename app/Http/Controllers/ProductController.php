@@ -6,6 +6,7 @@
     use App\Brand;
     use App\Category;
     use App\Product;
+    use Illuminate\Support\Facades\Storage;
     use Symfony\Component\HttpFoundation\Request;
 
     class ProductController extends Controller
@@ -124,11 +125,30 @@
          */
         public function show($id)
         {
-            $product = Product::whereId($id)->get()->first();
-
+            $product=Product::whereId($id)->get()->first();
+            
             $user=\Sentinel::check();
             $wishlists=$user->wishlists;
-
-            return view('products.product', compact(['product', 'wishlists']));
+            $download=$this->getDownload($id);
+    
+            return view('products.product', compact(['product', 'wishlists', "download"]));
+        }
+    
+        /**
+         * @param $id
+         *
+         * @return bool|string
+         */
+        private function getDownload($id)
+        {
+            $product=Product::find($id);
+            $extentions=["pdf", "xls", "xlsx", "csv", "doc", "docx", "jpg"];
+            foreach ($extentions as $extention) {
+                if (file_exists(storage_path("app/public/pdfs/" . $product->code . "." . $extention))) {
+                    return Storage::url("pdfs/" . $product->code . "." . $extention);
+                }
+            }
+        
+            return false;
         }
     }
