@@ -136,7 +136,7 @@
                     @if(isset($breadcrumbs))
                         @foreach(array_reverse($breadcrumbs) as $breadcrumb)
                             <li class="breadcrumb-item"><a
-                                        href="{{ action("ProductController@filtered", $breadcrumb[0]) }}">{{ $breadcrumb[1] }}</a>
+                                        href="{{ action("ProductController@filtered", $breadcrumb[0]) }}?page=1">{{ $breadcrumb[1] }}</a>
                             </li>
                         @endforeach
                     @endif

@@ -126,12 +126,14 @@
         public function show($id)
         {
             $product=Product::whereId($id)->get()->first();
-            
+
             $user=\Sentinel::check();
             $wishlists=$user->wishlists;
             $download=$this->getDownload($id);
+            $attributes = $product->attributes;
+            $attributes->load("attributeGroup");
     
-            return view('products.product', compact(['product', 'wishlists', "download"]));
+            return view('products.product', compact(['product', 'wishlists', "download", "attributes"]));
         }
     
         /**
