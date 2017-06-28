@@ -15,6 +15,7 @@
     
         Route::get('/', 'HomeController@index')->name('admin.home');
         Route::resource("producten","ProductController");
+        Route::get("producten/featured/{product_id}","ProductController@featured");
         Route::resource("merken","BrandController");
         Route::resource("klanten","BusinessController");
         Route::group(["prefix"=>"klanten"], function () {

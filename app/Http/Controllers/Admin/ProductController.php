@@ -181,7 +181,7 @@ class ProductController extends Controller
         }
 
         $product->save();
-        
+
         $product->categories()->sync($request->get("categories"));
 
         return redirect()->action("Admin\ProductController@index");
@@ -198,6 +198,16 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
+
+        return redirect()->back();
+    }
+
+    public function featured($id){
+        $product = Product::findOrFail($id);
+
+        $product->featured = !$product->featured;
+
+        $product->save();
 
         return redirect()->back();
     }
