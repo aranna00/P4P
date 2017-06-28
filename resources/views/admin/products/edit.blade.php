@@ -49,7 +49,7 @@
                         <div class="md-form">
                             <select class="mdb-select" name="brand" id="brand">
                                 @foreach($brands as $index => $brand)
-                                    <option value="{{ $index }}">{{ $brand }}</option>
+                                    <option value="{{ $index }}" @if($product->brand->id == $index)selected="selected" @endif>{{ $brand }}</option>
                                 @endforeach
                             </select>
                             <label for="brand" class="control-label">Merk</label>
