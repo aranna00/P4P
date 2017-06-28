@@ -11,7 +11,7 @@
 @endsection
 
 @section('scripts')
-    <script src="https://maps.google.com/maps/api/js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyBuZzjWJDbh-cbck1tK5Wu5G_Z78AWuRw4"></script>
     <script>
         function init_map() {
             var var_location = new google.maps.LatLng(53.0360185, 6.304707);
