@@ -68,7 +68,7 @@
                                                    href="{{ action("Admin\ProductController@edit",["product"=>$product->id]) }}">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a class="btn btn-info @if($product->featured == '1')active @endif"
+                                                <a class="btn btn-info @if($product->featured == '0')grey @endif"
                                                    href="{{ action("Admin\ProductController@featured",["product"=>$product->id]) }}">
                                                     <i class="fa fa-lightbulb-o"></i>
                                                 </a>
