@@ -33,11 +33,11 @@
                                                 <img src="{{ asset("img/producten/".$product->code.".jpg") }}"
                                                      onerror="this.src='{{ asset("img/noimage.png") }}'"
                                                      alt=""
-                                                     class="img-fluid z-depth-0">
+                                                     class="img-fluid z-depth-0" style="height: 50px;">
                                             </td>
                                             <td>
                                                 <h5><strong>{{ $product->name }}</strong></h5>
-                                                <p class="text-muted">{!! $product->description !!}</p>
+                                                <p class="text-muted">{!! str_limit($product->description,180) !!}</p>
                                             </td>
 	                                        <td class="cart-price" data-price="{{ $product->price    }}">
 		                                        &euro;{{ number_format($product->price, 2, ",", ".") }}</td>
@@ -99,8 +99,7 @@
 	                                        </h4></td>
                                         <td colspan="2">
                                             <a href="{{ action("CheckoutController@index") }}">
-                                                <button type="button" class="btn btn-primary">Verder naar order plaatsen
-                                                    <i class="fa fa-angle-right right"></i></button>
+                                                <button type="button" class="btn btn-primary">Order plaatsen</button>
                                             </a>
                                         </td>
                                     </tr>

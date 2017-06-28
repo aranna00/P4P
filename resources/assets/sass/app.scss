@@ -130,7 +130,7 @@ footer {
 
 .thumbimg {
   background: url(/img/noimage.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
-  background-size: contain;
+  background-size: contain ;
   height: 30vh;
   a {
     display: block;
@@ -180,7 +180,7 @@ footer {
 }
 
 .carousel-right{
-  right: -18  px;
+  right: -18px;
 }
 
 /* Custom styles */
