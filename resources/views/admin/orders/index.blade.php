@@ -71,10 +71,16 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{--{!! $orders->links() !!}--}}
+	                        {!! $orders->links() !!}
                         </div>
                     </div>
                 </div>
             </div>
+	        <div class="card mt-1">
+		        <div class="mx-auto p-2 ">
+			        <a class="btn btn-primary" href="{{ action("Admin\OrderController@products") }}">Orders
+				        voorbereiden</a>
+		        </div>
+	        </div>
         </div>
 @endsection

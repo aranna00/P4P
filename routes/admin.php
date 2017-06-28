@@ -26,6 +26,7 @@
         });
         Route::resource("categorieen","CategoryController");
         Route::resource("bestellingen", "OrderController");
+        Route::get("bestellingen/open/producten", "OrderController@products")->name("order.open.products");
         Route::resource("gebruikers", "UserController");
         Route::resource("belastingen", "TaxController");
         Route::resource("eigenschappen","AttributeGroupController");
