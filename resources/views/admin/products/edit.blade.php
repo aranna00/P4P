@@ -158,7 +158,7 @@
                         <div class="md-form">
                             <input placeholder="Kies een datum" type="text" id="date-picker-until"
                                    class="form-control datepicker" name="available_until"
-                                   value="{{ $product->available_until->format("d-m-Y") }}">
+                                   @if ($product->available != null) value="{{ $product->available_until->format("d-m-Y") }}" @endif>
                             <label for="date-picker-until">Beschikbaar tot</label>
                         </div>
                     </div>
