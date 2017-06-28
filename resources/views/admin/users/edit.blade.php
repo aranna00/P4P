@@ -1,5 +1,20 @@
 @extends("admin.layouts.app")
 
+@section("breadcrumbs")
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <i class="fa fa-home"></i>
+            <a href="{{ action("Admin\HomeController@index") }}">Beheer</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a href="{{ action("Admin\UserController@index") }}">Gebruikers</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a href="">{{ $user->first_name }} {{ $user->last_name }}</a>
+        </li>
+    </ol>
+@endsection
+
 @section("content")
     <div class="container-fluid">
         <div class="card">

@@ -55,7 +55,7 @@ class UserController extends Controller
 
         \Sentinel::registerAndActivate($credentials);
 
-        Toastr::success("De gebruiker is successvol aangemaakt");
+        Toastr::success("De gebruiker is succesvol aangemaakt");
 
         return Redirect::action("Admin\UserController@index");
     }
@@ -124,7 +124,7 @@ class UserController extends Controller
         } else
         {
             $user->delete();
-            Toastr::success("De gebruiker ". $user->name ." is successvol verwijderd");
+            Toastr::success("De gebruiker ". $user->name ." is succesvol verwijderd");
         }
         return Redirect::action("Admin\UserController@index");
     }

@@ -36,7 +36,7 @@ class AttributeGroupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -46,7 +46,7 @@ class AttributeGroupController extends Controller
         $attributeGroup->type = $request->get("type");
         $attributeGroup->save();
 
-        Toastr::success("De producteigenschap is successvol aangemaakt");
+        Toastr::success("De producteigenschap is succesvol aangemaakt");
 
         return Redirect::action("Admin\AttributeGroupController@index");
     }
@@ -65,7 +65,7 @@ class AttributeGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AttributeGroup $attributeGroup
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,8 +79,8 @@ class AttributeGroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\AttributeGroup $attributeGroup
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -89,7 +89,7 @@ class AttributeGroupController extends Controller
         $attributeGroup->description = $request->get("description");
         $attributeGroup->save();
 
-        Toastr::success("De producteigenschap is successvol bijgewerkt");
+        Toastr::success("De producteigenschap is succesvol bijgewerkt");
 
         return Redirect::action("Admin\AttributeGroupController@index");
     }
@@ -97,8 +97,8 @@ class AttributeGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AttributeGroup $attributeGroup
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -108,7 +108,7 @@ class AttributeGroupController extends Controller
         }else{
             $attributeGroup->delete();
 
-            Toastr::success("De eigenschap ". $attributeGroup->name ." is successvol verwijderd");
+            Toastr::success("De eigenschap ". $attributeGroup->name ." is succesvol verwijderd");
         }
 
         return Redirect::action("Admin\AttributeGroupController@index");

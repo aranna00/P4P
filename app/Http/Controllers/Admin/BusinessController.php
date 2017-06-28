@@ -7,7 +7,8 @@
     use App\Http\Controllers\Controller;
     use Cache;
     use Illuminate\Http\Request;
-    
+    use Toastr;
+
     class BusinessController extends Controller
     {
         /**
@@ -71,6 +72,8 @@
             $business->billing()->associate($billing);
             $business->shipping()->associate($shipping);
             $business->save();
+
+            Toastr::success("De klant ". $business->handelsnaam ." is succesvol toegevoegd!");
             
             return response()->redirectToAction("Admin\BusinessController@index");
         }
@@ -140,6 +143,8 @@
             $business->relatie_nummer=$request->get("relatienummer");
             
             $business->save();
+
+            Toastr::success("De klant ". $business->handelsnaam ." is succesvol bijgewerkt!");
             
             return response()->redirectToAction("Admin\BusinessController@index");
         }
@@ -155,6 +160,8 @@
         {
             $business=Business::find($id);
             $business->delete();
+
+            Toastr::success("De klant ". $business->handelsnaam ." is succesvol verwijderd!");
             
             return back();
         }

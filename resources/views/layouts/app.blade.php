@@ -96,7 +96,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <img src="/img/jansma_logo_nav.png" class="mb-2" style="height: 80px">
-                <p><a>Algemene Voorwaarden</a> | <a>Cookies</a> | <a>Privacy</a></p>
+                <p><a>Algemene Voorwaarden</a> | <a>Cookies</a> | <a>Privacy</a> | <a href="{{ action("ContactController@index") }}">Contact</a></p>
             </div>
         </div>
     </div>
