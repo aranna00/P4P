@@ -7,7 +7,8 @@
     use App\Product;
     use Carbon\Carbon;
     use Illuminate\Http\Request;
-    
+    use Toastr;
+
     class OrderController extends Controller
     {
         /**
@@ -98,6 +99,8 @@
             $order=Order::findOrFail($id);
             $order->processed=true;
             $order->save();
+
+            Toastr::success("Order ". $order->id ." is succesvol verwerkt!");
             
             return \Redirect::back();
         }

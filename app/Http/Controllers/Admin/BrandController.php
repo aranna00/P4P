@@ -46,7 +46,7 @@ class BrandController extends Controller
         $brand->description = $request->get("description");
         $brand->save();
     
-        Toastr::success("Het merk is successvol aangemaakt");
+        Toastr::success("Het merk is succesvol aangemaakt");
     
         return Redirect::action("Admin\BrandController@index");
     }
@@ -90,7 +90,7 @@ class BrandController extends Controller
         $brand->description = $request->get("description");
         $brand->save();
     
-        Toastr::success("Het merk is successvol bijgewerkt");
+        Toastr::success("Het merk is succesvol bijgewerkt");
         
         return Redirect::action("Admin\BrandController@index");
     }
@@ -110,7 +110,7 @@ class BrandController extends Controller
         }else{
             $brand->delete();
         
-            Toastr::success("Het merk ". $brand->name ." is successvol verwijderd");
+            Toastr::success("Het merk ". $brand->name ." is succesvol verwijderd");
         }
     
         return Redirect::action("Admin\BrandController@index");

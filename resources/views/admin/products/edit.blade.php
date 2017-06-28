@@ -10,7 +10,7 @@
             <a href="{{ action("Admin\ProductController@index") }}">Producten</a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="">Bewerken</a>
+            <a href="">{{ $product->name }}</a>
         </li>
     </ol>
 @endsection

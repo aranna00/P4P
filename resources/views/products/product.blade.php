@@ -7,62 +7,95 @@
                 <div class="col-md-3 pl-3 pt-1 pr-md-0 ">
                     <img src="{{ asset("img/producten/".$product->code.".jpg") }}"
                          class="img-fluid w-100 breadcrumb-white m-0">
-                    <div class="card-block pl-0">
-                        <h4>Prijs</h4>
-                        <h4 class="green-text">€{{ number_format($product->price,2,",",".") }}/stuk</h4>
-                    </div>
-                    <div class="card-block pl-0">
-                        <h4>product-code</h4>
-                        <h4 class="green-text">{{ $product->code }}</h4>
+                    <div class="card-block px-0">
+                        <button class="btn primary-color p-3 w-100" href="#" data-toggle="modal"
+                                data-target="#{{ $product->id }}">
+                            Toevoegen aan winkelmand
+                        </button>
+                        <div class="dropdown d-inline w-100">
+
+                            <!--Trigger-->
+                            <button class="btn btn-danger dropdown-toggle p-3 w-100" type="button"
+                                    id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Toevoegen aan favorieten
+                            </button>
+
+                            <!--Menu-->
+                            <div class="dropdown-menu dropdown-danger">
+                                @foreach($wishlists as $wishlist)
+                                    <a class="dropdown-item"
+                                       href="{{ action("WishlistController@add", ["product_id"=>$product->id, "wishlist_id"=>$wishlist->id ])}}">{{ $wishlist->name }}</a>
+                                @endforeach()
+                                <a class="dropdown-item"
+                                   href="{{ action("WishlistController@create")}}">+ Maak nieuwe lijst</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="card-block pl-0 text-center">
-                        <h1>{{$product->brand->name . ' - ' . $product->name }}</h1>
+                        <h1>
+                            <span class="green-text">{{ $product->code }} </span>&nbsp; {{$product->brand->name . ' - ' . $product->name }}
+                        </h1>
+                        <h3 class="green-text">€{{ number_format($product->price,2,",",".") }}
+                            / @if ($product->coli != 0){{$product->coli}} @elseif ($product->weight != 0){{$product->weight/1000 . ' kg'}} @else
+                                stuk @endif</h3>
                     </div>
-                    <div class="card-block text-center row">
-                        <div class="col-12 col-md-6">
-                            <button class="btn primary-color p-3" href="#" data-toggle="modal"
-                                    data-target="#{{ $product->id }}">
-                                Toevoegen aan winkelmand
-                            </button>
+
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-3 primary-color" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Beschrijving</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Productspecificaties</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Extra informatie</a>
+                        </li>
+                    </ul>
+                    <!-- Tab panels -->
+                    <div class="tab-content">
+                        <!--Panel 1-->
+                        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                            <br>
+                            {!! $product->description !!}
                         </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="dropdown d-inline">
-
-                                <!--Trigger-->
-                                <button class="btn btn-danger dropdown-toggle p-3" type="button"
-                                        id="dropdownMenu2"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Toevoegen aan favorieten
-                                </button>
-
-                                <!--Menu-->
-                                <div class="dropdown-menu dropdown-danger">
-                                    @foreach($wishlists as $wishlist)
-                                        <a class="dropdown-item"
-                                           href="{{ action("WishlistController@add", ["product_id"=>$product->id, "wishlist_id"=>$wishlist->id ])}}">{{ $wishlist->name }}</a>
-                                    @endforeach()
-                                    <a class="dropdown-item"
-                                       href="{{ action("WishlistController@create")}}">+ Maak nieuwe lijst</a>
-                                </div>
-                            </div>
+                        <!--/.Panel 1-->
+                        <!--Panel 2-->
+                        <div class="tab-pane fade" id="panel2" role="tabpanel">
+                            <br>
+                            <table class="table">
+                                <thead class="font-weight-bold">
+                                <tr>
+                                    <td>Eigenschap</td>
+                                    <td>Waarde</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($attributes as $attribute)
+                                    <tr>
+                                        <td>{{ $attribute->attributeGroup->name }}</td>
+                                        <td>{{ $attribute->value }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div class="card-block pl-0">
-                        <h3 class="text-center">Beschrijving</h3>
-                        <p>{!! $product->description !!}</p>
-                    </div>
-                    <div class="card-block pl-0">
-                        <h3 class="text-center">extra informatie</h3>
-	                    <p>
-		                    @if($download)
-			                    <a href="{{ $download }}" target="_blank">{{ basename($download) }}</a>
-		                    @else
-		
-		                    @endif
-	                    </p>
+                        <!--/.Panel 2-->
+                        <!--Panel 3-->
+                        <div class="tab-pane fade text-center" id="panel3" role="tabpanel">
+                            <br>
+                            @if($download)
+                                <p>Product informatie</p>
+                                <a href="{{ $download }}" class="btn btn-info" target="_blank">Download</a>
+                            @else
+                                <p>Geen extra informatie beschikbaar</p>
+                            @endif
+                        </div>
+                        <!--/.Panel 3-->
                     </div>
                 </div>
             </div>

@@ -40,8 +40,8 @@
                     <a href="{{ route('favorieten.index') }}" class="nav-link">Favorieten</a>
                 </li>
             </ul>
-            <form class="form-inline waves-effect waves-light">
-                <input class="form-control" type="text" placeholder="Search">
+            <form action="/filter" method="get" class="form-inline waves-effect waves-light">
+                <input class="form-control" type="text" name="search" placeholder="Search">
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -97,7 +97,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <img src="/img/jansma_logo_nav.png" class="mb-2" style="height: 80px">
-                <p><a>Algemene Voorwaarden</a> | <a>Cookies</a> | <a>Privacy</a></p>
+                <p><a>Algemene Voorwaarden</a> | <a>Cookies</a> | <a>Privacy</a> | <a href="{{ action("ContactController@index") }}">Contact</a></p>
             </div>
         </div>
     </div>

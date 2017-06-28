@@ -53,7 +53,7 @@
             $category->parent_id = $request->get("parent_id")==0?null:$request->get("parent_id");
             $category->save();
             
-            Toastr::success("De category is successvol aangemaakt");
+            Toastr::success("De category is succesvol aangemaakt");
             
             return Redirect::action("Admin\CategoryController@index");
         }
@@ -107,7 +107,7 @@
             $category->parent_id = $request->get("parent_id")==0?null:$request->get("parent_id");
             $category->save();
     
-            Toastr::success("De category is successvol bijgewerkt");
+            Toastr::success("De category is succesvol bijgewerkt");
     
             return Redirect::action("Admin\CategoryController@index");
         }
@@ -127,7 +127,7 @@
             }else{
                 $category->delete();
     
-                Toastr::success("De categorie ". $category->name ." is successvol verwijderd");
+                Toastr::success("De categorie ". $category->name ." is succesvol verwijderd");
             }
     
             return Redirect::action("Admin\CategoryController@index");

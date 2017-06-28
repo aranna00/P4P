@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Tax;
 use Illuminate\Http\Request;
+use Toastr;
 
 class ProductController extends Controller
 {
@@ -88,6 +89,8 @@ class ProductController extends Controller
         $product->save();
 
         $product->categories()->sync($request->get("categories"));
+
+        Toastr::success("Het product ". $product->name ." is succesvol toegevoegd!");
 
         return redirect()->action("Admin\ProductController@index");
     }
@@ -184,6 +187,8 @@ class ProductController extends Controller
 
         $product->categories()->sync($request->get("categories"));
 
+        Toastr::success("Het product ". $product->name ." is succesvol bijgewerkt!");
+
         return redirect()->action("Admin\ProductController@index");
     }
 
@@ -199,6 +204,8 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
+        Toastr::success("Het product ". $product->name ." is succesvol verwijderd!");
+
         return redirect()->back();
     }
 
@@ -208,6 +215,8 @@ class ProductController extends Controller
         $product->featured = !$product->featured;
 
         $product->save();
+
+        Toastr::success("Het product ". $product->name ." is succesvol bijgewerkt!");
 
         return redirect()->back();
     }
