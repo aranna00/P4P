@@ -11,16 +11,15 @@
 
 @section('content')
     <div class="card mb-2">
+
+        <div class="card-header primary-color center-text white-text">
+            Verkoopcijfers
+        </div>
+
         <div class="row m-b-0">
 
             <!--First column-->
             <div class="col-md-5">
-
-                <!--Panel title-->
-                <div class="card-header primary-color center-text white-text">
-                    <h2>Verkoopcijfers</h2>
-                </div>
-                <!--/Panel title-->
 
                 <!--Panel data-->
                 <div class="row card-block pt-3">
@@ -70,11 +69,11 @@
             <!--/First column-->
 
             <!--Second column-->
-            <div class="col-md-7 p-5">
+            <div class="col-md-7 p-3 pr-4">
                 <!--Cascading element-->
-                <div class="view right primary-color">
+                <div class="view right primary-color p-2">
                     <!--Main chart-->
-                    <canvas id="sales" height="155px"></canvas>
+                    <canvas id="sales" height="150px"></canvas>
                 </div>
                 <!--/Cascading element-->
             </div>

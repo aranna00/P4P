@@ -20,7 +20,7 @@
 
 @section("content")
 	
-	<div class="col-md-12">
+	<div class="">
 		<div class="card">
 			<div class="card-header primary-color text-center white-text">
 				{{ $category->name }}
