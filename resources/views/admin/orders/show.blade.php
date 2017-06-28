@@ -7,10 +7,10 @@
             <a href="{{ action("Admin\HomeController@index") }}">Beheer</a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="{{ action("Admin\OrderController@index") }}">Bestellingen</a>
+            <a href="{{ action("Admin\OrderController@index") }}">Orders</a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="{{ action("Admin\OrderController@show", $order->id) }}">Bestelling {{ $order->id }}</a>
+            <a href="{{ action("Admin\OrderController@show", $order->id) }}">Order {{ $order->id }}</a>
         </li>
     </ol>
 @endsection
@@ -18,7 +18,7 @@
 @section('content')
     <div class="card mb-2">
         <div class="card-header primary-color white-text">
-            Bestelling: {{ $order->id }}
+            Order {{ $order->id }}
         </div>
         <div class="card-block">
             <div class="table-responsive">
