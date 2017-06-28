@@ -27,7 +27,9 @@
             </div>
 
             <div class="col-2 text-center">
-                <h5 class="hidden-md-down">€{{ number_format($product->price,2,",",".") }}</h5>
+                <h5 class="hidden-md-down">
+                    €{{ number_format($product->price,2,",",".") }} / @if ($product->coli != 0){{$product->coli}} @elseif ($product->weight != 0){{$product->weight/1000 . ' kg'}} @else stuk @endif
+                </h5>
                 <h6 class="hidden-lg-up">€{{ number_format($product->price,2,",",".") }}</h6>
             </div>
             <div class="col-3 col-sm-2 col-md-2 text-center btn-group">
