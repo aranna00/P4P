@@ -40,8 +40,8 @@
                     <a href="{{ route('favorieten.index') }}" class="nav-link">Favorieten</a>
                 </li>
             </ul>
-            <form class="form-inline waves-effect waves-light">
-                <input class="form-control" type="text" placeholder="Search">
+            <form action="/filter" method="get" class="form-inline waves-effect waves-light">
+                <input class="form-control" type="text" name="search" placeholder="Search">
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
