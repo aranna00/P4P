@@ -6,7 +6,7 @@
             <section>
                 <div class="card">
                     <div class="card-header primary-color-darken white-text">
-                        Mand
+                        Winkelwagen
                     </div>
                     <div class="card-block">
                         <div class="table-responsive">
@@ -29,12 +29,12 @@
                                 @if (count($cart) > 0)
                                     @foreach ($cart as $product)
                                         <tr>
-                                            <th scope="row">
+                                            <td scope="row">
                                                 <img src="{{ asset("img/producten/".$product->code.".jpg") }}"
                                                      onerror="this.src='{{ asset("img/noimage.png") }}'"
                                                      alt=""
                                                      class="img-fluid z-depth-0">
-                                            </th>
+                                            </td>
                                             <td>
                                                 <h5><strong>{{ $product->name }}</strong></h5>
                                                 <p class="text-muted">{!! $product->description !!}</p>
@@ -97,8 +97,8 @@
 	                                        <h4><strong id="cart-total"
 	                                                    data-price="{{ $total }}">&euro;{{ number_format($total, 2, ",", ".") }}</strong>
 	                                        </h4></td>
-                                        <td colspan="3">
-                                            <a href="{{ action("CheckoutController@index") }}">
+                                        <td colspan="2">
+                                            <a href="{{ act ion("CheckoutController@index") }}">
                                                 <button type="button" class="btn btn-primary">Verder naar order plaatsen
                                                     <i class="fa fa-angle-right right"></i></button>
                                             </a>
