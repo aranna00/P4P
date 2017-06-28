@@ -31,6 +31,11 @@
 							<div class="card-block">
 								{!! csrf_field() !!}
 								<div class="md-form">
+									<input name="relatienummer" type="text" class="form-control"
+									       id="relatienummer" required="required">
+									<label for="relatienummer">Relatie nummer</label>
+								</div>
+								<div class="md-form">
 									<input type="text" id="kvk-nummer" name="kvk" class="form-control">
 									<label for="kvk-nummer" class="control-label">KVK nummer</label>
 									<a class="btn btn-primary" id="checkDossierNummer"><i
@@ -74,11 +79,6 @@
 			<div class="hiddendiv bedrijfInfo col-12 mt-2">
 				<div class="card">
 					<div class="card-block">
-						<div class="md-form">
-							<input value=" " name="relatienummer" type="text" class="form-control"
-							       id="relatienummer" required>
-							<label for="relatienummer" class="active">Relatie nummer</label>
-						</div>
 						<div class="md-form">
 							<input value=" " name="bestaandehandelsnaam" type="text" class="form-control"
 							       id="bestaandehandelsnaam">
@@ -206,12 +206,10 @@
                     }
                 },
                 beforeSend: function () {
-                    console.log("start");
                     $("#kvkCheckLoading").removeClass("hidden-xl-down");
                 },
                 complete: function () {
                     $("#kvkCheckLoading").addClass("hidden-xl-down");
-                    console.log("end");
                 }
             })
         });

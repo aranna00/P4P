@@ -18,7 +18,7 @@
         Route::get("producten/featured/{product_id}","ProductController@featured");
         Route::resource("merken","BrandController");
         Route::resource("klanten","BusinessController");
-        Route::group(["prefix"=>"klanten"], function () {
+        Route::group(["prefix"=>"klanten/kvk"], function () {
             Route::any("checkRegisterNumber",
                 "BusinessController@checkRegisterNumber")->name("kvk.check.register.number");
             Route::any("getRegisterNumber", "BusinessController@getRegisterNumber")->name("kvk.get.register.number");
