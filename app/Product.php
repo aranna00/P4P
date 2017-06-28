@@ -55,10 +55,19 @@
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereVolume($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Product whereWeight($value)
  * @mixin \Eloquent
+ * @property bool $featured
+ * @method static \Illuminate\Database\Query\Builder|\App\Product whereFeatured($value)
  */
     class Product extends Model
     {
         use SoftDeletes;
+
+        protected $dates = [
+            'created_at',
+            'updated_at',
+            'available_from',
+            'available_until'
+        ];
         
         /**
          * @return bool

@@ -7,7 +7,7 @@
             <a href="{{ action("Admin\HomeController@index") }}">Beheer</a>
         </li>
         <li class="breadcrumb-item active">
-            <a href="{{ action("Admin\OrderController@index") }}">Bestellingen</a>
+            <a href="{{ action("Admin\OrderController@index") }}">Orders</a>
         </li>
     </ol>
 @endsection
@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header primary-color text-center white-text">
-                    Alle Bestellingen
+                    Alle Orders
                 </div>
                 <div class="admin-panel info-admin-panel">
                     <div class="col-md-12">
