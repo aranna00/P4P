@@ -64,7 +64,7 @@
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="true">{{ Sentinel::check()->first_name }} {{ Sentinel::check()->last_name }}
                             <span class="caret"></span></a>
-                        <div class="dropdown-menu dropdown-default dropdown-menu-right" aria-labelledby="navbarProfle"
+                        <div class="dropdown-menu dropdown-blue dropdown-menu-right" aria-labelledby="navbarProfle"
                              data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <a class="dropdown-item" href="{{ action('OrderController@index') }}">Orders</a>
 	                        <a class="dropdown-item" href="{{ action("BusinessController@index") }}">Bedrijf beheren</a>
