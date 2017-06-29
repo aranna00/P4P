@@ -3,8 +3,8 @@
     namespace App\Http\Controllers\Admin;
     
     use App\Category;
-    use Illuminate\Http\Request;
     use App\Http\Controllers\Controller;
+    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Redirect;
     use Toastr;
 
@@ -17,7 +17,7 @@
          */
         public function index()
         {
-            $categories=Category::with(["parent"])->paginate(8);
+            $categories=Category::with(["parent"])->orderBy("name", "asc")->paginate(8);
             
             return view("admin.categories.index", compact("categories"));
         }
